@@ -1,0 +1,96 @@
+server:
+  port: 9100
+spring:
+  application:
+    name: @artifactId@
+  boot:
+    admin:
+      client:
+        url: http://localhost:9900
+    #profiles: dev
+#  cloud:
+#    sentinel:
+#      transport:
+#        port: 8719
+#        dashboard: localhost:8080
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://119.23.8.73:3306/pro_cloud?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+    username: ENC(H15dJ+G7zVCtGXpZnoC8aw==)
+    password: ENC(Rl4qmW/H2ukPTr5pgYwLyQIpoGBC6tjO)
+
+
+  redis:
+    host: 119.23.8.73
+    password:
+    port: 8379
+    timeout: 10000
+    database: 0
+
+#security:
+#  basic:
+#    enabled: false
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.cloud.admin.beans
+  global-config:
+    banner: false
+    db-config:
+      id-type: id_worker
+      field-strategy: not_empty
+      column-underline: true
+      #capital-mode: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+  performanceInterceptor:
+    enabled: true
+security:
+  oauth2:
+    client:
+#      client-id: client
+#      client-secret: secret
+      access-token-uri: http://cloud-auth/oauth/token
+      user-authorization-uri: http://cloud-auth/oauth/authorize
+      ignore-urls:
+        - /actuator/**
+        - /actuator
+        - /v2/api-docs
+        - /swagger-resources
+        - /swagger-resources/**
+        - /configuration/ui
+        - /configuration/security
+        - /swagger-ui.html
+        - /webjars/**
+    resource:
+      token-info-uri: http://cloud-auth/oauth/check_token
+      loadBalanced: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+swagger:
+  basePackage: com.cloud.admin
+  title: Hcloud SpringCloud
+  description: Hcloud SpringCloud doc
+  version: v2.0
+  license: http://www.eduvipx.cn
+  licenseUrl: http://www.eduvipx.cn/licenseUrl
+  termsOfServiceUrl: http://www.eduvipx.cn/termsOfServiceUrl
+  host: 127.0.0.1:9999
+  contact:
+    name: Hcloud
+    url: http://www.eduvipx.cn/url
+    email: jxaijm94@163.com
+  authorization:
+    userAuthorizationUri: http://127.0.0.1:9999/auth/oauth/token
+
+logging:
+  config: classpath:logback-spring.xml

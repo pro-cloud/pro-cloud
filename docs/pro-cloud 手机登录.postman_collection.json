@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "b63f358b-5e88-4fc3-9848-85a176e5bc98",
+		"name": "pro-cloud 手机登录",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "手机登录",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "deviceId",
+						"type": "text",
+						"value": "12345455"
+					},
+					{
+						"key": "imageCode",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9999/auth/auth/mobile?smsCode=488315&mobile=18210584253",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9999",
+					"path": [
+						"auth",
+						"auth",
+						"mobile"
+					],
+					"query": [
+						{
+							"key": "smsCode",
+							"value": "488315"
+						},
+						{
+							"key": "mobile",
+							"value": "18210584253"
+						},
+						{
+							"key": "password",
+							"value": "1821058425",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "手机验证码",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "deviceId",
+						"type": "text",
+						"value": "12345455"
+					},
+					{
+						"key": "mobile",
+						"value": "18210584253",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9999/auth/auth/code/sms?mobile=18210584253",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9999",
+					"path": [
+						"auth",
+						"auth",
+						"code",
+						"sms"
+					],
+					"query": [
+						{
+							"key": "loginName",
+							"value": "112",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "2334",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "18210584253"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

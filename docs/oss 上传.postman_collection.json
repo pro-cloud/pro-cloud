@@ -1,0 +1,111 @@
+{
+	"id": "2b732fda-e62b-44a3-b0c7-ded29d2c5f20",
+	"name": "oss 上传",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"7fba9025-0b20-44ab-bd5b-2a0e3f947653"
+	],
+	"folders_order": [],
+	"protocolProfileBehavior": {},
+	"folders": [],
+	"requests": [
+		{
+			"id": "7fba9025-0b20-44ab-bd5b-2a0e3f947653",
+			"name": "oss 上传",
+			"url": "http://bj-oss-d-shujiajia.oss-cn-beijing.aliyuncs.com",
+			"description": "",
+			"data": [
+				{
+					"key": "OSSAccessKeyId",
+					"value": "LTAIER3YM8cdW2yI",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "success_action_status",
+					"value": "200",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "callback",
+					"value": "eyJjYWxsYmFja0JvZHlUeXBlIjoiYXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVkIiwiY2FsbGJhY2tVcmwiOiJodHRwOi8vanQyaGd0Lm5hdGFwcGZyZWUuY2Mvb3NzL2NhbGxiYWNrIiwiY2FsbGJhY2tCb2R5IjoiZmlsZW5hbWU9JHtvYmplY3R9JnNpemU9JHtzaXplfSZtaW1lVHlwZT0ke21pbWVUeXBlfSZoZWlnaHQ9JHtpbWFnZUluZm8uaGVpZ2h0fSZ3aWR0aD0ke2ltYWdlSW5mby53aWR0aH0ifQ==",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "signature",
+					"value": "5e5hm9CnICIyYppxqn+hluNo1J0=",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "file",
+					"value": "/D:/1.csv",
+					"description": "",
+					"type": "file",
+					"enabled": false
+				},
+				{
+					"key": "policy",
+					"value": "eyJleHBpcmF0aW9uIjoiMjAxOS0xMS0wMVQyMTo0ODoxNS41MzNaIiwiY29uZGl0aW9ucyI6W1siY29udGVudC1sZW5ndGgtcmFuZ2UiLDAsNzExODY3NzYwNjRdLFsic3RhcnRzLXdpdGgiLCIka2V5IiwiZGVmYXVsdC9kZWZhdWx0L2RlZmF1bHQyMDE5MDkyMy8xOSJdXX0=",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "OSSAccessKeyId",
+					"value": "LTAIER3YM8cdW2yI",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "key",
+					"value": "default/default/default20190923/19/1.csv",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "file",
+					"value": "/D:/1.csv",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataOptions": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "key",
+					"value": "2019/1.csv",
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "file",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}

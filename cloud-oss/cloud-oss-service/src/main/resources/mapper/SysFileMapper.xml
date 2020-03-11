@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloud.oss.mapper.SysFileMapper">
+
+
+  <sql id="Base_Column_List">
+      a.id AS id,
+      a.file_name AS fileName,
+      a.file_url AS fileUrl,
+      a.file_path AS filePath,
+      a.type AS type,
+      a.file_suffix AS fileSuffix,
+      a.file_size AS fileSize,
+      a.props AS props,
+      a.belong_name AS belongName,
+      a.belong_type AS belongType,
+      a.pre_path AS prePath,
+      a.belong_status AS belongStatus,
+      a.create_by AS createBy,
+      a.create_date AS createDate,
+      a.update_by AS updateBy,
+      a.update_date AS updateDate,
+      a.remarks AS remarks,
+      a.del_flag AS delFlag
+  </sql>
+
+</mapper>

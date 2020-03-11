@@ -1,0 +1,20 @@
+server:
+  port: 4000
+  servlet:
+    context-path: /ssoDemo
+
+security:
+  oauth2:
+    client:
+      client-id: client_1
+      client-secret: secret
+      user-authorization-uri: http://localhost:9000/oauth/authorize
+      access-token-uri: http://localhost:9000/oauth/token
+      scope: app
+    resource:
+      loadBalanced: true
+      token-info-uri: http://localhost:9000/oauth/check_token
+
+spring:
+  application:
+    name: @artifactId@

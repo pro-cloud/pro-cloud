@@ -1,0 +1,108 @@
+spring:
+  application:
+    name: cloud-auth
+  profiles:
+    active: dev
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: false
+
+#  main:
+#    allow-bean-definition-overriding: true
+  freemarker:
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl
+    tempalte-loader-path: classpath:/templates
+
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://119.23.8.73:3306/pro_cloud?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
+    username: ENC(H15dJ+G7zVCtGXpZnoC8aw==)
+    password: ENC(Rl4qmW/H2ukPTr5pgYwLyQIpoGBC6tjO)
+
+  resources:
+    static-locations: classpath:/static/
+feign:
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+
+  #ribbon:
+  #  ReadTimeout: 120000
+  #  ConnectTimeout: 30000
+
+  #hystrix:
+  #  command:
+  #    default:
+  #      execution:
+  #        timeout:
+  #          enabled: true
+  #        isolation:
+  #          thread:
+  #            timeoutInMilliseconds: 4000
+
+  #
+  sentinel:
+    enabled: true
+
+#
+#feign:
+#  hystrix:
+#    enabled: true
+security:
+  oauth2:
+    reuseRefreshToken: false
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+          strategy: SEMAPHORE
+
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.cloud.auth.entity
+  global-config:
+    banner: false
+    db-config:
+      column-underline: true
+      #capital-mode: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    refresh: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  performanceInterceptor:
+    enabled: true
+
+
+
+pro-cloud:
+  security:
+    client:
+      clientId: client
+      clientSecret: secret
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+logging:
+  config: classpath:logback-spring.xml

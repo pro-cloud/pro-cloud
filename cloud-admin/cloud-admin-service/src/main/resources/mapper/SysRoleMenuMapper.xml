@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloud.admin.mapper.SysRoleMenuMapper">
+
+
+    <sql id="Base_Column_List">
+      a.role_id AS roleId,
+      a.menu_id AS menuId
+    </sql>
+
+
+    <insert id="insertRoleMenu">
+        INSERT INTO sys_role_menu(role_id, menu_id)
+        <foreach collection="menuList" item="menu" separator=" union all ">
+            SELECT #{id}, #{menu.id}
+        </foreach>
+    </insert>
+
+    <delete id="deleteRoleDTO">
+        DELETE FROM sys_role_menu WHERE role_id = #{id}
+    </delete>
+</mapper>

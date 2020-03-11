@@ -1,0 +1,20 @@
+{
+	"info": {
+		"_postman_id": "054f8eb4-fece-4580-b1b5-dad412b1b5c2",
+		"name": "生成代码",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "生成代码",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}

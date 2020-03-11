@@ -1,0 +1,23 @@
+server:
+  port: 80
+
+
+spring:
+  application:
+    name: @artifactId@
+  boot:
+    admin:
+      client:
+        url: http://localhost:8769
+    #profiles: dev
+  cloud:
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+  mail:
+    host: smtp.163.com
+    port:
+    protocol: smtp
+    username: jxaijm94@163.com
+    password: ai123456

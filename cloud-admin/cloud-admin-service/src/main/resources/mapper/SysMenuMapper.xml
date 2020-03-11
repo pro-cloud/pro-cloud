@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.admin.mapper.SysMenuMapper">
+
+    <sql id="Base_Column_List">
+      a.id AS id,
+      a.parent_id AS parentId,
+      a.parent_ids AS parentIds,
+      a.name AS name,
+      a.sort AS sort,
+      a.href AS href,
+      a.target AS target,
+      a.icon AS icon,
+      a.is_show AS hasShow,
+      a.permission AS permission,
+      a.create_by AS createBy,
+      a.create_date AS createDate,
+      a.update_by AS updateBy,
+      a.update_date AS updateDate,
+      a.remarks AS remarks,
+      a.del_flag AS delFlag
+  </sql>
+
+  <select id="findByUserId" resultType="com.cloud.admin.beans.po.SysMenu">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM sys_menu a
+    JOIN sys_role_menu rm ON rm.menu_id = a.id
+    JOIN sys_role r ON r.id = rm.role_id
+    JOIN sys_user_role ur ON ur.role_id = r.id
+    JOIN sys_user u ON u.id = ur.user_id AND u.id = #{userId}
+    WHERE a.del_flag = 0 AND r.del_flag = 0 AND u.del_flag = 0
+      Group by a.id
+      ORDER BY a.sort
+  </select>
+
+</mapper>

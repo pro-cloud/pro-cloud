@@ -1,0 +1,352 @@
+{
+	"info": {
+		"_postman_id": "637e8868-755d-40ed-aa18-8f7923e39b08",
+		"name": "测试",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录测试网关",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"loginName\":\"2344\",\n\t\"password\":\"234\"\n}"
+				},
+				"url": {
+					"raw": "http://pro-cloud:8090/admin/user/info/thinkgem",
+					"protocol": "http",
+					"host": [
+						"pro-cloud"
+					],
+					"port": "8090",
+					"path": [
+						"admin",
+						"user",
+						"info",
+						"thinkgem"
+					],
+					"query": [
+						{
+							"key": "loginName",
+							"value": "112",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "2334",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取验证码",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "deviceId",
+						"value": "12345455888",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/auth/code/image",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"code",
+						"image"
+					],
+					"query": [
+						{
+							"key": "loginName",
+							"value": "112",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "2334",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "登录",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "deviceId",
+						"type": "text",
+						"value": "12345455888"
+					},
+					{
+						"key": "imageCode",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageCode",
+							"value": "7kned",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/auth/form",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"form"
+					],
+					"query": [
+						{
+							"key": "passwor",
+							"value": "2334",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "手机验证码",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "deviceId",
+						"type": "text",
+						"value": "12345455"
+					},
+					{
+						"key": "mobile",
+						"value": "18210584253",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"loginName\":\"2344\",\n\t\"password\":\"234\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/auth/code/sms?mobile=1821058425",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"code",
+						"sms"
+					],
+					"query": [
+						{
+							"key": "loginName",
+							"value": "112",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "2334",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "1821058425"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "手机登录",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "deviceId",
+						"type": "text",
+						"value": "12345455"
+					},
+					{
+						"key": "imageCode",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/auth/mobile?smsCode=715082&mobile=1821058425&password=1821058425",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"mobile"
+					],
+					"query": [
+						{
+							"key": "smsCode",
+							"value": "715082"
+						},
+						{
+							"key": "mobile",
+							"value": "1821058425"
+						},
+						{
+							"key": "password",
+							"value": "1821058425"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin 测试",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/user/info/thinkgem2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"user",
+						"info",
+						"thinkgem2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

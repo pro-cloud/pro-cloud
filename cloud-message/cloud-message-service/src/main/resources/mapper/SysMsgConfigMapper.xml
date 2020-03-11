@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloud.message.mapper.SysMsgConfigMapper">
+
+
+  <sql id="Base_Column_List">
+      a.id AS id,
+      a.sms_plat_url AS smsPlatUrl,
+      a.sms_plat_account AS smsPlatAccount,
+      a.sms_plat_password AS smsPlatPassword,
+      a.sender_name AS senderName,
+      a.create_by AS createBy,
+      a.create_date AS createDate,
+      a.update_by AS updateBy,
+      a.update_date AS updateDate,
+      a.remarks AS remarks,
+      a.del_flag AS delFlag
+  </sql>
+</mapper>

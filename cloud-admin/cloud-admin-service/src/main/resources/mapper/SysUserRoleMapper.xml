@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloud.admin.mapper.SysUserRoleMapper">
+
+
+  <sql id="Base_Column_List">
+      a.user_id AS userId,
+      a.role_id AS roleId
+  </sql>
+
+    <!-- 删除用户和角色关联表数据 -->
+    <delete id="deleteUserRole">
+		DELETE FROM sys_user_role WHERE user_id = #{id}
+	</delete>
+
+    <!-- 删除用户和角色关联表数据 根据角色删除 -->
+    <delete id="deleteUserRoleByRole">
+		DELETE FROM sys_user_role WHERE role_id = #{id}
+	</delete>
+
+
+    <!-- 插入用户和角色关联表数据 -->
+    <insert id="insertUserRole">
+        INSERT INTO sys_user_role(user_id, role_id)
+        <foreach collection="roleList" item="role" separator=" union all ">
+            SELECT #{id}, #{role.id}
+        </foreach>
+    </insert>
+
+</mapper>

@@ -1,0 +1,80 @@
+server:
+  port: 9999
+
+
+spring:
+  application:
+    name: @artifactId@
+  #profiles: dev
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://119.23.8.73:3306/pro_cloud?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
+    username: ENC(H15dJ+G7zVCtGXpZnoC8aw==)
+    password: ENC(Rl4qmW/H2ukPTr5pgYwLyQIpoGBC6tjO)
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      routes:
+        - id: cloud-auth
+          uri: lb://cloud-auth
+          order: 8000
+          predicates:
+            - Path=/auth/**
+          filters:
+#            - SwaggerHeaderFilter
+            - StripPrefix=1
+        - id: cloud-admin-service
+          uri: lb://cloud-admin-service
+          order: 8001
+          predicates:
+            - Path=/admin/**
+          filters:
+#            - SwaggerHeaderFilter
+            - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                rate-limiter: "#{@sysRedisRateLimiter}"
+                key-resolver: "#{@sysKeyResolver}"
+
+
+
+  redis:
+    host: 119.23.8.73
+    password:
+    port: 8379
+    timeout: 10000
+    database: 0
+
+#
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.cloud.admin.beans.po
+  global-config:
+    banner: false
+    db-config:
+      id-type: id_worker
+      field-strategy: not_empty
+      column-underline: true
+      #capital-mode: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    refresh: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+logging:
+  config: classpath:logback-spring.xml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

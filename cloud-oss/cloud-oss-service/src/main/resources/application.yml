@@ -1,0 +1,73 @@
+server:
+  port: 80
+
+
+spring:
+  application:
+    name: @artifactId@
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8769
+#    #profiles: dev
+#  cloud:
+#    sentinel:
+#      transport:
+#        port: 8719
+#        dashboard: localhost:8080
+
+  # 配置邮件
+  mail:
+    host: smtp.163.com
+    port:
+    protocol: smtp
+    username: jxaijm94@163.com
+    password: ai123456
+
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://119.23.8.73:3306/pro_cloud?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
+    username: ENC(H15dJ+G7zVCtGXpZnoC8aw==)
+    password: ENC(Rl4qmW/H2ukPTr5pgYwLyQIpoGBC6tjO)
+aliyun:
+  oss:
+    accessKeyId: 122
+    accessKeySecret: 334
+    bucketName: 445
+    callback: 67
+    endpoint: 789
+    endpointInternal: 7899
+    maxSize: 67889
+    policyIexpire: 5677
+    filePaths:
+      - type: default
+        prePath: default
+        belongName: default
+        belongType: default
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.cloud.auth.entity
+  global-config:
+    banner: false
+    db-config:
+      column-underline: true
+      #capital-mode: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    refresh: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  performanceInterceptor:
+    enabled: true
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://localhost:8082/oauth/token
+      user-authorization-uri: http://localhost:8082/oauth/authorize
+    resource:
+      token-info-uri: http://localhost:8082/oauth/check_token
+      loadBalanced: true

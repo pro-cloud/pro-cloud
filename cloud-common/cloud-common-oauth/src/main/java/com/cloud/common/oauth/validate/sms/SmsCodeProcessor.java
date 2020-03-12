@@ -60,7 +60,7 @@ public class SmsCodeProcessor extends AbstractValidateCodeProcessor<ValidateCode
 			result = Result.error(ResultEnum.LOGIN_CODE);
 		} catch (Exception e) {
 			log.error("对校验短信数量进行判断, e={}", e.getMessage(), e);
-			result = Result.error("");
+			result = Result.error("对校验短信数量进行判断异常");
 		}
 		String json = objectMapper.writeValueAsString(result);
 		HttpServletResponse response = request.getResponse();

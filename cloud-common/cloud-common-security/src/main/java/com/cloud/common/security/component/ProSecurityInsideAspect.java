@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 @Component
 @AllArgsConstructor
-public class ProSecurityInnerAspect {
+public class ProSecurityInsideAspect {
 	private final HttpServletRequest request;
 
 	@SneakyThrows
@@ -33,7 +33,7 @@ public class ProSecurityInnerAspect {
 		String header = request.getHeader(StaticVar.FROM);
 		if (!StrUtil.equals(StaticVar.FROM_IN, header)) {
 			log.warn("访问接口 {} 没有权限", point.getSignature().getName());
-			throw new AccessDeniedException("访问被拒绝,");
+			throw new AccessDeniedException("访问被拒绝!");
 		}
 		return point.proceed();
 	}

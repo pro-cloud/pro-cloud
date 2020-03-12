@@ -53,6 +53,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title(properties.getTitle())
                 .description(properties.getDesc())
+                .contact(properties.getAuthor())
                 //服务条款网址
                 .termsOfServiceUrl(properties.getTermsOfServiceUrl())
                 .version(properties.getVersion())

@@ -129,6 +129,7 @@ logging:
 
 swagger:
   enabled: true
+  author: Hcloud
   title: Hcloud SpringCloud
   desc: Hcloud SpringCloud doc
   version: v2.0

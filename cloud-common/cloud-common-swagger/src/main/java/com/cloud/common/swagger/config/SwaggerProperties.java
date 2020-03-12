@@ -1,5 +1,6 @@
 package com.cloud.common.swagger.config;
 
+import io.swagger.models.Contact;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -20,6 +21,11 @@ public class SwaggerProperties {
 	 * 是否开启swagger
 	 */
 	private Boolean enabled;
+
+	/**
+	 * 作者
+	 **/
+	private String author;
 
 	/**
 	 * 标题

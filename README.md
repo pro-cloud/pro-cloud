@@ -94,6 +94,7 @@ generator/code?tableName=sys_user&moduleName=admin&comments=用户表
 
 #### 欢迎加群
 [![加入QQ群](https://img.shields.io/badge/238254944-blue.svg)](https://jq.qq.com/?_wv=1027&k=57NNidS)
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0312/115300_6bd86d98_1236464.png "Pro-Cloud交流群群聊二维码.png")
 #### Pro-Cloud建设
 
 1. 官方地址 [www.eduvipx.cn](http://www.eduvipx.cn) 文档地址http://www.eduvipx.cn:8000/ 官方网站正在建设中…… 可以先查看文档

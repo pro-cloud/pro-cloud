@@ -60,6 +60,25 @@ feign:
 security:
   oauth2:
     reuseRefreshToken: false
+      access-token-uri: http://cloud-auth/oauth/token
+      user-authorization-uri: http://cloud-auth/oauth/authorize
+      ignore-urls:
+      - /actuator/**
+      - /actuator
+      - /v2/api-docs
+      - /swagger-resources
+      - /swagger-resources/**
+      - /configuration/ui
+      - /configuration/security
+      - /swagger-ui.html
+      - /webjars/**
+      - /token/**
+      - /auth/code/**
+      - /auth/mobile
+      - /auth/**
+    resource:
+      token-info-uri: http://cloud-auth/oauth/check_token
+      loadBalanced: true
 
 hystrix:
   command:
@@ -115,3 +134,5 @@ swagger:
   termsOfServiceUrl: http://www.eduvipx.cn/termsOfServiceUrl
   host: 127.0.0.1:9999
   authUri: http://127.0.0.1:9999/auth/oauth/token
+
+

@@ -1,6 +1,6 @@
 package com.cloud.common.swagger.config;
 
-import com.github.xiaoymin.knife4j.spring.annotations.EnableSwaggerBootstrapUi;
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import com.google.common.collect.Lists;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Configuration
 @EnableSwagger2
-@EnableSwaggerBootstrapUi
+@EnableKnife4j
 @Import(BeanValidatorPluginsConfiguration.class)
 @ConditionalOnProperty(name = "swagger.enabled", matchIfMissing = true )
 public class SwaggerConfig {

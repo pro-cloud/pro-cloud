@@ -77,20 +77,13 @@ management:
     health:
       show-details: ALWAYS
 swagger:
-  basePackage: com.cloud.admin
+  enabled: true
   title: Hcloud SpringCloud
-  description: Hcloud SpringCloud doc
+  desc: Hcloud SpringCloud doc
   version: v2.0
-  license: http://www.eduvipx.cn
-  licenseUrl: http://www.eduvipx.cn/licenseUrl
   termsOfServiceUrl: http://www.eduvipx.cn/termsOfServiceUrl
   host: 127.0.0.1:9999
-  contact:
-    name: Hcloud
-    url: http://www.eduvipx.cn/url
-    email: jxaijm94@163.com
-  authorization:
-    userAuthorizationUri: http://127.0.0.1:9999/auth/oauth/token
+  authUri: http://127.0.0.1:9999/auth/oauth/token
 
 logging:
   config: classpath:logback-spring.xml

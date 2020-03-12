@@ -106,3 +106,12 @@ management:
       show-details: ALWAYS
 logging:
   config: classpath:logback-spring.xml
+
+swagger:
+  enabled: true
+  title: Hcloud SpringCloud
+  desc: Hcloud SpringCloud doc
+  version: v2.0
+  termsOfServiceUrl: http://www.eduvipx.cn/termsOfServiceUrl
+  host: 127.0.0.1:9999
+  authUri: http://127.0.0.1:9999/auth/oauth/token

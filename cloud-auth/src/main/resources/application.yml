@@ -60,22 +60,23 @@ feign:
 security:
   oauth2:
     reuseRefreshToken: false
+    client:
       access-token-uri: http://cloud-auth/oauth/token
       user-authorization-uri: http://cloud-auth/oauth/authorize
       ignore-urls:
-      - /actuator/**
-      - /actuator
-      - /v2/api-docs
-      - /swagger-resources
-      - /swagger-resources/**
-      - /configuration/ui
-      - /configuration/security
-      - /swagger-ui.html
-      - /webjars/**
-      - /token/**
-      - /auth/code/**
-      - /auth/mobile
-      - /auth/**
+        - /actuator/**
+        - /actuator
+        - /v2/api-docs
+        - /swagger-resources
+        - /swagger-resources/**
+        - /configuration/ui
+        - /configuration/security
+        - /swagger-ui.html
+        - /webjars/**
+        - /token/**
+        - /auth/code/**
+        - /auth/mobile
+        - /auth/**
     resource:
       token-info-uri: http://cloud-auth/oauth/check_token
       loadBalanced: true

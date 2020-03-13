@@ -99,7 +99,7 @@ generator/code?tableName=sys_user&moduleName=admin&comments=用户表
 #### Pro-Cloud建设
 
 1. 官方地址 [www.eduvipx.cn](http://www.eduvipx.cn) 文档地址http://www.eduvipx.cn:8000/ 官方网站正在建设中…… 可以先查看文档
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0307/223357_9e5c7bae_1236464.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0312/183349_ef4d3278_1236464.png "2.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/1206/145155_61d3dd66_1236464.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/1125/205517_9805bb5a_1236464.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/1125/205612_4e340fbe_1236464.png "屏幕截图.png")

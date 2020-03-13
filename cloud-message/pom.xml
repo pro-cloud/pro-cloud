@@ -9,7 +9,7 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>cloud-message</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>message project for Spring Cloud</description>
 
     <modules>
         <module>cloud-message-common</module>

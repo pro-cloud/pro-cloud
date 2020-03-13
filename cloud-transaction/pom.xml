@@ -9,7 +9,7 @@
     </parent>
     <artifactId>cloud-transaction</artifactId>
     <packaging>jar</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>transaction project for Spring Cloud</description>
 
     <dependencies>
 

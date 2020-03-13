@@ -9,7 +9,7 @@
     </parent>
     <packaging>jar</packaging>
     <artifactId>cloud-message-common</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>message common project for Spring Cloud</description>
 
     <dependencies>
         <dependency>

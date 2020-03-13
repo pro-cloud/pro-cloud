@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>cloud-generator</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>generator project for Spring Cloud</description>
 
     <dependencies>
         <dependency>

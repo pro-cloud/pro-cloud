@@ -9,7 +9,7 @@
     </parent>
     <artifactId>cloud-common-security</artifactId>
     <packaging>jar</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>common security project for Spring Cloud</description>
 
     <dependencies>
         <dependency>

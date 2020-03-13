@@ -9,7 +9,7 @@
     </parent>
     <packaging>jar</packaging>
     <artifactId>cloud-admin-api</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>admin api project for Spring Cloud</description>
 
     <dependencies>
 

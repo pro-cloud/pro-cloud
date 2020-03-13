@@ -9,7 +9,7 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>cloud-oss</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>oss project for Spring Cloud</description>
 
     <modules>
         <module>cloud-oss-common</module>

@@ -8,7 +8,7 @@
     <artifactId>cloud-common-bom</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>common bom project for Spring Cloud</description>
 
     <dependencyManagement>
         <dependencies>

@@ -9,7 +9,7 @@
     </parent>
     <artifactId>cloud-common-job</artifactId>
     <packaging>jar</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>common job project for Spring Cloud</description>
 
     <dependencies>
 

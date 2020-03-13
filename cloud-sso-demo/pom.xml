@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>cloud-sso-demo</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>demo project for Spring Cloud</description>
 
 
     <dependencies>

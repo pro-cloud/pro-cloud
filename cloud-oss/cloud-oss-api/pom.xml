@@ -9,7 +9,7 @@
     </parent>
     <packaging>jar</packaging>
     <artifactId>cloud-oss-api</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>oss api project for Spring Cloud</description>
 
     <dependencies>
 

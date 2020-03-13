@@ -9,7 +9,7 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>cloud-common</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>common project for Spring Cloud</description>
 
     <modules>
         <module>cloud-common-bom</module>

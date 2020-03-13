@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>cloud-gateway</artifactId>
-	<description>Demo project for Spring Boot</description>
+	<description>gateway project for Spring Cloud</description>
 	<dependencies>
 
 		<dependency>

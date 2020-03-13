@@ -9,11 +9,10 @@
     </parent>
     <artifactId>cloud-common-swagger</artifactId>
     <packaging>jar</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>common swagger project for Spring Cloud</description>
 
 
     <dependencies>
-
 
         <!--knife4j是为Java MVC框架集成Swagger生成Api文档的增强-->
         <dependency>

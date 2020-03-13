@@ -9,7 +9,7 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>cloud-admin</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>cloud admin project for Spring Cloud</description>
 
     <modules>
         <module>cloud-admin-common</module>

@@ -9,7 +9,7 @@
     </parent>
     <artifactId>cloud-common-cache</artifactId>
     <packaging>jar</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>common cache project for Spring Cloud</description>
 
     <dependencies>
 

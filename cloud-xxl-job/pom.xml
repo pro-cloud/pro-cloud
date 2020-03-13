@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>cloud-xxl-job</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>job project for Spring Cloud</description>
 
 
     <dependencies>

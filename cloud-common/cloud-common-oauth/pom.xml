@@ -9,7 +9,7 @@
     </parent>
     <artifactId>cloud-common-oauth</artifactId>
     <packaging>jar</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>common oauth project for Spring Cloud</description>
 
     <dependencies>
         <!--第三方登录-->

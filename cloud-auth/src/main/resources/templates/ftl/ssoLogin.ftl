@@ -91,9 +91,6 @@
             $.ajax({
                 url: '/auth/code/image' //实际使用请改成服务端真实接口
                 , type: 'GET'
-                , headers: {
-                    'deviceId': randomStr
-                }
                 , success: function (res) {
                     $(".image_code").attr("src", 'data:image/*;base64,' + res.data);
                 }

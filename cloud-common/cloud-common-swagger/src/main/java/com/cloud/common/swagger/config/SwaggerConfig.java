@@ -33,12 +33,12 @@ public class SwaggerConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    public SwaggerProperties swaggerProperties() {
-        return new SwaggerProperties();
+    public SwaggerProps swaggerProps() {
+        return new SwaggerProps();
     }
 
     @Bean
-    public Docket api(SwaggerProperties sp) {
+    public Docket api(SwaggerProps sp) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .host(sp.getHost())
                 .apiInfo(apiInfo(sp))
@@ -49,7 +49,7 @@ public class SwaggerConfig {
                 .securityContexts(securityContexts());
     }
 
-    private ApiInfo apiInfo(SwaggerProperties properties) {
+    private ApiInfo apiInfo(SwaggerProps properties) {
         return new ApiInfoBuilder()
                 .title(properties.getTitle())
                 .description(properties.getDesc())
@@ -65,7 +65,7 @@ public class SwaggerConfig {
                 new ApiKey("Authorization", "Authorization", "header"));
     }
     @Bean
-    public SecurityScheme oauth(SwaggerProperties sp) {
+    public SecurityScheme oauth(SwaggerProps sp) {
         return new OAuthBuilder()
                 .name("OAuth2")
                 .scopes(scopes())
@@ -78,7 +78,7 @@ public class SwaggerConfig {
     }
 
 
-    public List<GrantType> grantTypes(SwaggerProperties properties) {
+    public List<GrantType> grantTypes(SwaggerProps properties) {
         List<GrantType> grantTypes = new ArrayList<>();
         grantTypes.add(new ResourceOwnerPasswordCredentialsGrant(properties.getAuthUri()));
         return grantTypes;

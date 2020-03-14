@@ -1,10 +1,10 @@
 package com.cloud.common.swagger.config;
 
-import io.swagger.models.Contact;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author Aijm
@@ -13,9 +13,10 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @ToString
-@Component
+@RefreshScope
+@Configuration
 @ConfigurationProperties(prefix = "swagger")
-public class SwaggerProperties {
+public class SwaggerProps {
 
 	/**
 	 * 是否开启swagger

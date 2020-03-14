@@ -1,7 +1,7 @@
 package com.cloud.common.oauth.validate;
 
 
-import com.cloud.common.oauth.properties.SecurityProperties;
+import com.cloud.common.oauth.properties.SecurityProps;
 import com.cloud.common.oauth.validate.image.ImageCodeGenerator;
 import com.cloud.common.oauth.validate.sms.DefaultSmsCodeSender;
 import com.cloud.common.oauth.validate.sms.SmsCodeSender;
@@ -25,9 +25,9 @@ public class ValidateCodeBeanConfig {
 	 */
 	@Bean
 	@ConditionalOnMissingBean(name = "imageValidateCodeGenerator")
-	public ValidateCodeGenerator imageValidateCodeGenerator(SecurityProperties securityProperties) {
+	public ValidateCodeGenerator imageValidateCodeGenerator(SecurityProps securityProps) {
 		ImageCodeGenerator codeGenerator = new ImageCodeGenerator();
-		codeGenerator.setSecurityProperties(securityProperties);
+		codeGenerator.setSecurityProps(securityProps);
 		return codeGenerator;
 	}
 

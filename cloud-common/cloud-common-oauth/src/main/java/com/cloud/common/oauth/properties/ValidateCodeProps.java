@@ -9,19 +9,19 @@ import lombok.Data;
  * @Date 2019/5/20
  */
 @Data
-public class ValidateCodeProperties {
+public class ValidateCodeProps {
 
 	/**
 	 * 图片验证码配置
 	 */
-	private ImageCodeProperties image = new ImageCodeProperties();
+	private ImageCodeProps image = new ImageCodeProps();
 	/**
 	 * 短信验证码配置
 	 */
-	private SmsCodeProperties sms = new SmsCodeProperties();
+	private SmsCodeProps sms = new SmsCodeProps();
 	/**
 	 * 邮箱验证码配置
 	 */
-	private EmailCodeProperties email = new EmailCodeProperties();
+	private EmailCodeProps email = new EmailCodeProps();
 
 }

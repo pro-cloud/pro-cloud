@@ -1,5 +1,0 @@
-spring:
-  cloud:
-    alibaba:
-      seata:
-        tx-service-group: default

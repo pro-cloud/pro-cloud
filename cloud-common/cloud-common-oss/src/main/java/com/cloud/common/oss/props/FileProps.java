@@ -3,7 +3,8 @@ package com.cloud.common.oss.props;
 import com.cloud.common.oss.entity.FilePath;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
@@ -13,8 +14,9 @@ import java.util.List;
  * @Date 2019/8/19
  */
 @Data
-@Component
-@ConfigurationProperties(prefix = "aliyun.oss")
+@Configuration
+@RefreshScope
+@ConfigurationProperties(prefix = "aliyun.oss-file")
 public class FileProps {
 
     /**

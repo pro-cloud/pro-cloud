@@ -9,6 +9,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.context.WebApplicationContext;
@@ -32,7 +33,8 @@ import java.util.regex.Pattern;
 @Configuration
 @ConditionalOnExpression("!'${security.oauth2.client.ignore-urls}'.isEmpty()")
 @ConfigurationProperties(prefix = "security.oauth2.client")
-public class PermitProperties implements InitializingBean {
+@RefreshScope
+public class PermitProps implements InitializingBean {
 	private static final Pattern PATTERN = Pattern.compile("\\{(.*?)\\}");
 	@Autowired
 	private WebApplicationContext applicationContext;

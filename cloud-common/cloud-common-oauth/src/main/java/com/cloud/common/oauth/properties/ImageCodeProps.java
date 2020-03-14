@@ -10,10 +10,10 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ImageCodeProperties extends SmsCodeProperties {
+public class ImageCodeProps extends SmsCodeProps {
 
 
-	ImageCodeProperties() {
+	ImageCodeProps() {
 		super.setLength(4);
 	}
 

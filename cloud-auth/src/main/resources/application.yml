@@ -52,11 +52,8 @@ feign:
   #
   sentinel:
     enabled: true
-
-#
-#feign:
-#  hystrix:
-#    enabled: true
+  hystrix:
+    enabled: false
 security:
   oauth2:
     reuseRefreshToken: false
@@ -138,4 +135,6 @@ swagger:
   host: 127.0.0.1:9999
   authUri: http://127.0.0.1:9999/auth/oauth/token
 
-
+snowflake:
+  workerId: 2
+  dataId: 2

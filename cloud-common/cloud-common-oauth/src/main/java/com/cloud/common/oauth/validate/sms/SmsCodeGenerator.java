@@ -2,7 +2,7 @@ package com.cloud.common.oauth.validate.sms;
 
 import cn.hutool.core.util.RandomUtil;
 
-import com.cloud.common.oauth.properties.SecurityProperties;
+import com.cloud.common.oauth.properties.SecurityProps;
 import com.cloud.common.oauth.validate.ValidateCode;
 import com.cloud.common.oauth.validate.ValidateCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 public class SmsCodeGenerator implements ValidateCodeGenerator {
 
 	@Autowired
-	private SecurityProperties securityProperties;
+	private SecurityProps securityProps;
 
 	/**
 	 * 生成短信的验证码
@@ -27,7 +27,7 @@ public class SmsCodeGenerator implements ValidateCodeGenerator {
 	 */
 	@Override
 	public ValidateCode generate(ServletWebRequest request) {
-		String code = RandomUtil.randomNumbers(securityProperties.getCode().getSms().getLength());
-		return new ValidateCode(code, securityProperties.getCode().getSms().getExpireIn());
+		String code = RandomUtil.randomNumbers(securityProps.getCode().getSms().getLength());
+		return new ValidateCode(code, securityProps.getCode().getSms().getExpireIn());
 	}
 }

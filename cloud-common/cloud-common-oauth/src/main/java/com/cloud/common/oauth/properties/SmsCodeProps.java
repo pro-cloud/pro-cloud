@@ -8,7 +8,7 @@ import lombok.Data;
  * @Date 2019/5/20
  */
 @Data
-public class SmsCodeProperties {
+public class SmsCodeProps {
 
 	/**
 	 * 验证码长度

@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ProTenantHandler implements TenantHandler {
 
 	@Autowired
-	private ProTenantProperties properties;
+	private ProTenantProps propes;
 
 
 	/**
@@ -40,7 +40,7 @@ public class ProTenantHandler implements TenantHandler {
 	 */
 	@Override
 	public String getTenantIdColumn() {
-		return properties.getColumn();
+		return propes.getColumn();
 	}
 
 	/**
@@ -56,6 +56,6 @@ public class ProTenantHandler implements TenantHandler {
 			return Boolean.TRUE;
 		}
 
-		return !properties.getTables().contains(tableName);
+		return !propes.getTables().contains(tableName);
 	}
 }

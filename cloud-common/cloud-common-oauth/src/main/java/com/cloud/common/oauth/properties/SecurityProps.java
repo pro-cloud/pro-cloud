@@ -2,7 +2,8 @@ package com.cloud.common.oauth.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Configuration;
 
 
 /**
@@ -11,21 +12,22 @@ import org.springframework.stereotype.Component;
  * @Date 2019/5/19
  */
 @Data
-@Component
 @ConfigurationProperties(prefix = "pro-cloud.security")
-public class SecurityProperties {
+@Configuration
+@RefreshScope
+public class SecurityProps {
 
 
 	/**
 	 * 验证码配置
 	 */
-	private ValidateCodeProperties code = new ValidateCodeProperties();
+	private ValidateCodeProps code = new ValidateCodeProps();
 
 
 	/**
 	 * 验证码配置
 	 */
-	private ClientProperties client = new ClientProperties();
+	private ClientProps client = new ClientProps();
 
 
 }

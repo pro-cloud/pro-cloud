@@ -17,7 +17,7 @@ import java.util.List;
 @RefreshScope
 @Configuration
 @ConfigurationProperties(prefix = "pro-cloud.tenant")
-public class ProTenantProperties {
+public class ProTenantProps {
 
 	/**
 	 * 维护的默认租户列名称

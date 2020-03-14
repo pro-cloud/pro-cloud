@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @since 2019/10/20
  */
 @Data
-public class ClientProperties implements Serializable {
+public class ClientProps implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

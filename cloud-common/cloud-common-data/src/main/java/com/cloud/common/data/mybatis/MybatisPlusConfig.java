@@ -1,6 +1,7 @@
 package com.cloud.common.data.mybatis;
 
 
+import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
@@ -74,6 +75,11 @@ public class MybatisPlusConfig {
 //    public PerformanceInterceptor performanceInterceptor(){
 //        return new PerformanceInterceptor();
 //    }
+
+    @Bean
+    public IdentifierGenerator idGenerator() {
+        return new CustomIdGenerator();
+    }
 
     /**
      * 乐观锁

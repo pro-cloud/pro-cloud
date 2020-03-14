@@ -8,7 +8,7 @@ import lombok.Data;
  * @Date 2019/5/20
  */
 @Data
-public class EmailCodeProperties {
+public class EmailCodeProps {
 
 	/**
 	 * 过期时间

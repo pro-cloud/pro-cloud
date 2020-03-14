@@ -5,7 +5,7 @@ import cn.hutool.core.util.StrUtil;
 
 import com.cloud.common.oauth.exception.ValidateCodeException;
 import com.cloud.common.oauth.properties.SecurityConstants;
-import com.cloud.common.oauth.properties.SecurityProperties;
+import com.cloud.common.oauth.properties.SecurityProps;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
      * 系统配置信息
      */
     @Autowired
-    private SecurityProperties securityProperties;
+    private SecurityProps securityProps;
     /**
      * 系统中的校验码处理器
      */
@@ -65,12 +65,12 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
         super.afterPropertiesSet();
 
         urlMap.put(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM, ValidateCodeType.IMAGE);
-        addUrlToMap(securityProperties.getCode().getImage().getUrl(), ValidateCodeType.IMAGE);
+        addUrlToMap(securityProps.getCode().getImage().getUrl(), ValidateCodeType.IMAGE);
 
         urlMap.put(SecurityConstants.DEFAULT_SIGN_IN_URL_MOBILE, ValidateCodeType.SMS);
-        addUrlToMap(securityProperties.getCode().getSms().getUrl(), ValidateCodeType.SMS);
+        addUrlToMap(securityProps.getCode().getSms().getUrl(), ValidateCodeType.SMS);
 
-        addUrlToMap(securityProperties.getCode().getEmail().getUrl(), ValidateCodeType.EMAIL);
+        addUrlToMap(securityProps.getCode().getEmail().getUrl(), ValidateCodeType.EMAIL);
     }
 
     /**

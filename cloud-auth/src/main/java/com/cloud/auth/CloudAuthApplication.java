@@ -3,18 +3,15 @@ package com.cloud.auth;
 import com.cloud.common.cache.annotation.EnableProCache;
 import com.cloud.common.data.annotation.EnableProData;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.cloud.client.SpringCloudApplication;
+
 
 /**
  * @Author Aijm
  * @Description 认证模块
  * @Date 2019/4/28
  */
-@SpringBootApplication
-@EnableDiscoveryClient
-@ComponentScan({"com.cloud.auth", "com.cloud.common.oauth"})
+@SpringCloudApplication
 @EnableProData
 @EnableProCache
 public class CloudAuthApplication {

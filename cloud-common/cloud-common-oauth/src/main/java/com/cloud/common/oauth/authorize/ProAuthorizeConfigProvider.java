@@ -1,7 +1,7 @@
 package com.cloud.common.oauth.authorize;
 
 import cn.hutool.core.convert.Convert;
-import com.cloud.common.oauth.properties.PermitProperties;
+import com.cloud.common.oauth.properties.PermitProps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,7 +20,7 @@ public class ProAuthorizeConfigProvider implements AuthorizeConfigProvider {
 
 
 	@Autowired
-	private PermitProperties permitProperties;
+	private PermitProps permitProps;
 
 	/**
 	 * Config boolean.
@@ -30,7 +30,7 @@ public class ProAuthorizeConfigProvider implements AuthorizeConfigProvider {
 	 */
 	@Override
 	public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
-		String[] urls = Convert.toStrArray(permitProperties.getIgnoreUrls());
+		String[] urls = Convert.toStrArray(permitProps.getIgnoreUrls());
 		config.antMatchers(urls).permitAll();
 		return false;
 	}

@@ -1,22 +1,24 @@
-package com.cloud.storage;
+package com.cloud.order;
 
 import com.cloud.common.data.annotation.EnableProData;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * Storage应用demo
+ * 订单demo
  * @author Aijm
  * @since 2020/3/15
  */
 @SpringCloudApplication
 @EnableProData
 @EnableFeignClients
-public class StorageApplication {
+public class OderApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StorageApplication.class, args);
+		SpringApplication.run(OderApplication.class, args);
 	}
+
 
 }

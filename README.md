@@ -6,6 +6,13 @@
 使用SkyWalking链路最终技术,方便了解应用拓扑和慢服务监测等情况,Spring Boot Admin作为监控中心,它为actuator端点提供了良好的交互界面，并提供了额外的特性.
  前端基于layui开发,降低学习成本,快速上手,
 
+#### develop 重大更新说明
+1. 容器切换为, 不在使用tomcat
+2. springboot升级为2.2  springcloud alibaba 2.2.0  Hoxton.SR3 等
+3. seata 分布式事物使用demo
+4. 添加回多租户
+5. 前端抛弃layui,将使用vue版本
+6. 将对原有的结构,代码精简优化
 #### 项目地址
 [gitee项目地址链接](https://gitee.com/gitsc/pro-cloud)  
 [github项目地址链接](https://github.com/pro-cloud/pro-cloud)

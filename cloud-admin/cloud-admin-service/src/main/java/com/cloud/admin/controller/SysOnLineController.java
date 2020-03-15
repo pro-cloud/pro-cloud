@@ -2,8 +2,8 @@ package com.cloud.admin.controller;
 
 import cn.hutool.core.map.MapUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.cloud.common.controller.base.BaseController;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.BaseController;
+import com.cloud.common.data.base.Result;
 import com.cloud.common.util.constant.PaginationConstants;
 import com.cloud.common.util.var.RedisKeys;
 import org.springframework.beans.factory.annotation.Autowired;

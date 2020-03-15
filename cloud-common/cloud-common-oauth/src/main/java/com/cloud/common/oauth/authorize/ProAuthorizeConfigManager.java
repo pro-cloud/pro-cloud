@@ -1,6 +1,6 @@
 package com.cloud.common.oauth.authorize;
 
-import com.cloud.common.util.exception.BaseException;
+import com.cloud.common.data.exception.BaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;

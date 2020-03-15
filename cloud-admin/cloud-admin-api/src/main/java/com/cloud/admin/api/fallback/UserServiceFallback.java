@@ -2,7 +2,7 @@ package com.cloud.admin.api.fallback;
 
 import com.cloud.admin.api.IUserService;
 import com.cloud.admin.beans.po.SysUser;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

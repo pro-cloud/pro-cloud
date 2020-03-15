@@ -11,8 +11,8 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.cloud.common.data.var.Global;
-import com.cloud.common.util.base.Result;
-import com.cloud.common.util.exception.BaseException;
+import com.cloud.common.data.base.Result;
+import com.cloud.common.data.exception.BaseException;
 
 import com.cloud.message.beans.dto.SendMsgDTO;
 import com.cloud.message.beans.dto.SmsConfigDTO;

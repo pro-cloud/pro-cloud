@@ -11,12 +11,12 @@
     <packaging>pom</packaging>
     <description>transaction project for Spring Cloud</description>
 
-<!--    <modules>-->
-<!--        <module>cloud-account-service</module>-->
-<!--        <module>cloud-business-service</module>-->
-<!--        <module>cloud-order-service</module>-->
-<!--        <module>cloud-storage-service</module>-->
-<!--    </modules>-->
+    <modules>
+        <module>account-service</module>
+        <module>business-service</module>
+        <module>order-service</module>
+        <module>storage-service</module>
+    </modules>
 
 
 </project>

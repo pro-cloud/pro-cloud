@@ -1,12 +1,12 @@
 package com.cloud.admin.controller;
 
 import com.cloud.admin.beans.dto.DictDTO;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.admin.beans.po.SysDict;
 import com.cloud.admin.service.SysDictService;
-import com.cloud.common.util.enums.ResultEnum;
+import com.cloud.common.data.enums.ResultEnum;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;

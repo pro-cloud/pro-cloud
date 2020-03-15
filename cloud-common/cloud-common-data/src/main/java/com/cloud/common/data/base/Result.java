@@ -1,6 +1,6 @@
-package com.cloud.common.util.base;
+package com.cloud.common.data.base;
 
-import com.cloud.common.util.enums.ResultEnum;
+import com.cloud.common.data.enums.ResultEnum;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,8 +15,7 @@ import java.io.Serializable;
 @Data
 public final class Result<T> implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = -5816713866887895850L;
     /**
      * 错误码
      */

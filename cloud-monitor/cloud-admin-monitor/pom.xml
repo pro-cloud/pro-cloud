@@ -17,21 +17,11 @@
             <artifactId>spring-boot-admin-starter-server</artifactId>
             <version>${spring-boot-admin.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common-data</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.cloud</groupId>
-            <artifactId>cloud-common-controller</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

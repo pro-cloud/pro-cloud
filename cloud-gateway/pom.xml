@@ -27,16 +27,6 @@
 			<artifactId>spring-boot-admin-starter-client</artifactId>
 			<version>${spring-boot-admin.version}</version>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>com.cloud</groupId>-->
-			<!--<artifactId>cloud-common-data</artifactId>-->
-			<!--<exclusions>-->
-				<!--<exclusion>-->
-					<!--<groupId>org.springframework.boot</groupId>-->
-					<!--<artifactId>spring-boot-starter-web</artifactId>-->
-				<!--</exclusion>-->
-			<!--</exclusions>-->
-		<!--</dependency>-->
 
 		<!--nacos-->
 		<dependency>
@@ -51,6 +41,12 @@
 		<dependency>
 			<groupId>com.cloud</groupId>
 			<artifactId>cloud-common-cache</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-undertow</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
         <dependency>

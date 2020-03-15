@@ -2,9 +2,9 @@ package com.cloud.message.api;
 
 
 import cn.hutool.core.util.StrUtil;
-import com.cloud.common.util.base.Result;
-import com.cloud.common.util.enums.ResultEnum;
-import com.cloud.common.util.exception.BaseException;
+import com.cloud.common.data.base.Result;
+import com.cloud.common.data.enums.ResultEnum;
+import com.cloud.common.data.exception.BaseException;
 
 import com.cloud.message.beans.dto.SendEmailDTO;
 import com.cloud.message.service.SendEmailService;

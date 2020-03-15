@@ -1,4 +1,4 @@
-package com.cloud.common.util.enums;
+package com.cloud.common.data.enums;
 
 
 import lombok.AllArgsConstructor;

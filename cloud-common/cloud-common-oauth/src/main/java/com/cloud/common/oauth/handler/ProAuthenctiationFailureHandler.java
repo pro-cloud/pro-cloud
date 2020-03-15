@@ -4,8 +4,8 @@ package com.cloud.common.oauth.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.cloud.common.oauth.exception.ValidateCodeException;
-import com.cloud.common.util.base.Result;
-import com.cloud.common.util.enums.ResultEnum;
+import com.cloud.common.data.base.Result;
+import com.cloud.common.data.enums.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.HttpStatus;

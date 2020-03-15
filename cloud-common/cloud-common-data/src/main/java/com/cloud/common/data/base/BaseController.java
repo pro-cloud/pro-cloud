@@ -1,4 +1,4 @@
-package com.cloud.common.controller.base;
+package com.cloud.common.data.base;
 
 
 import org.springframework.web.context.request.RequestContextHolder;

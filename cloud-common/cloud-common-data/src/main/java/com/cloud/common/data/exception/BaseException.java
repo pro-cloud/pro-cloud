@@ -1,6 +1,6 @@
-package com.cloud.common.util.exception;
+package com.cloud.common.data.exception;
 
-import com.cloud.common.util.enums.ResultEnum;
+import com.cloud.common.data.enums.ResultEnum;
 
 /**
  * 异常处理

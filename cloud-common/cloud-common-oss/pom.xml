@@ -12,6 +12,7 @@
     <description>common oss project for Spring Cloud</description>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

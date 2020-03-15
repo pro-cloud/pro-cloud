@@ -10,8 +10,8 @@ import com.cloud.common.oss.entity.SignDTO;
 import com.cloud.common.oss.props.FileProps;
 import com.cloud.common.oss.util.FileOssDownUtil;
 import com.cloud.common.oss.util.FileOssUploadUtil;
-import com.cloud.common.util.base.Result;
-import com.cloud.common.util.exception.BaseException;
+import com.cloud.common.data.base.Result;
+import com.cloud.common.data.exception.BaseException;
 import com.cloud.common.util.util.DateUtils;
 
 import com.cloud.common.util.util.FileUtils;

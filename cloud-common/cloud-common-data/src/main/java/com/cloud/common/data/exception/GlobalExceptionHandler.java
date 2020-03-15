@@ -1,8 +1,8 @@
-package com.cloud.common.controller.exception;
+package com.cloud.common.data.exception;
 
-import com.cloud.common.util.base.Result;
-import com.cloud.common.util.enums.ResultEnum;
-import com.cloud.common.util.exception.BaseException;
+import com.cloud.common.data.base.Result;
+import com.cloud.common.data.enums.ResultEnum;
+import com.cloud.common.data.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;

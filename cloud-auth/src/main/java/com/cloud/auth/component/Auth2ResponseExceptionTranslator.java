@@ -1,7 +1,7 @@
 package com.cloud.auth.component;
 
-import com.cloud.common.util.base.Result;
-import com.cloud.common.util.enums.ResultEnum;
+import com.cloud.common.data.base.Result;
+import com.cloud.common.data.enums.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

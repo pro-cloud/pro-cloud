@@ -2,8 +2,8 @@ package com.cloud.common.security.exception;
 
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.http.HttpStatus;
-import com.cloud.common.util.base.Result;
-import com.cloud.common.util.enums.ResultEnum;
+import com.cloud.common.data.base.Result;
+import com.cloud.common.data.enums.ResultEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;

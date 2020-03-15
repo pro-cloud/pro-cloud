@@ -21,6 +21,12 @@
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common-data</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-undertow</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

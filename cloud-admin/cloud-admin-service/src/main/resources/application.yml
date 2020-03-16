@@ -50,8 +50,8 @@ mybatis-plus:
 security:
   oauth2:
     client:
-#      client-id: client
-#      client-secret: secret
+      client-id: client
+      client-secret: secret
       access-token-uri: http://cloud-auth/oauth/token
       user-authorization-uri: http://cloud-auth/oauth/authorize
       ignore-urls:

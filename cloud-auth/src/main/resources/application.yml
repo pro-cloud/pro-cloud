@@ -112,7 +112,7 @@ mybatis-plus:
 pro-cloud:
   security:
     client:
-      clientId: client
+      clientId: client_1
       clientSecret: secret
 management:
   endpoints:

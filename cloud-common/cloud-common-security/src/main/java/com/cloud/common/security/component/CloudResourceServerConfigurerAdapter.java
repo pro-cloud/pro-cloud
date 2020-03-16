@@ -4,6 +4,7 @@ package com.cloud.common.security.component;
 import com.cloud.common.security.exception.AuthExceptionEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.OAuth2ClientProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,6 +28,11 @@ public class CloudResourceServerConfigurerAdapter extends ResourceServerConfigur
     @Value("${security.oauth2.resource.token-info-uri}")
     private String checkTokenEndpointUrl;
 
+    private static final String DEMO_RESOURCE_ID = "admin";
+
+    @Autowired
+    private OAuth2ClientProperties oAuth2ClientProperties;
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -46,11 +52,14 @@ public class CloudResourceServerConfigurerAdapter extends ResourceServerConfigur
         accessTokenConverter.setUserTokenConverter(proUserAuthenticationConverter);
 
         RemoteTokenServices remoteTokenServices = new RemoteTokenServices();
+        remoteTokenServices.setClientId(oAuth2ClientProperties.getClientId());
+        remoteTokenServices.setClientSecret(oAuth2ClientProperties.getClientSecret());
         remoteTokenServices.setCheckTokenEndpointUrl(checkTokenEndpointUrl);
         remoteTokenServices.setAccessTokenConverter(accessTokenConverter);
         remoteTokenServices.setRestTemplate(restTemplate);
         resources.tokenServices(remoteTokenServices);
         resources.authenticationEntryPoint(authExceptionEntryPoint);
+        resources.resourceId(DEMO_RESOURCE_ID);
         super.configure(resources);
     }
 

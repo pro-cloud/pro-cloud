@@ -35,6 +35,8 @@ public class RemoteTokenServices implements ResourceServerTokenServices {
     private RestOperations restTemplate = new RestTemplate();
     private String checkTokenEndpointUrl;
     private String tokenName = "token";
+    private String clientId;
+    private String clientSecret;
     private AccessTokenConverter tokenConverter = new DefaultAccessTokenConverter();
 
     public RemoteTokenServices() {
@@ -57,6 +59,21 @@ public class RemoteTokenServices implements ResourceServerTokenServices {
         this.checkTokenEndpointUrl = checkTokenEndpointUrl;
     }
 
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getClientSecret() {
+        return clientSecret;
+    }
+
+    public void setClientSecret(String clientSecret) {
+        this.clientSecret = clientSecret;
+    }
 
     public void setAccessTokenConverter(AccessTokenConverter accessTokenConverter) {
         this.tokenConverter = accessTokenConverter;
@@ -71,6 +88,7 @@ public class RemoteTokenServices implements ResourceServerTokenServices {
         MultiValueMap<String, String> formData = new LinkedMultiValueMap();
         formData.add(this.tokenName, accessToken);
         HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", this.getAuthorizationHeader(this.clientId, this.clientSecret));
         Map<String, Object> map = this.postForMap(this.checkTokenEndpointUrl, formData, headers);
         if (map.containsKey("error")) {
             if (this.logger.isDebugEnabled()) {

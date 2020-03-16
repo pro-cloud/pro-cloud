@@ -10,26 +10,26 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class TenantContextHolder {
 
-	private final ThreadLocal<Integer> THREAD_LOCAL_TENANT = new ThreadLocal<>();
+	private final ThreadLocal<String> THREAD_LOCAL_TENANT = new ThreadLocal<>();
 
 
 	/**
 	 * 设置租户的id
-	 * @param tenantId
+	 * @param tenantIds
 	 */
-	public void setTenantId(Integer tenantId) {
-		THREAD_LOCAL_TENANT.set(tenantId);
+	public void setTenantId(String tenantIds) {
+		THREAD_LOCAL_TENANT.set(tenantIds);
 	}
 
 	/**
 	 * 租户的id
 	 * @return
 	 */
-	public Integer getTenantId() {
+	public String getTenantIds() {
 		return THREAD_LOCAL_TENANT.get();
 	}
 
-	public void clearTenantId() {
+	public void clearTenantIds() {
 		THREAD_LOCAL_TENANT.remove();
 	}
 }

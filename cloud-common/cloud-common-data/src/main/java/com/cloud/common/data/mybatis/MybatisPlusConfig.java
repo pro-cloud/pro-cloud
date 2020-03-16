@@ -56,7 +56,7 @@ public class MybatisPlusConfig {
      */
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnExpression("${mybatisPlus.tenantEnable:false}")
+    @ConditionalOnExpression("${mybatisPlus.tenantEnable:true}")
     public PaginationInterceptor paginationInterceptor(ProTenantHandler tenantHandler) {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         List<ISqlParser> sqlParserList = new ArrayList<>();

@@ -21,8 +21,6 @@ import java.util.Map;
 @ApiModel(description = "基础字段")
 public class BaseEntity<T> implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * 实体编号（唯一标识）
 	 */

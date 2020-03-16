@@ -1,11 +1,17 @@
 package com.cloud.common.data.tenant;
 
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
+import com.cloud.common.util.util.StrUtils;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.LongValue;
-import net.sf.jsqlparser.expression.NullValue;
+import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
+import net.sf.jsqlparser.expression.operators.relational.InExpression;
+import net.sf.jsqlparser.schema.Column;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * 租户处理
@@ -18,19 +24,18 @@ public class ProTenantHandler implements TenantHandler {
 	@Autowired
 	private ProTenantProps propes;
 
-
 	/**
 	 * 租户值
 	 * @return
 	 */
 	@Override
 	public Expression getTenantId(boolean where) {
-		Integer tenantId = TenantContextHolder.getTenantId();
-		log.debug("当前租户的值为:{}", tenantId);
-		if (tenantId == null) {
-			return new NullValue();
+		String tenantIds = TenantContextHolder.getTenantIds();
+		log.debug("当前租户的值为:{}", tenantIds);
+		if (where && StrUtils.containsIgnoreCase(tenantIds, StrUtils.COMMA)) {
+			return multipleTenantIdCondition(tenantIds);
 		}
-		return new LongValue(tenantId);
+		return new LongValue(tenantIds);
 	}
 
 	/**
@@ -50,12 +55,28 @@ public class ProTenantHandler implements TenantHandler {
 	 */
 	@Override
 	public boolean doTableFilter(String tableName) {
-		Integer tenantId = TenantContextHolder.getTenantId();
-		// 租户中ID 为空，查询全部，不进行过滤
-		if (tenantId == null) {
-			return Boolean.TRUE;
-		}
-
-		return !propes.getTables().contains(tableName);
+		return propes.getTables().contains(tableName);
 	}
+
+
+	/**
+	 * 多租户时的处理
+	 * @param tenantIds
+	 * @return
+	 */
+	private Expression multipleTenantIdCondition(String tenantIds) {
+		final InExpression inExpression = new InExpression();
+		inExpression.setLeftExpression(new Column(getTenantIdColumn()));
+		final ExpressionList itemsList = new ExpressionList();
+		List<Expression> inValues = Lists.newArrayList();
+		// 租户集合
+		String[] ids = StrUtils.split(tenantIds, StrUtils.COMMA);
+		for (String tenantId: ids) {
+			inValues.add(new LongValue(tenantId));
+		}
+		itemsList.setExpressions(inValues);
+		inExpression.setRightItemsList(itemsList);
+		return inExpression;
+	}
+
 }

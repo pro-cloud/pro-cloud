@@ -18,8 +18,6 @@ import java.util.List;
 @Accessors(chain = true)
 public class TreeEntity<T> extends BaseEntity<T> {
 
-	private static final long serialVersionUID = 1L;
-
 
 	@ApiModelProperty(value = "父级编号")
     protected Long parentId;

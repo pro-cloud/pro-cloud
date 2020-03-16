@@ -34,11 +34,11 @@ public class TenantContextHolderFilter extends GenericFilterBean {
 		String tenantId = request.getHeader(StaticVar.TENANT_ID);
 		log.debug("header中的租户为:{}", tenantId);
 		if (StrUtil.isNotBlank(tenantId)) {
-			TenantContextHolder.setTenantId(Integer.parseInt(tenantId));
+			TenantContextHolder.setTenantId(tenantId);
 		} else {
 			TenantContextHolder.setTenantId(StaticVar.TENANT_ID_DEFAULT);
 		}
 		filterChain.doFilter(request, response);
-		TenantContextHolder.clearTenantId();
+		TenantContextHolder.clearTenantIds();
 	}
 }

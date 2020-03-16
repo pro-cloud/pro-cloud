@@ -31,11 +31,11 @@ public class StaticVar {
     /**
      * head 放入的tenant
      */
-    public static final String TENANT_ID = "user-tenant";
+    public static final String TENANT_ID = "user_tenant";
 
     /**
      * 默认的租户值
      */
-    public static final Integer TENANT_ID_DEFAULT = 0;
+    public static final String TENANT_ID_DEFAULT = "0";
 
 }

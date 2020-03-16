@@ -14,5 +14,5 @@ import lombok.experimental.Accessors;
 public class TenantTreeEntity<T> extends TreeEntity<T> {
 
     @ApiModelProperty("租户ID")
-    private String tenantId;
+    private Long tenantId;
 }

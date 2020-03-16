@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
-import com.cloud.common.entity.TreeEntity;
+import com.cloud.common.entity.TenantTreeEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,9 +22,9 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("sys_menu")
 @ApiModel(value="Menu对象", description="菜单表")
-public class SysMenu extends TreeEntity<SysMenu> {
+public class SysMenu extends TenantTreeEntity<SysMenu> {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = -481808875271508064L;
 
     @ApiModelProperty(value = "链接")
     @TableField(fill = FieldFill.UPDATE)

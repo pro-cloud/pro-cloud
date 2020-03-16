@@ -18,7 +18,8 @@
       a.update_by AS updateBy,
       a.update_date AS updateDate,
       a.remarks AS remarks,
-      a.del_flag AS delFlag
+      a.del_flag AS delFlag,
+      a.tenant_id AS tenantId
   </sql>
 
   <select id="findByUserId" resultType="com.cloud.admin.beans.po.SysMenu">

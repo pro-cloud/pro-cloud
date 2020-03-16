@@ -1,6 +1,6 @@
 package ${package}.${moduleName}.controller;
 
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import ${package}.${moduleName}.beans.po.${className};

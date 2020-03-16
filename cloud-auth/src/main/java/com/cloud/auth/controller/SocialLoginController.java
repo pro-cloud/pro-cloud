@@ -3,11 +3,11 @@ package com.cloud.auth.controller;
 import cn.hutool.core.map.MapUtil;
 import com.cloud.auth.config.CustomTokenEnhancer;
 import com.cloud.auth.factory.SocialLoginFactory;
-import com.cloud.common.controller.base.BaseController;
+import com.cloud.common.data.base.BaseController;
 import com.cloud.common.oauth.authentication.social.SocialCodeAuthenticationToken;
-import com.cloud.common.oauth.properties.SecurityProperties;
+import com.cloud.common.oauth.properties.SecurityProps;
 import com.cloud.common.oauth.security.SecurityUser;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import com.xkcoding.justauth.AuthRequestFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +43,7 @@ public class SocialLoginController extends BaseController {
 
     private final AuthRequestFactory factory;
 
-    private final SecurityProperties securityProperties;
+    private final SecurityProps securityProps;
     private final ClientDetailsService clientDetailsService;
     private final TokenStore tokenStore;
     private final CustomTokenEnhancer customTokenEnhancer;
@@ -102,7 +102,7 @@ public class SocialLoginController extends BaseController {
      */
     private OAuth2AccessToken getoAuth2AccessToken(SecurityUser user) {
         SocialCodeAuthenticationToken authentication = new SocialCodeAuthenticationToken(user, AuthorityUtils.NO_AUTHORITIES);
-        String clientId = securityProperties.getClient().getClientId();
+        String clientId = securityProps.getClient().getClientId();
         ClientDetails clientDetails = clientDetailsService.loadClientByClientId(clientId);
         TokenRequest tokenRequest = new TokenRequest(MapUtil.newHashMap(), clientId, clientDetails.getScope(), "app");
 

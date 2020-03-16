@@ -12,27 +12,17 @@
     <description>common oauth project for Spring Cloud</description>
 
     <dependencies>
-        <!--第三方登录-->
         <!-- oauth -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus-boot-starter.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <dependency>
@@ -45,12 +35,18 @@
             <artifactId>cloud-common-util</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-common-data</artifactId>
+        </dependency>
+
         <!--用于测试的-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

@@ -1,7 +1,7 @@
 package com.cloud.websocket.controller;
 
 import cn.hutool.json.JSONUtil;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;

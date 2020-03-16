@@ -23,7 +23,6 @@
         <module>cloud-common-mq</module>
         <module>cloud-common-job</module>
         <module>cloud-common-websocket</module>
-        <module>cloud-common-controller</module>
         <module>cloud-common-oss</module>
     </modules>
 

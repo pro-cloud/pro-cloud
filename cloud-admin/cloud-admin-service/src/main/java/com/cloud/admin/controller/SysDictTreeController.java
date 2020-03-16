@@ -2,10 +2,10 @@ package com.cloud.admin.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import com.cloud.admin.beans.po.SysDictTree;
 import com.cloud.admin.service.SysDictTreeService;
-import com.cloud.common.util.enums.ResultEnum;
+import com.cloud.common.data.enums.ResultEnum;
 import com.google.common.collect.Lists;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;

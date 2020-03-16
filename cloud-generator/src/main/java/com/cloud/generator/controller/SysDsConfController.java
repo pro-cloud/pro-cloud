@@ -2,7 +2,7 @@ package com.cloud.generator.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import com.cloud.generator.dto.SysDataSourceConfListDTO;
 import com.cloud.generator.entity.SysDataSourceConf;
 import com.cloud.generator.service.SysDataSourceConfService;

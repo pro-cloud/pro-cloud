@@ -7,9 +7,9 @@ import com.cloud.common.oauth.validate.AbstractValidateCodeProcessor;
 import com.cloud.common.oauth.validate.ValidateCode;
 import com.cloud.common.oauth.validate.ValidateCodeGenerator;
 import com.cloud.common.oauth.validate.ValidateCodeRepository;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 
-import com.cloud.common.util.enums.ResultEnum;
+import com.cloud.common.data.enums.ResultEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;

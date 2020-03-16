@@ -4,7 +4,7 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.map.MapUtil;
 
 import cn.hutool.core.util.StrUtil;
-import com.cloud.common.oauth.properties.SecurityProperties;
+import com.cloud.common.oauth.properties.SecurityProps;
 import com.cloud.common.oauth.security.SecurityUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +49,7 @@ public class ProAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
 	private ClientDetailsService clientDetailsService;
 
 	@Autowired
-	private SecurityProperties securityProperties;
+	private SecurityProps securityProps;
 
 	private RequestCache requestCache = new HttpSessionRequestCache();
 
@@ -77,8 +77,8 @@ public class ProAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
 			this.getRedirectStrategy().sendRedirect(request, response, targetUrl);
 		} else {
 			String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-			String clientId = securityProperties.getClient().getClientId();
-			String clientSecret = securityProperties.getClient().getClientSecret();
+			String clientId = securityProps.getClient().getClientId();
+			String clientSecret = securityProps.getClient().getClientSecret();
 			if (StrUtil.isNotBlank(header) && header.startsWith(BEARER_TOKEN_TYPE)) {
 				String[] tokens = extractAndDecodeHeader(header);
 				assert tokens.length == 2;

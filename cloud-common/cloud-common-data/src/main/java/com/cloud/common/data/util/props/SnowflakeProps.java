@@ -2,15 +2,17 @@ package com.cloud.common.data.util.props;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author Aijm
- * @Description Zookeeper 配置项
+ * @Description snowflake 配置项
  * @Date 2019/8/19
  */
 @Data
-@Component
+@RefreshScope
+@Configuration
 @ConfigurationProperties(prefix = "snowflake")
 public class SnowflakeProps {
     /**

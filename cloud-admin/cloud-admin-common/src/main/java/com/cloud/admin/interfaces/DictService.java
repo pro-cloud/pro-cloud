@@ -1,6 +1,6 @@
 package com.cloud.admin.interfaces;
 
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

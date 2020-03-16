@@ -78,7 +78,7 @@ public class RemoteTokenServices implements ResourceServerTokenServices {
             }
 
             throw new InvalidTokenException(accessToken);
-        } else if (!Boolean.TRUE.equals(map.get("active"))) {
+        } else if (map.containsKey("active") && !"true".equals(String.valueOf(map.get("active")))) {
             this.logger.debug("check_token returned active attribute: " + map.get("active"));
             throw new InvalidTokenException(accessToken);
         } else {

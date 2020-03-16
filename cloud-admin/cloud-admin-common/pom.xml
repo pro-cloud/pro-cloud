@@ -18,12 +18,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>cloud-common-util</artifactId>
+            <artifactId>cloud-common-data</artifactId>
         </dependency>
 
     </dependencies>

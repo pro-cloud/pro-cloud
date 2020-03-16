@@ -4,7 +4,7 @@ import cn.hutool.core.io.IoUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import com.cloud.generator.entity.GenConfig;
 import com.cloud.generator.service.SysGeneratorService;
 import lombok.AllArgsConstructor;

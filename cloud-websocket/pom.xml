@@ -17,16 +17,13 @@
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common-websocket</artifactId>
         </dependency>
+
         <!--web 模块-->
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common-data</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.cloud</groupId>
-            <artifactId>cloud-common-controller</artifactId>
-        </dependency>
     </dependencies>
 
 

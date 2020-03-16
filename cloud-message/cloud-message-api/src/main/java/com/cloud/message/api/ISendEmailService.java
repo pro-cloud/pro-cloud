@@ -1,7 +1,7 @@
 package com.cloud.message.api;
 
 
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import com.cloud.common.util.client.CloudServiceList;
 import com.cloud.message.beans.dto.SendEmailDTO;
 import org.springframework.cloud.openfeign.FeignClient;

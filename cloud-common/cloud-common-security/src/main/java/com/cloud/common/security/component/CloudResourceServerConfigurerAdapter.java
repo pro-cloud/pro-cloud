@@ -37,7 +37,7 @@ public class CloudResourceServerConfigurerAdapter extends ResourceServerConfigur
     private AuthExceptionEntryPoint authExceptionEntryPoint;
 
     @Autowired
-    private PermitProperties permitAllUrlProperties;
+    private PermitProps permitAllUrlProps;
 
 
     @Override
@@ -61,7 +61,7 @@ public class CloudResourceServerConfigurerAdapter extends ResourceServerConfigur
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>
                 .ExpressionInterceptUrlRegistry registry = http
                 .authorizeRequests();
-        permitAllUrlProperties.getIgnoreUrls()
+        permitAllUrlProps.getIgnoreUrls()
                 .forEach(url -> registry.antMatchers(url).permitAll());
         registry.anyRequest().authenticated()
                 .and().csrf().disable();

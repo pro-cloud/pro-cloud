@@ -2,7 +2,7 @@ package com.cloud.message.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 
 import com.cloud.message.beans.po.SysMsgConfig;
 import com.cloud.message.service.SysMsgConfigService;

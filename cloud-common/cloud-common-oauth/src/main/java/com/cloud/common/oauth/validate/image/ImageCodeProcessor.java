@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.cloud.common.oauth.validate.AbstractValidateCodeProcessor;
 import com.cloud.common.oauth.validate.ValidateCodeGenerator;
 import com.cloud.common.oauth.validate.ValidateCodeRepository;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;

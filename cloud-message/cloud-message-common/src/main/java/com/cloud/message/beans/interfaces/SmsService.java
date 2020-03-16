@@ -2,7 +2,7 @@ package com.cloud.message.beans.interfaces;
 
 
 
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import com.cloud.message.beans.dto.SendMsgDTO;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

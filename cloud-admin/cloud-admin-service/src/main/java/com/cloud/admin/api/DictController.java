@@ -4,7 +4,7 @@ import com.cloud.admin.beans.dto.DictDTO;
 import com.cloud.admin.interfaces.DictService;
 import com.cloud.admin.service.SysDictListService;
 import com.cloud.admin.service.SysDictTreeService;
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

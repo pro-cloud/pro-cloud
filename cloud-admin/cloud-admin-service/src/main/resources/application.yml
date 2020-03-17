@@ -52,6 +52,7 @@ security:
     client:
       client-id: client
       client-secret: secret
+      resourceId: admin
       access-token-uri: http://cloud-auth/oauth/token
       user-authorization-uri: http://cloud-auth/oauth/authorize
       ignore-urls:

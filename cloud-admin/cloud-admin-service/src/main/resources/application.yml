@@ -45,14 +45,13 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true
-  performanceInterceptor:
-    enabled: true
+
 security:
   oauth2:
+    resourceId: admin
     client:
       client-id: client
       client-secret: secret
-      resourceId: admin
       access-token-uri: http://cloud-auth/oauth/token
       user-authorization-uri: http://cloud-auth/oauth/authorize
       ignore-urls:
@@ -89,3 +88,12 @@ swagger:
 
 logging:
   config: classpath:logback-spring.xml
+
+
+
+pro-cloud:
+  tenant:
+    tables:
+      - sys_role_menu
+      - sys_data_source_conf
+      - sys_user_role

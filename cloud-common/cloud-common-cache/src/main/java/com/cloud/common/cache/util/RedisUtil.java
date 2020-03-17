@@ -2,9 +2,9 @@ package com.cloud.common.cache.util;
 
 import com.cloud.common.cache.constants.CacheScope;
 import com.cloud.common.cache.redis.RedisDao;
+import com.cloud.common.data.util.SpringUtil;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * @Author Aijm
@@ -13,15 +13,10 @@ import org.springframework.stereotype.Component;
  * @Date 2019/8/29
  */
 @Slf4j
-@Component
+@UtilityClass
 public class RedisUtil {
 
-    private static RedisDao redisDao;
-
-    @Autowired
-    RedisUtil(RedisDao redisDao) {
-        RedisUtil.redisDao = redisDao;
-    }
+    private static RedisDao redisDao = SpringUtil.getBean(RedisDao.class);
 
     /**
      * 默认缓存存放地址

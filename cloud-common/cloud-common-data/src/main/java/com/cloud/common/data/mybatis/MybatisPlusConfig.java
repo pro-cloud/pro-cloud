@@ -3,9 +3,12 @@ package com.cloud.common.data.mybatis;
 
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
+import com.baomidou.mybatisplus.core.parser.ISqlParserFilter;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
+import com.cloud.common.data.tenant.ProSqlParserFilter;
 import com.cloud.common.data.tenant.ProTenantHandler;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
@@ -45,10 +48,19 @@ public class MybatisPlusConfig {
      */
     @Bean
     @ConditionalOnMissingBean
-    public ProTenantHandler proTenantHandler() {
+    public TenantHandler tenantHandler() {
         return new ProTenantHandler();
     }
 
+    /**
+     * 拦截sql
+     * @return
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public ISqlParserFilter sqlParserFilter() {
+        return new ProSqlParserFilter();
+    }
     /**
      * 分页插件
      * @param tenantHandler 租户处理器
@@ -57,13 +69,14 @@ public class MybatisPlusConfig {
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnExpression("${mybatisPlus.tenantEnable:true}")
-    public PaginationInterceptor paginationInterceptor(ProTenantHandler tenantHandler) {
+    public PaginationInterceptor paginationInterceptor(TenantHandler tenantHandler, ISqlParserFilter sqlParserFilter) {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         List<ISqlParser> sqlParserList = new ArrayList<>();
         TenantSqlParser tenantSqlParser = new TenantSqlParser();
         tenantSqlParser.setTenantHandler(tenantHandler);
         sqlParserList.add(tenantSqlParser);
         paginationInterceptor.setSqlParserList(sqlParserList);
+        paginationInterceptor.setSqlParserFilter(sqlParserFilter);
         return paginationInterceptor;
     }
 

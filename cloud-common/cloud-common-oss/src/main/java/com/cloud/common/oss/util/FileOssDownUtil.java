@@ -3,13 +3,15 @@ package com.cloud.common.oss.util;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.URLUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.GetObjectRequest;
 import com.aliyun.oss.model.OSSObject;
 import com.cloud.common.oss.props.OssProps;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -21,19 +23,14 @@ import java.util.zip.ZipOutputStream;
  * @Description  oss oss文件下载 工具
  * @Date 2019/9/24
  */
-@Component
 @Slf4j
+@UtilityClass
 public class FileOssDownUtil {
 
-    private static OssProps ossProps;
+    private static OssProps ossProps = SpringUtil.getBean(OssProps.class);
 
-    private static OSS ossInnerClient;
+    private static OSS ossInnerClient = SpringUtil.getBean(OSSClient.class);
 
-    @Autowired
-    FileOssDownUtil(OSS ossInnerClient, OssProps ossProps) {
-        FileOssDownUtil.ossInnerClient = ossInnerClient;
-        FileOssDownUtil.ossProps = ossProps;
-    }
 
     /**
      * 下载oss文件到本地

@@ -2,10 +2,12 @@ package com.cloud.common.oss.util;
 
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.*;
 import com.cloud.common.oss.entity.CallBack;
@@ -15,9 +17,8 @@ import com.cloud.common.oss.props.OssProps;
 import com.cloud.common.data.base.Result;
 import com.cloud.common.data.enums.ResultEnum;
 import com.cloud.common.util.util.DateUtils;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -30,20 +31,14 @@ import java.util.List;
  * @Description oss文件上传工具类
  * @Date 2019/9/24
  */
-@Component
+@UtilityClass
 @Slf4j
 public class FileOssUploadUtil {
 
 
-    private static OssProps ossProps;
+    private static OssProps ossProps = SpringUtil.getBean(OssProps.class);
 
-    private static OSS ossInnerClient;
-
-    @Autowired
-    FileOssUploadUtil(OSS ossInnerClient, OssProps ossProps) {
-        FileOssUploadUtil.ossInnerClient = ossInnerClient;
-        FileOssUploadUtil.ossProps = ossProps;
-    }
+    private static OSS ossInnerClient = SpringUtil.getBean(OSSClient.class);
 
 
     /**

@@ -17,6 +17,10 @@ spring:
           - data-id: common.yaml
             group: pro-cloud
     sentinel:
+      origin: default
+      transport:
+        port: 8719
+        dashboard: localhost:8080
       filter:
         url-patterns: /**
       eager: true

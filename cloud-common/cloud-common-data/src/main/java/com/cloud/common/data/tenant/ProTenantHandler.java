@@ -8,9 +8,9 @@ import net.sf.jsqlparser.expression.LongValue;
 import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
 import net.sf.jsqlparser.expression.operators.relational.InExpression;
 import net.sf.jsqlparser.schema.Column;
-import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,9 +32,9 @@ public class ProTenantHandler implements TenantHandler {
 	public Expression getTenantId(boolean where) {
 		String tenantIds = TenantContextHolder.getTenantIds();
 		log.debug("当前租户的值为:{}", tenantIds);
-		if (where && StrUtils.containsIgnoreCase(tenantIds, StrUtils.COMMA)) {
-			return multipleTenantIdCondition(tenantIds);
-		}
+//		if (StrUtils.containsIgnoreCase(tenantIds, StrUtils.COMMA)) {
+//			return multipleTenantIdCondition(tenantIds);
+//		}
 		return new LongValue(tenantIds);
 	}
 
@@ -68,9 +68,9 @@ public class ProTenantHandler implements TenantHandler {
 		final InExpression inExpression = new InExpression();
 		inExpression.setLeftExpression(new Column(getTenantIdColumn()));
 		final ExpressionList itemsList = new ExpressionList();
-		List<Expression> inValues = Lists.newArrayList();
 		// 租户集合
 		String[] ids = StrUtils.split(tenantIds, StrUtils.COMMA);
+		List<Expression> inValues = new ArrayList<>(ids.length);
 		for (String tenantId: ids) {
 			inValues.add(new LongValue(tenantId));
 		}

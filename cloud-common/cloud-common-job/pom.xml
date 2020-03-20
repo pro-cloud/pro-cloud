@@ -32,10 +32,9 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-common-data</artifactId>
         </dependency>
 
     </dependencies>

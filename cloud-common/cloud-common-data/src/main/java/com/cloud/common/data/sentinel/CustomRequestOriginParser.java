@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletRequest;
  * @Description 区分来源
  * @Date 2020/3/20
  */
-@Component
+//@Component
 @Slf4j
 @RefreshScope
 public class CustomRequestOriginParser implements RequestOriginParser {
 
     @Value("${spring.cloud.sentinel.origin}")
-    private String origin = "Default";
+    private String origin;
 
     @Override
     public String parseOrigin(HttpServletRequest request) {

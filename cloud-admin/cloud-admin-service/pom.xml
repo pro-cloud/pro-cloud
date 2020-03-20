@@ -58,10 +58,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-datasource-nacos</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common-cache</artifactId>
         </dependency>

@@ -10,7 +10,6 @@ spring:
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         file-extension: yaml
-
         # shared-dataids: cloud-auth-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
         namespace: d4885c2a-412b-4df6-8342-68c6c4a3dd4c
         group: pro-cloud
@@ -18,10 +17,13 @@ spring:
           - data-id: common.yaml
             group: pro-cloud
     sentinel:
+      filter:
+        url-patterns: /**
+      eager: true
       datasource:
         ds:
           nacos:
-            server-addr: localhost:8848
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
             namespace: d4885c2a-412b-4df6-8342-68c6c4a3dd4c
             dataId: sentinel
             groupId: pro-cloud

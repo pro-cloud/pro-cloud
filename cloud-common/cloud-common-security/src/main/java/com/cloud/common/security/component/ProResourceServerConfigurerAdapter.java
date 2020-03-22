@@ -1,9 +1,11 @@
 package com.cloud.common.security.component;
 
 
+import cn.hutool.core.convert.Convert;
 import com.cloud.common.security.exception.AuthExceptionEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -62,13 +64,11 @@ public class ProResourceServerConfigurerAdapter extends ResourceServerConfigurer
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        String[] urls = Convert.toStrArray(permitProps.getIgnoreUrls());
         http.headers().frameOptions().disable();
-        ExpressionUrlAuthorizationConfigurer<HttpSecurity>
-                .ExpressionInterceptUrlRegistry registry = http
-                .authorizeRequests();
-        permitProps.getIgnoreUrls()
-                .forEach(url -> registry.antMatchers(url).permitAll());
-        registry.anyRequest().authenticated()
-                .and().csrf().disable();
+        http.authorizeRequests().antMatchers(urls).permitAll();
+        http.authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll();
+        http.authorizeRequests().anyRequest().authenticated().and().csrf().disable();
+
     }
 }

@@ -17,9 +17,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @EnableAdminServer
 @EnableProData
-public class AdminMonitorApplication {
+public class ProMonitorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AdminMonitorApplication.class, args);
+        SpringApplication.run(ProMonitorApplication.class, args);
     }
 }

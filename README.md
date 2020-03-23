@@ -5,7 +5,8 @@
 注册中心、配置中心选型Nacos，为工程瘦身的同时加强各模块之间的联动。使用OAuth2，实现了多终端认证系统，可控制子系统的token权限互相隔离。
 使用SkyWalking链路最终技术,方便了解应用拓扑和慢服务监测等情况,prometheus+grafana+alertManager作为监控中心,它为actuator端点提供了良好的交互界面，并提供了额外的特性.
 mybatisplus的使用,大大的节省了开发的工作量,让代码更易维护 前端基于layui开发,降低学习成本,快速上手,
-
+#### Pro-Cloud架构图
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0323/221440_892a46d3_1236464.png "spring cloud 微服务.png")
 #### master分支 已完成的更新功能说明
 1. 容器切换为, 不在使用tomcat
 2. springboot升级为2.2  springcloud alibaba 2.2.0  Hoxton.SR2 等

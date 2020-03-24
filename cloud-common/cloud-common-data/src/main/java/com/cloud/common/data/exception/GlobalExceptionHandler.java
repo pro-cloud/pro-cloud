@@ -2,13 +2,15 @@ package com.cloud.common.data.exception;
 
 import com.cloud.common.data.base.Result;
 import com.cloud.common.data.enums.ResultEnum;
-import com.cloud.common.data.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.nio.file.AccessDeniedException;
 
 /**
  * 异常统一处理
@@ -34,4 +36,26 @@ public class GlobalExceptionHandler {
         return Result.error(ResultEnum.CRUD_VALID_NOT);
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public Result handleAccessDeniedException(AccessDeniedException e) {
+        log.error("拒绝授权异常信息 ex={}",e.getMessage(), e);
+        return Result.error(ResultEnum.CRUD_NOT_OPERATE);
+    }
+
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Result handleException(Exception e) {
+        log.error("Exception全局异常信息 ex={}", e.getMessage(), e);
+        return Result.error(e.getLocalizedMessage());
+    }
+
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public Result handleHttpRequestMethodNotSupportedException(Exception e) {
+        log.error("HttpRequestMethodNotSupportedException异常信息 ex={}", e.getMessage(), e);
+        return Result.error(ResultEnum.SYSTEM_REQUEST_METHOD_NOT_SUPPORTED);
+    }
 }

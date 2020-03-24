@@ -2,6 +2,7 @@ package com.cloud.admin.util;
 
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.cloud.admin.beans.dto.OfficeDTO;
 import com.cloud.admin.beans.dto.RoleDTO;
@@ -16,11 +17,15 @@ import com.cloud.admin.service.SysRoleService;
 import com.cloud.admin.service.SysUserService;
 import com.cloud.common.data.util.SpringUtil;
 import com.cloud.common.security.component.SecurityUser;
+import com.cloud.common.util.var.StaticVar;
 import lombok.experimental.UtilityClass;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -58,6 +63,17 @@ public class UserUtil {
         return id != null && (id== 1);
     }
 
+    /**
+     * 判断该用户是不是内部调用
+     * @return
+     */
+    public static boolean hasInside(){
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+                .getRequest();
+        String header = request.getHeader(StaticVar.FROM);
+        return StrUtil.equals(StaticVar.FROM_IN, header);
+    }
+
     //////////////////  菜单相关  /////////////////////////
 
     /**
@@ -79,14 +95,21 @@ public class UserUtil {
     }
 
     /**
+     * 获取SecurityUser
+     * @return
+     */
+    public static SecurityUser getSecurityUser(){
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        return (SecurityUser)authentication.getPrincipal();
+    }
+
+    /**
      * 获取登录用户的信息
      * @return
      */
     public static Long getUserId(){
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        SecurityUser user = (SecurityUser)authentication.getPrincipal();
-        return user.getUserId();
+        return getSecurityUser().getUserId();
     }
 
 
@@ -95,10 +118,7 @@ public class UserUtil {
      * @return
      */
     public static String getUserName(){
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        SecurityUser user = (SecurityUser)authentication.getPrincipal();
-        return user.getUsername();
+        return getSecurityUser().getUsername();
     }
     /**
      * 获取用户详细 信息 包含 部门信息和角色信息

@@ -66,6 +66,7 @@
         <module>cloud-gateway</module>
         <module>cloud-generator</module>
         <module>cloud-common</module>
+        <module>cloud-monitor</module>
         <module>cloud-search</module>
         <module>cloud-sso-demo</module>
         <module>cloud-transaction</module>

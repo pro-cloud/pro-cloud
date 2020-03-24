@@ -48,7 +48,11 @@ public class ProResourceServerConfigurerAdapter extends ResourceServerConfigurer
     private String resourceId;
 
 
-
+    /**
+     * 配置校验token方式
+     * @param resources
+     * @throws Exception
+     */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         DefaultAccessTokenConverter accessTokenConverter = new DefaultAccessTokenConverter();
@@ -62,6 +66,11 @@ public class ProResourceServerConfigurerAdapter extends ResourceServerConfigurer
     }
 
 
+    /**
+     * 对匹配的资源进行放行
+     * @param http
+     * @throws Exception
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         String[] urls = Convert.toStrArray(permitProps.getIgnoreUrls());

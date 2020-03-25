@@ -17,10 +17,10 @@
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common-util</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>cloud-admin-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>cloud-common-data</artifactId>
         </dependency>
 
         <dependency>

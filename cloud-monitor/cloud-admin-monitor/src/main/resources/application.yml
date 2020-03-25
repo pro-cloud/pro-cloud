@@ -5,10 +5,3 @@ server:
 spring:
   application:
     name: @artifactId@
-
-    #profiles: dev
-  cloud:
-    sentinel:
-      transport:
-        port: 8719
-        dashboard: localhost:8080

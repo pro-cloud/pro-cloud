@@ -37,3 +37,13 @@ spring:
   profiles:
     active: dev
 
+management:
+  server:
+    port: 8082
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

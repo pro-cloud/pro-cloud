@@ -1,9 +1,10 @@
 package com.cloud.auth.config;
 
 
-import com.cloud.common.oauth.authentication.FormAuthenticationConfig;
+import cn.hutool.core.convert.Convert;
 import com.cloud.common.oauth.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
-import com.cloud.common.oauth.authorize.AuthorizeConfigManager;
+import com.cloud.common.oauth.properties.PermitProps;
+import com.cloud.common.oauth.properties.SecurityConstants;
 import com.cloud.common.oauth.validate.ValidateCodeSecurityConfig;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 
 /**
@@ -29,27 +32,34 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ProResourceServerConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private FormAuthenticationConfig formAuthenticationConfig;
-    @Autowired
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
     @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
-    @Autowired
-    private AuthorizeConfigManager authorizeConfigManager;
 
+    @Autowired
+    protected AuthenticationSuccessHandler proAuthenticationSuccessHandler;
+    @Autowired
+    protected AuthenticationFailureHandler proAuthenticationFailureHandler;
+
+    @Autowired
+    private PermitProps permitProps;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        formAuthenticationConfig.configure(http);
         http.headers().frameOptions().disable();
+        http.formLogin()
+                .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
+                .loginProcessingUrl(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)
+                .successHandler(proAuthenticationSuccessHandler)
+                .failureHandler(proAuthenticationFailureHandler);
 
         http.apply(validateCodeSecurityConfig)
                 .and()
                 .apply(smsCodeAuthenticationSecurityConfig)
                 .and()
                 .csrf().disable();
-
-        authorizeConfigManager.config(http.authorizeRequests());
+        String[] urls = Convert.toStrArray(permitProps.getIgnoreUrls());
+        http.authorizeRequests().antMatchers(urls).permitAll();
     }
 
     @Bean

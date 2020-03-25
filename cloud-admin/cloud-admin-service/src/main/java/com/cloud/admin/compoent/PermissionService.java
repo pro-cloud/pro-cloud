@@ -18,13 +18,13 @@ public class PermissionService {
 
 
 	/**
-	 * 判断接口是否有xxx:xxx权限
-	 *
-	 * @param permission 权限
-	 * @return {boolean}
+	 * 判断接口是否有权限 内部用户为最高权限
+	 * @param permission
+	 * @return
 	 */
 	public boolean hasPermission(String permission) {
-		if (UserUtil.hasAdmin()) {
+		// 判断是不是内部调用或者最高权限
+		if (UserUtil.hasInside() || UserUtil.hasAdmin()) {
 			return true;
 		}
 		for (SysMenu sysMenu : UserUtil.getMenuList()) {
@@ -39,11 +39,13 @@ public class PermissionService {
 
 	/**
 	 * 判断当前用户是不是具有某个角色
+	 * 内部用户为最高权限
 	 * @param enname
 	 * @return
 	 */
 	public boolean hasRole(String enname) {
-		if (UserUtil.hasAdmin()) {
+		// 判断是不是内部调用或者最高权限
+		if (UserUtil.hasInside() || UserUtil.hasAdmin()) {
 			return true;
 		}
 		for (RoleDTO roleDTO : UserUtil.getRoleList()) {

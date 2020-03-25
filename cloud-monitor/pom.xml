@@ -9,7 +9,7 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>cloud-monitor</artifactId>
-    <description>monitor project for Spring Cloud</description>
+    <description>Demo project for Spring Boot</description>
 
 
     <modules>

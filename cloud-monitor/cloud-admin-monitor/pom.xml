@@ -9,7 +9,7 @@
     </parent>
     <packaging>jar</packaging>
     <artifactId>cloud-admin-monitor</artifactId>
-    <description>Demo project for Spring Boot</description>
+    <description>monitor admin for Spring Cloud</description>
     <dependencies>
         <!--监控服务端-->
         <dependency>
@@ -17,27 +17,31 @@
             <artifactId>spring-boot-admin-starter-server</artifactId>
             <version>${spring-boot-admin.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common-data</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-common-controller</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-undertow</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-test</artifactId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
 
     </dependencies>
 

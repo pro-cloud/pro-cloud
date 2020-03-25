@@ -36,7 +36,6 @@ nacos + Spring Cloud Oauth2 + Spring Cloud gateway +  Feign + mybatisplus等，�
 ```
 Pro-Cloud
 ├── cloud-admin -- 系统基础模块
-│   ├── cloud-admin-common  -- auth客户端
 │   ├── cloud-admin-api   -- admin暴露的feign接口
 │   └── cloud-admin-service -- admin模块的实现
 ├── cloud-auth  -- auth服务端 统一登录中心(支持单点登录和三方登录)

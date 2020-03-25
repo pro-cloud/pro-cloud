@@ -1,12 +1,15 @@
 package com.cloud.admin.controller;
 
 import com.cloud.admin.beans.dto.DictDTO;
+import com.cloud.admin.service.SysDictListService;
+import com.cloud.admin.service.SysDictTreeService;
 import com.cloud.common.data.base.Result;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.admin.beans.po.SysDict;
 import com.cloud.admin.service.SysDictService;
 import com.cloud.common.data.enums.ResultEnum;
+import com.cloud.common.security.annotation.Inside;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,12 @@ public class SysDictController {
 
     @Autowired
     private SysDictService sysDictService;
+
+    @Autowired
+    private SysDictListService sysDictListService;
+
+    @Autowired
+    private SysDictTreeService sysDictTreeService;
 
     /**
      * 分页查询
@@ -91,4 +100,22 @@ public class SysDictController {
         return Result.success(sysDictService.removeByDict(byId));
     }
 
+
+    ///////////////////  暴露出去的接口 ///////////////////////
+
+    /**
+     *  根据类型查询字典
+     * @param typeCode
+     * @param type 0：list 集合 1：树
+     * @return
+     */
+    @GetMapping(value="/type/{typeCode}/{type}")
+    @Inside
+    @PreAuthorize("@pms.hasPermission('admin_sysdict_view')")
+    public Result getByType(@PathVariable("typeCode") String typeCode, @PathVariable("type") String type) {
+        if (DictDTO.DICT_LIST.equals(type)) {
+            return Result.success(sysDictListService.getDictListByType(typeCode));
+        }
+        return Result.success(sysDictTreeService.getDicTreeByType(typeCode));
+    }
 }

@@ -22,18 +22,6 @@ public class SmsCodeProps {
 	 * 要拦截的url，多个url用逗号隔开，ant pattern
 	 */
 	private String url;
-	/**
-	 * 每天每个手机号最大送送短信数量
-	 */
-	private int mobileMaxSendCount = 10;
-	/**
-	 * 每天每个IP最大送送短信数量
-	 */
-	private int ipMaxSendCount = 10;
-	/**
-	 * 每天最大送送短信数量
-	 */
-	private int totalMaxSendCount = 1000;
 
 
 }

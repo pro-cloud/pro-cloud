@@ -79,16 +79,6 @@ security:
       token-info-uri: http://cloud-auth/oauth/check_token
       loadBalanced: true
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
-          strategy: SEMAPHORE
-
-
 #mybatis
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml

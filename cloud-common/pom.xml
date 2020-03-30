@@ -9,10 +9,78 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>cloud-common</artifactId>
+    <version>${pro-common.version}</version>
     <description>common project for Spring Cloud</description>
 
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-util</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-data</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-security</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-swagger</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-entity</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-cache</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-oauth</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-job</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-mq</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-websocket</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>cloud-common-oss</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
     <modules>
-        <module>cloud-common-bom</module>
         <module>cloud-common-util</module>
         <module>cloud-common-data</module>
         <module>cloud-common-security</module>
@@ -25,5 +93,7 @@
         <module>cloud-common-websocket</module>
         <module>cloud-common-oss</module>
     </modules>
+
+
 
 </project>

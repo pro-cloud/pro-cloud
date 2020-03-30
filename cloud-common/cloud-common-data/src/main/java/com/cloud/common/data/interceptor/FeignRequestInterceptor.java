@@ -19,9 +19,14 @@ import java.util.Enumeration;
 @Component
 @Slf4j
 public class FeignRequestInterceptor implements RequestInterceptor {
+
+    /**
+     * 对feign 请求手动的传递head
+     * @param requestTemplate
+     */
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        log.info("feign 拦截");
+        log.info("对feign 请求进行拦截");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
                 .getRequestAttributes();
         HttpServletRequest request= attributes.getRequest();

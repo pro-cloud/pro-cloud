@@ -86,9 +86,9 @@ Pro-Cloud
 
 #### 使用说明
 
-1. /auth/oauth/token 获取token 
+1. /auth/oauth/token 获取token 详细请参考docs目录下的接口调用demo(请用postman导入)
 2. 先启动auth 统一登录中心，然后启动admin模块，统一管理后台
-3. /code 获取验证码      
+3. /code 获取验证码 同 1      
 4. 生成代码接口示例：
 generator/code?tableName=sys_user&moduleName=admin&comments=用户表     
 5. 继承授权中心模块需要实现ProUserDetailsService接口（不实现只会走默认方法），如果定制发邮件需要重构SmsCodeSender接口

@@ -16,12 +16,9 @@ import com.cloud.admin.service.SysMenuService;
 import com.cloud.admin.service.SysRoleService;
 import com.cloud.admin.service.SysUserService;
 import com.cloud.common.data.util.SpringUtil;
-import com.cloud.common.security.component.SecurityUser;
+import com.cloud.common.security.util.SecurityUtil;
 import com.cloud.common.util.var.StaticVar;
 import lombok.experimental.UtilityClass;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -34,7 +31,7 @@ import java.util.List;
  * @since 2019/8/25
  */
 @UtilityClass
-public class UserUtil {
+public class UserUtil extends SecurityUtil {
 
 
     private static SysMenuService sysMenuService = SpringUtil.getBean(SysMenuService.class);
@@ -94,32 +91,7 @@ public class UserUtil {
         return sysUserService.getById(userId);
     }
 
-    /**
-     * 获取SecurityUser
-     * @return
-     */
-    public static SecurityUser getSecurityUser(){
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        return (SecurityUser)authentication.getPrincipal();
-    }
 
-    /**
-     * 获取登录用户的信息
-     * @return
-     */
-    public static Long getUserId(){
-        return getSecurityUser().getUserId();
-    }
-
-
-    /**
-     * 获取登录用户的信息 登录名
-     * @return
-     */
-    public static String getUserName(){
-        return getSecurityUser().getUsername();
-    }
     /**
      * 获取用户详细 信息 包含 部门信息和角色信息
      * @return

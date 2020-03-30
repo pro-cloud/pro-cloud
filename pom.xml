@@ -110,7 +110,7 @@
 
             <dependency>
                 <groupId>com.cloud</groupId>
-                <artifactId>cloud-common-bom</artifactId>
+                <artifactId>cloud-common</artifactId>
                 <version>${pro-common.version}</version>
                 <type>pom</type>
                 <scope>import</scope>

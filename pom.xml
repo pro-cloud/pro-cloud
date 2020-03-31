@@ -39,19 +39,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <repositories>
-        <!--阿里云仓库-->
-        <repository>
-            <id>aliyun</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
-        <!--快照版本使用,正式版本无需添加此仓库-->
-        <repository>
-            <id>snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <!--Lombok-->
         <dependency>
@@ -289,4 +276,28 @@
         </profile>
     </profiles>
 
+    <!-- 开发者信息 -->
+    <developers>
+        <developer>
+            <id>Aijm</id>
+            <name>Hcloud</name>
+            <email>2929783435@qq.com</email>
+            <roles><role>Project lead</role></roles>
+        </developer>
+    </developers>
+
+    <!--发布jar到私服-->
+    <distributionManagement>
+        <repository>
+            <id>pro-releases</id>
+            <name>pro Release Repository</name>
+            <url>http://192.168.71.139:8081/repository/maven-releases/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>pro-snapshots</id>
+            <name>pro Snapshot Repository</name>
+            <url>http://192.168.71.139:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

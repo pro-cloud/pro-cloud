@@ -53,7 +53,6 @@
         <module>cloud-admin</module>
         <module>cloud-auth</module>
         <module>cloud-gateway</module>
-        <module>cloud-generator</module>
         <module>cloud-common</module>
         <module>cloud-monitor</module>
         <module>cloud-search</module>

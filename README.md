@@ -40,7 +40,6 @@ Pro-Cloud
 │   └── cloud-admin-service -- admin模块的实现
 ├── cloud-auth  -- auth服务端 统一登录中心(支持单点登录和三方登录)
 ├─cloud-common   -- 系统公共模块
-│  ├─cloud-common-bom   -- 版本控制
 │  ├─cloud-common-cache  -- 缓存工具类+redis 分布式锁
 │  ├─cloud-common-data  -- 对数据库操作工具类
 │  ├─cloud-common-entity  -- 公共实体工具类
@@ -57,12 +56,10 @@ Pro-Cloud
 ├─cloud-generator   -- 代码生成
 ├─cloud-message      -- 发送邮件短信模块
 │  ├─cloud-message-api
-│  ├─cloud-message-common
 │  └─cloud-message-service
 ├─cloud-monitor  -- 监控模块
 ├─cloud-oss  -- oss文件上传模块
 │  ├─cloud-oss-api
-│  ├─cloud-oss-common
 │  └─cloud-oss-service
 ├─cloud-search  -- es收搜模块
 ├─cloud-sso-demo   -- 单点登录案例

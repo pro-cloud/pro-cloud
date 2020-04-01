@@ -150,6 +150,12 @@
                 <version>3.0.2</version>
             </dependency>
 
+            <dependency>
+                <groupId>io.prometheus</groupId>
+                <artifactId>simpleclient</artifactId>
+                <version>0.7.0</version>
+            </dependency>
+
             <!--自定义jar管理-->
             <dependency>
                 <groupId>com.cloud</groupId>

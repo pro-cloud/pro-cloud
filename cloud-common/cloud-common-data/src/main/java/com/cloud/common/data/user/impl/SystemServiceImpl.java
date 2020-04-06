@@ -9,9 +9,25 @@ import com.cloud.common.data.user.SystemService;
  */
 public class SystemServiceImpl implements SystemService {
 
+
+    /**
+     * 获取到登录用户的id 为了封装
+     *
+     * @return
+     */
     @Override
     public Long getUserId() {
         return 1L;
+    }
+
+    /**
+     * 获取到用户的id集合
+     *
+     * @return
+     */
+    @Override
+    public String getUserTenantIds() {
+        return null;
     }
 
 

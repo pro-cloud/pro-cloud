@@ -16,11 +16,20 @@ public class SecurityUtil {
      * 获取SecurityUser
      * @return
      */
-    public static SecurityUser getSecurityUser(){
+    public static SecurityUser getSecurityUser() {
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
         return (SecurityUser)authentication.getPrincipal();
     }
+
+    /**
+     * 判断该用户是否登录
+     * @return
+     */
+    public static boolean isAuthenticated() {
+        return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+    }
+
 
     /**
      * 获取登录用户的信息

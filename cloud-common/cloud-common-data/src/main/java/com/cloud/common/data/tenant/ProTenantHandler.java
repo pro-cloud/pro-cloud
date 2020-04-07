@@ -55,7 +55,7 @@ public class ProTenantHandler implements TenantHandler {
 	 */
 	@Override
 	public boolean doTableFilter(String tableName) {
-		return propes.getTables().contains(tableName);
+		return !propes.getTables().contains(tableName);
 	}
 
 

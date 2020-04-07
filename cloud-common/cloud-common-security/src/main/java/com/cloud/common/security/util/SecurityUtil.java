@@ -26,7 +26,7 @@ public class SecurityUtil {
      * 判断该用户是否登录
      * @return
      */
-    public static boolean isAuthenticated() {
+    public static boolean hasAuthenticated() {
         return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
     }
 

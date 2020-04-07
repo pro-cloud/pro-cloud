@@ -12,8 +12,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class SystemServiceImpl implements SystemService {
 
+
+    /**
+     * 获取到登录用户的id 为了封装
+     *
+     * @return
+     */
     @Override
     public Long getUserId() {
         return UserUtil.getUserId();
+    }
+
+    /**
+     * 获取到用户的租户id集合
+     *
+     * @return
+     */
+    @Override
+    public String getUserTenantIds() {
+        if (UserUtil.hasAuthenticated()) {
+            return String.valueOf(UserUtil.getUserDTO().getTenantIds());
+        }
+        return null;
     }
 }

@@ -16,7 +16,7 @@ public interface SystemService {
 
 
     /**
-     * 获取到用户的id集合
+     * 获取到用户的租户id集合
      * @return
      */
     String getUserTenantIds();

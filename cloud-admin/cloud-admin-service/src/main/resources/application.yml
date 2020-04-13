@@ -56,13 +56,6 @@ logging:
   level:
     com.cloud.admin.api.IDictService: debug
 
-
-pro-cloud:
-  tenant:
-    tables:
-      - sys_role_menu
-      - sys_data_source_conf
-      - sys_user_role
 info:
   name: @project.artifactId@
   description: @project.description@

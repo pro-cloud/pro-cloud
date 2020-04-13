@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class TenantContextHolderFilter extends OncePerRequestFilter {
+public class ProTenantFilter extends OncePerRequestFilter {
 
 	/**
 	 * 对租户进行处理 添加默认组合

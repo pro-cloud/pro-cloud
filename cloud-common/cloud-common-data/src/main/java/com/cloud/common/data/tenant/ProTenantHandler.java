@@ -32,9 +32,12 @@ public class ProTenantHandler implements TenantHandler {
 	public Expression getTenantId(boolean where) {
 		String tenantIds = TenantContextHolder.getTenantIds();
 		log.debug("当前租户的值为:{}", tenantIds);
-//		if (StrUtils.containsIgnoreCase(tenantIds, StrUtils.COMMA)) {
-//			return multipleTenantIdCondition(tenantIds);
-//		}
+		if (where && StrUtils.containsIgnoreCase(tenantIds, StrUtils.COMMA)) {
+			return multipleTenantIdCondition(tenantIds);
+		} else {
+			String[] ids = StrUtils.split(tenantIds, StrUtils.COMMA);
+			tenantIds = ids[0];
+		}
 		return new LongValue(tenantIds);
 	}
 

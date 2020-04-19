@@ -1,7 +1,6 @@
 package com.cloud.common.oauth.security;
 
 
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -31,11 +30,18 @@ public class SecurityUser extends User {
 	 */
 	private String userType;
 
-	public SecurityUser(String username, String password, Long userId, String userType, String name) {
+	/**
+	 * 能够管理的租户
+	 */
+	private String tenantIds;
+
+	public SecurityUser(String username, String password, Long userId, String userType,
+						String name, String tenantIds) {
 		super(username, password, AuthorityUtils.NO_AUTHORITIES);
 		this.userId = userId;
 		this.userType = userType;
 		this.name = name;
+		this.tenantIds = tenantIds;
 	}
 	public SecurityUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
@@ -67,5 +73,13 @@ public class SecurityUser extends User {
 
 	public void setUserType(String userType) {
 		this.userType = userType;
+	}
+
+	public String getTenantIds() {
+		return tenantIds;
+	}
+
+	public void setTenantIds(String tenantIds) {
+		this.tenantIds = tenantIds;
 	}
 }

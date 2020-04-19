@@ -1,7 +1,7 @@
 package com.cloud.auth.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cloud.common.entity.BaseEntity;
+import com.cloud.common.entity.TenantEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @TableName("sys_user")
 @Accessors(chain = true)
 @ApiModel(description = "用户表")
-public class SysUser extends BaseEntity<SysUser> {
+public class SysUser extends TenantEntity<SysUser> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "归属部门")

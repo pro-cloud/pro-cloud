@@ -28,6 +28,7 @@ public class CustomTokenEnhancer implements TokenEnhancer {
         additionalInfo.put(AdditionalToken.USER_ID, user.getUserId());
         additionalInfo.put(AdditionalToken.USER_TYPE, user.getUserType());
         additionalInfo.put(AdditionalToken.USER_NAME, user.getName());
+        additionalInfo.put(AdditionalToken.TENANT_IDS, user.getTenantIds());
         ((DefaultOAuth2AccessToken)accessToken).setAdditionalInformation(additionalInfo);
         return accessToken;
     }

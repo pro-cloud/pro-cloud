@@ -41,6 +41,13 @@ public class SecurityUtil {
 
 
     /**
+     * 获取登录用户的管理租户信息,多个租户 第一个为本身租户
+     * @return
+     */
+    public static String getTenantIds(){
+        return getSecurityUser().getTenantIds();
+    }
+    /**
      * 获取登录用户的信息 登录名
      * @return
      */

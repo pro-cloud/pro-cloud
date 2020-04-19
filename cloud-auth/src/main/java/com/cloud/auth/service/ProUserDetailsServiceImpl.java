@@ -33,7 +33,7 @@ public class ProUserDetailsServiceImpl implements ProUserDetailsService {
             throw new UsernameNotFoundException("手机号异常");
         }
         return new SecurityUser(mobile, user.getPassword(), user.getId(),
-                user.getUserType(), user.getName());
+                user.getUserType(), user.getName(), String.valueOf(user.getTenantId()));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ProUserDetailsServiceImpl implements ProUserDetailsService {
             throw new UsernameNotFoundException("用户名异常");
         }
         return new SecurityUser(username, user.getPassword(), user.getId(),
-                user.getUserType(), user.getName());
+                user.getUserType(), user.getName(), String.valueOf(user.getTenantId()));
     }
 
     /**
@@ -63,7 +63,7 @@ public class ProUserDetailsServiceImpl implements ProUserDetailsService {
             throw new UsernameNotFoundException("用户名异常");
         }
         return new SecurityUser(user.getLoginName(), user.getPassword(), user.getId(),
-                user.getUserType(), user.getName());
+                user.getUserType(), user.getName(), String.valueOf(user.getTenantId()));
     }
 
     /**
@@ -81,6 +81,6 @@ public class ProUserDetailsServiceImpl implements ProUserDetailsService {
             throw new UsernameNotFoundException("用户名异常");
         }
         return new SecurityUser(user.getLoginName(), user.getPassword(), user.getId(),
-                user.getUserType(), user.getName());
+                user.getUserType(), user.getName(), String.valueOf(user.getTenantId()));
     }
 }

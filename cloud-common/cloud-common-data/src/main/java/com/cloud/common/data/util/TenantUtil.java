@@ -6,7 +6,10 @@ import com.cloud.common.util.util.StrUtils;
 import com.cloud.common.util.var.StaticVar;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -20,6 +23,7 @@ public class TenantUtil {
 
 
     private static final SystemService systemService = SpringUtil.getBean(SystemService.class);
+
     /**
      * 根据传递来的租户 获取到应该的租户信息
      * @param tenantId
@@ -47,6 +51,20 @@ public class TenantUtil {
         }
 
         return CollUtil.join(inTenantId, StrUtils.COMMA);
+
+    }
+
+
+    /**
+     * 根据传递来的租户 获取到应该的租户信息
+     * @return
+     */
+    public String getCurrentTenant() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+                .getRequest();
+        String tenantId = request.getHeader(StaticVar.TENANT_ID);
+        log.debug("header中的租户为:{}", tenantId);
+        return  getCurrentTenant(tenantId);
 
     }
 

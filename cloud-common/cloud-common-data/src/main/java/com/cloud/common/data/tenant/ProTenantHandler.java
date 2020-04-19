@@ -1,6 +1,7 @@
 package com.cloud.common.data.tenant;
 
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
+import com.cloud.common.data.util.TenantUtil;
 import com.cloud.common.util.util.StrUtils;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.expression.Expression;
@@ -30,7 +31,7 @@ public class ProTenantHandler implements TenantHandler {
 	 */
 	@Override
 	public Expression getTenantId(boolean where) {
-		String tenantIds = TenantContextHolder.getTenantIds();
+		String tenantIds = TenantUtil.getCurrentTenant();
 		log.debug("当前租户的值为:{}", tenantIds);
 		if (where && StrUtils.containsIgnoreCase(tenantIds, StrUtils.COMMA)) {
 			return multipleTenantIdCondition(tenantIds);

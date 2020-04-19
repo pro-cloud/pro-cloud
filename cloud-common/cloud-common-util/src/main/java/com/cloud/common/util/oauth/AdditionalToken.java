@@ -36,4 +36,9 @@ public class AdditionalToken {
      */
     public static final String USER_NAME ="name";
 
+    /**
+     * 管理的租户 ids
+     */
+    public static final String TENANT_IDS ="tenantIds";
+
 }

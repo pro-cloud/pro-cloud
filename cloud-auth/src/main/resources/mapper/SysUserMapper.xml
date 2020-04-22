@@ -8,7 +8,8 @@
         a.name AS name,
         a.login_name AS loginName,
         a.password AS password,
-        a.user_type AS userType
+        a.user_type AS userType,
+        a.tenant_id AS tenantId
     </sql>
 
     <sql id="userJoins">

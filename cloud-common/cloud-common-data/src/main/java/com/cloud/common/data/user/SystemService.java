@@ -14,4 +14,11 @@ public interface SystemService {
      */
     Long getUserId();
 
+
+    /**
+     * 获取到用户的租户id集合
+     * @return
+     */
+    String getUserTenantIds();
+
 }

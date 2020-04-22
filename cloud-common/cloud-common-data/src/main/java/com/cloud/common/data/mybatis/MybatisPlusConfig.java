@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
 import com.cloud.common.data.tenant.ProSqlParserFilter;
 import com.cloud.common.data.tenant.ProTenantHandler;
+import com.cloud.common.data.tenant.ProTenantSqlParser;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -72,7 +73,7 @@ public class MybatisPlusConfig {
     public PaginationInterceptor paginationInterceptor(TenantHandler tenantHandler, ISqlParserFilter sqlParserFilter) {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         List<ISqlParser> sqlParserList = new ArrayList<>();
-        TenantSqlParser tenantSqlParser = new TenantSqlParser();
+        TenantSqlParser tenantSqlParser = new ProTenantSqlParser();
         tenantSqlParser.setTenantHandler(tenantHandler);
         sqlParserList.add(tenantSqlParser);
         paginationInterceptor.setSqlParserList(sqlParserList);

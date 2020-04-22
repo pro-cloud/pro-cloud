@@ -52,4 +52,9 @@ public class UserDTO extends SysUser {
 
     private List<Long> roleIdList;
 
+    /**
+     * 拥有的租户集合
+     */
+    private String tenantIds;
+
 }

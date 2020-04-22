@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 /**
  * @Author Aijm
  * @Description  租户 实体
+ *  特别注意insert时 这个字段不需要赋值
  * @Date 2020/1/15
  */
 @Data

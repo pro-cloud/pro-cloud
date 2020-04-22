@@ -31,8 +31,9 @@ public class ProUserAuthenticationConverter extends DefaultUserAuthenticationCon
             Long userId = Long.valueOf(String.valueOf(obj));
             Object objType = map.get(AdditionalToken.USER_TYPE);
             Object name = map.get(AdditionalToken.USER_NAME);
+            Object tenantIds = map.get(AdditionalToken.TENANT_IDS);
             SecurityUser user = new SecurityUser((String) principal, "", userId,
-                    String.valueOf(objType), String.valueOf(name));
+                    String.valueOf(objType), String.valueOf(name), String.valueOf(tenantIds));
             return new UsernamePasswordAuthenticationToken(user, "N/A", AuthorityUtils.NO_AUTHORITIES);
         } else {
             return null;

@@ -2,6 +2,7 @@ package com.cloud.admin.compoent;
 
 import com.cloud.admin.util.UserUtil;
 import com.cloud.common.data.user.SystemService;
+import com.cloud.common.security.util.SecurityUtil;
 import org.springframework.stereotype.Service;
 /**
  * @Author Aijm
@@ -12,8 +13,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class SystemServiceImpl implements SystemService {
 
+
+    /**
+     * 获取到登录用户的id 为了封装
+     *
+     * @return
+     */
     @Override
     public Long getUserId() {
         return UserUtil.getUserId();
+    }
+
+    /**
+     * 获取到用户的租户id集合
+     *
+     * @return
+     */
+    @Override
+    public String getUserTenantIds() {
+        if (UserUtil.hasAuthenticated()) {
+            return SecurityUtil.getTenantIds();
+        }
+        return null;
     }
 }

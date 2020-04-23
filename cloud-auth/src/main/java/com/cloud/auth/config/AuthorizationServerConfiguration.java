@@ -4,6 +4,7 @@ import com.cloud.auth.component.Auth2ResponseExceptionTranslator;
 import com.cloud.auth.service.ProJdbcClientDetailsService;
 import com.cloud.common.util.var.RedisKeys;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +35,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
+    @Qualifier("proUserDetailsServiceImpl")
     private UserDetailsService userDetailsService;
     @Autowired
     private CustomTokenEnhancer customTokenEnhancer;

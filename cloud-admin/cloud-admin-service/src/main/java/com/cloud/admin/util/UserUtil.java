@@ -59,18 +59,7 @@ public class UserUtil extends SecurityUtil {
         Long id = getUserId();
         return id != null && (id== 1);
     }
-
-    /**
-     * 判断该用户是不是内部调用
-     * @return
-     */
-    public static boolean hasInside(){
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-                .getRequest();
-        String header = request.getHeader(StaticVar.FROM);
-        return StrUtil.equals(StaticVar.FROM_IN, header);
-    }
-
+    
     //////////////////  菜单相关  /////////////////////////
 
     /**

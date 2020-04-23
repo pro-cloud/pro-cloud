@@ -25,12 +25,10 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-        // 1. 清洗请求头中from 参数
-        ServerHttpRequest request = exchange.getRequest().mutate()
-                .headers(httpHeaders -> httpHeaders.remove(StaticVar.FROM))
-                .build();
-
-        return chain.filter(exchange.mutate().request(request).build());
+        // 1. 可以对exchange进行操作
+        //        ServerHttpRequest request = exchange.getRequest().mutate()
+        //                .build();
+        return chain.filter(exchange);
     }
 
     @Override

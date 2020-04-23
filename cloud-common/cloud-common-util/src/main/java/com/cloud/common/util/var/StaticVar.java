@@ -18,17 +18,6 @@ public class StaticVar {
     public static final String LOGIN_URL = "http://"+ CloudServiceList.CLOUD_AUTH+ "/oauth/token";
 
     /**
-     * 内部
-     */
-    public static final String FROM_IN = "Y";
-
-    /**
-     * 标志
-     */
-    public static final String FROM = "from";
-
-
-    /**
      * head 放入的tenant
      */
     public static final String TENANT_ID = "user_tenant";

@@ -11,8 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2RefreshToken;
-import org.springframework.security.oauth2.provider.AuthorizationRequest;
-import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -20,8 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 /**
  * @author Aijm
@@ -51,22 +47,12 @@ public class ProSsoController {
 	 * 确认授权页面
 	 *
 	 * @param request
-	 * @param session
 	 * @param modelAndView
 	 * @return
 	 */
 	@GetMapping("/confirm")
 	public ModelAndView confirm(HttpServletRequest request, ModelAndView modelAndView) {
-		Map<String, Object> scopeList = (Map<String, Object>) request.getAttribute("scopes");
-		modelAndView.addObject("scopeList", scopeList.keySet());
-		Object auth = request.getAttribute("authorizationRequest");
-		if (auth != null) {
-			AuthorizationRequest authorizationRequest = (AuthorizationRequest) auth;
-			ClientDetails clientDetails = clientDetailsService.loadClientByClientId(authorizationRequest.getClientId());
-			modelAndView.addObject("app", clientDetails.getAdditionalInformation());
-			modelAndView.addObject("user", SecurityUtil.getUser());
-		}
-
+		// todo
 		modelAndView.setViewName("ftl/confirm");
 		return modelAndView;
 	}

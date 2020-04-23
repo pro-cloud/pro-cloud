@@ -24,7 +24,7 @@ public class TreeUtil {
      * @param parentId  一般为0 第一个节点的parentId (也表示 id为parentId的数据不会显示)
      * @param cascade  一般为true
      */
-    public <T extends TreeEntity> void sortList(List<T> list, List<T> sourcelist, Long parentId, boolean cascade){
+    public static <T extends TreeEntity> void sortList(List<T> list, List<T> sourcelist, Long parentId, boolean cascade){
         int size = sourcelist.size();
         for (int i=0; i<size; i++){
             T e = sourcelist.get(i);
@@ -50,7 +50,7 @@ public class TreeUtil {
 	 * @param treeEntitys 传入的树节点列表
 	 * @return
 	 */
-	public <T extends TreeEntity> List<T> build(List<T> treeEntitys, Object root) {
+	public static <T extends TreeEntity> List<T> build(List<T> treeEntitys, Object root) {
 		List<T> trees = Lists.newArrayList();
 		for (T treeEntity : treeEntitys) {
 			if (root.equals(treeEntity.getParentId())) {
@@ -75,13 +75,13 @@ public class TreeUtil {
 	 * @param <T>
 	 * @return
 	 */
-	public <T extends TreeEntity> List<T> buildTree(List<T> treeEntitys, Object root) {
+	public static <T extends TreeEntity> List<T> buildTree(List<T> treeEntitys, Object root) {
 		List<T> trees = Lists.newArrayList();
-		for (T treeEntity : treeEntitys) {
+		treeEntitys.forEach( treeEntity -> {
 			if (root.equals(treeEntity.getParentId())) {
 				trees.add(findChildren(treeEntity, treeEntitys));
 			}
-		}
+		});
 		return trees;
 	}
 
@@ -92,15 +92,16 @@ public class TreeUtil {
 	 * @param <T>
 	 * @return
 	 */
-	public <T extends TreeEntity> T findChildren(T treeEntity, List<T> treeEntitys) {
-		for (T it : treeEntitys) {
-			if (treeEntity.getId().equals(it.getParentId())) {
+	public static <T extends TreeEntity> T findChildren(T treeEntity, List<T> treeEntitys) {
+		// 循环递归判断
+		treeEntitys.forEach(entity -> {
+			if (treeEntity.getId().equals(entity.getParentId())) {
 				if (treeEntity.getChildrens() == null) {
 					treeEntity.setChildrens(Lists.newArrayList());
 				}
-				treeEntity.getChildrens().add(findChildren(it, treeEntitys));
+				treeEntity.getChildrens().add(findChildren(entity, treeEntitys));
 			}
-		}
+		});
 		return treeEntity;
 	}
 

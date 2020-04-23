@@ -101,7 +101,6 @@ generator/code?tableName=sys_user&moduleName=admin&comments=用户表
 2. [Spring Cloud Oauth2](https://spring.io/projects/spring-security-oauth)
 3. [Nacos](https://nacos.io/zh-cn/docs/quick-start.html)
 4. [hutool](https://www.hutool.cn/docs/#/)
-4. [pig](https://gitee.com/log4j/pig)
 
 #### 欢迎加群
 [![加入QQ群](https://img.shields.io/badge/238254944-blue.svg)](https://jq.qq.com/?_wv=1027&k=57NNidS)

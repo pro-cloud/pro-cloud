@@ -1,0 +1,32 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: @artifactId@
+    #profiles: dev
+
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://119.23.8.73:3306/pro_cloud?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
+    username: ENC(H15dJ+G7zVCtGXpZnoC8aw==)
+    password: ENC(Rl4qmW/H2ukPTr5pgYwLyQIpoGBC6tjO)
+
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.cloud.generator.entity
+  global-config:
+    banner: false
+    db-config:
+      column-underline: true
+      #capital-mode: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    refresh: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false

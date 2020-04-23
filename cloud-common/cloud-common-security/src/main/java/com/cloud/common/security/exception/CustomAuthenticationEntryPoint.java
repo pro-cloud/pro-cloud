@@ -2,9 +2,9 @@ package com.cloud.common.security.exception;
 
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.http.HttpStatus;
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.common.data.base.Result;
 import com.cloud.common.data.enums.ResultEnum;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 
 /**
  * 自定义Token异常信息
@@ -25,23 +24,18 @@ import java.io.PrintWriter;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
-	private final ObjectMapper objectMapper;
+public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
+
 
 	@Override
 	@SneakyThrows
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 						 AuthenticationException authException) {
-		log.error("AuthExceptionEntryPoint:",authException.getMessage());
+		log.error("匿名用户访问无权限:",authException.getMessage());
 		response.setCharacterEncoding(CharsetUtil.UTF_8);
-		response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-
-		Result<Object> result = Result.error(ResultEnum.TOKEN_PAST);
-		if (authException != null) {
-			result.setData(authException.getMessage());
-		}
+		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		response.setStatus(HttpStatus.HTTP_INTERNAL_ERROR);
-		PrintWriter printWriter = response.getWriter();
-		printWriter.append(objectMapper.writeValueAsString(result));
+		response.getWriter()
+				.print(JSONObject.toJSONString(Result.error(ResultEnum.TOKEN_PAST.getCode(),"匿名用户访问无权限资源时的异常")));
 	}
 }

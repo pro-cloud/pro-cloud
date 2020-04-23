@@ -1,13 +1,15 @@
 package com.cloud.auth.handler;
 
-import com.cloud.common.oauth.handler.AbstractAuthenticationFailureEvenHandler;
+
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationListener;
+import org.springframework.security.authentication.event.AbstractAuthenticationFailureEvent;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * @Author Aijm
@@ -16,19 +18,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Slf4j
 @Component
-public class ProAuthenticationFailureEvenHandler extends AbstractAuthenticationFailureEvenHandler {
+public class ProAuthenticationFailureEvenHandler implements ApplicationListener<AbstractAuthenticationFailureEvent> {
+
 
 	/**
-	 * 处理登录失败方法
-	 * <p>
-	 *
-	 * @param authenticationException 登录的authentication 对象
-	 * @param authentication          登录的authenticationException 对象
-	 * @param request                 请求
-	 * @param response                响应
+	 * 登录失败
+	 * @param event
 	 */
 	@Override
-	public void handle(AuthenticationException authenticationException, Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
-		log.info("用户：{} 登录失败，异常：{}", authentication.getPrincipal(), authenticationException.getLocalizedMessage());
+	public void onApplicationEvent(AbstractAuthenticationFailureEvent event) {
+		Authentication authentication = event.getAuthentication();
+		AuthenticationException exception = event.getException();
+		log.info("用户:{} 登录异常:{}", authentication.getPrincipal(), exception.getLocalizedMessage());
 	}
 }

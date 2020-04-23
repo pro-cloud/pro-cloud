@@ -24,7 +24,7 @@ public class PermissionService {
 	 */
 	public boolean hasPermission(String permission) {
 		// 判断是不是内部调用或者最高权限
-		if (UserUtil.hasInside() || UserUtil.hasAdmin()) {
+		if (UserUtil.hasAdmin()) {
 			return true;
 		}
 		for (SysMenu sysMenu : UserUtil.getMenuList()) {
@@ -45,7 +45,7 @@ public class PermissionService {
 	 */
 	public boolean hasRole(String enname) {
 		// 判断是不是内部调用或者最高权限
-		if (UserUtil.hasInside() || UserUtil.hasAdmin()) {
+		if (UserUtil.hasAdmin()) {
 			return true;
 		}
 		for (RoleDTO roleDTO : UserUtil.getRoleList()) {

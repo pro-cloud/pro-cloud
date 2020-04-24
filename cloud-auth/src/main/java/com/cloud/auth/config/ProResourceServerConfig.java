@@ -5,7 +5,8 @@ import cn.hutool.core.convert.Convert;
 import com.cloud.common.oauth.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.cloud.common.oauth.properties.PermitProps;
 import com.cloud.common.oauth.properties.SecurityConstants;
-import com.cloud.common.oauth.validate.ValidateCodeSecurityConfig;
+import com.cloud.common.oauth.service.ProUserDetailsService;
+import com.cloud.common.oauth.validate.ValidateCodeFilter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,11 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
+
 
 
 /**
@@ -31,18 +33,21 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 public class ProResourceServerConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private ValidateCodeSecurityConfig validateCodeSecurityConfig;
-    @Autowired
+
+    @Autowired(required = false)
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
-    @Autowired
-    protected AuthenticationSuccessHandler proAuthenticationSuccessHandler;
-    @Autowired
-    protected AuthenticationFailureHandler proAuthenticationFailureHandler;
+    @Autowired(required = false)
+    protected AuthenticationSuccessHandler authenticationSuccessHandler;
+
+    @Autowired(required = false)
+    protected AuthenticationFailureHandler authenticationFailureHandler;
 
     @Autowired
     private PermitProps permitProps;
+
+    @Autowired(required = false)
+    private ValidateCodeFilter validateCodeFilter;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -50,14 +55,14 @@ public class ProResourceServerConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
                 .loginProcessingUrl(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)
-                .successHandler(proAuthenticationSuccessHandler)
-                .failureHandler(proAuthenticationFailureHandler);
+                .successHandler(authenticationSuccessHandler)
+                .failureHandler(authenticationFailureHandler);
 
-        http.apply(validateCodeSecurityConfig)
-                .and()
-                .apply(smsCodeAuthenticationSecurityConfig)
+        http.apply(smsCodeAuthenticationSecurityConfig)
                 .and()
                 .csrf().disable();
+        // 添加拦截器
+        http.addFilterBefore(validateCodeFilter, AbstractPreAuthenticatedProcessingFilter.class);
         String[] urls = Convert.toStrArray(permitProps.getIgnoreUrls());
         http.authorizeRequests().antMatchers(urls).permitAll();
     }
@@ -71,7 +76,7 @@ public class ProResourceServerConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(PasswordEncoder passwordEncoder,UserDetailsService userDetailsService) {
+    public DaoAuthenticationProvider authenticationProvider(PasswordEncoder passwordEncoder, ProUserDetailsService userDetailsService) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setHideUserNotFoundExceptions(false);
         provider.setUserDetailsService(userDetailsService);

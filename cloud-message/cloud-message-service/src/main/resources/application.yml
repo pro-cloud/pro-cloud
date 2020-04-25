@@ -1,23 +1,68 @@
 server:
-  port: 80
-
-
+  port: 9200
 spring:
   application:
     name: @artifactId@
-  boot:
-    admin:
-      client:
-        url: http://localhost:8769
-    #profiles: dev
-  cloud:
-    sentinel:
-      transport:
-        port: 8719
-        dashboard: localhost:8080
   mail:
     host: smtp.163.com
     port:
     protocol: smtp
     username: jxaijm94@163.com
     password: ai123456
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.cloud.message.beans
+  global-config:
+    banner: false
+    db-config:
+      id-type: id_worker
+      field-strategy: not_empty
+      column-underline: true
+      #capital-mode: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+
+security:
+  oauth2:
+    resourceId: message
+    client:
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://cloud-auth/oauth/token
+      user-authorization-uri: http://cloud-auth/oauth/authorize
+      ignore-urls:
+        - /v2/api-docs
+        - /swagger-resources
+        - /swagger-resources/**
+        - /configuration/ui
+        - /configuration/security
+        - /swagger-ui.html
+        - /webjars/**
+    resource:
+      token-info-uri: http://cloud-auth/oauth/check_token
+      loadBalanced: true
+
+
+swagger:
+  enabled: true
+  author: Hcloud
+  title: Hcloud SpringCloud
+  desc: Hcloud SpringCloud doc
+  version: v2.0
+  termsOfServiceUrl: http://www.eduvipx.cn/termsOfServiceUrl
+  host: 127.0.0.1:9999
+  authUri: http://127.0.0.1:9999/auth/oauth/token
+
+logging:
+  config: classpath:logback-spring.xml
+
+info:
+  name: @project.artifactId@
+  description: @project.description@
+  version: @project.version@
+
+

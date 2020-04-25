@@ -1,14 +1,18 @@
 package com.cloud.message;
 
+import com.cloud.common.data.annotation.EnableProData;
+import com.cloud.common.security.annotation.EnableProSecurtity;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
 
 /**
  *   基础邮件模块
  * @author Aijm
  * @since  2019/5/8
  */
-@SpringBootApplication
+@SpringCloudApplication
+@EnableProData
+@EnableProSecurtity
 public class CloudMessageApplication {
 
     public static void main(String[] args) {

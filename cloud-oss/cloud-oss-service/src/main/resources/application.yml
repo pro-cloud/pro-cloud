@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 9300
 
 
 spring:
@@ -24,11 +24,6 @@ spring:
     username: jxaijm94@163.com
     password: ai123456
 
-  datasource:
-    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://119.23.8.73:3306/pro_cloud?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
-    username: ENC(H15dJ+G7zVCtGXpZnoC8aw==)
-    password: ENC(Rl4qmW/H2ukPTr5pgYwLyQIpoGBC6tjO)
 aliyun:
   oss:
     accessKeyId: 122
@@ -61,13 +56,42 @@ mybatis-plus:
     cache-enabled: false
   performanceInterceptor:
     enabled: true
+
 security:
   oauth2:
+    resourceId: oss
     client:
       client-id: client
       client-secret: secret
-      access-token-uri: http://localhost:8082/oauth/token
-      user-authorization-uri: http://localhost:8082/oauth/authorize
+      access-token-uri: http://cloud-auth/oauth/token
+      user-authorization-uri: http://cloud-auth/oauth/authorize
+      ignore-urls:
+        - /v2/api-docs
+        - /swagger-resources
+        - /swagger-resources/**
+        - /configuration/ui
+        - /configuration/security
+        - /swagger-ui.html
+        - /webjars/**
     resource:
-      token-info-uri: http://localhost:8082/oauth/check_token
+      token-info-uri: http://cloud-auth/oauth/check_token
       loadBalanced: true
+
+
+swagger:
+  enabled: true
+  author: Hcloud
+  title: Hcloud SpringCloud
+  desc: Hcloud SpringCloud doc
+  version: v2.0
+  termsOfServiceUrl: http://www.eduvipx.cn/termsOfServiceUrl
+  host: 127.0.0.1:9999
+  authUri: http://127.0.0.1:9999/auth/oauth/token
+
+logging:
+  config: classpath:logback-spring.xml
+
+info:
+  name: @project.artifactId@
+  description: @project.description@
+  version: @project.version@

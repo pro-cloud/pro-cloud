@@ -9,7 +9,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.admin.beans.po.SysDict;
 import com.cloud.admin.service.SysDictService;
 import com.cloud.common.data.enums.ResultEnum;
-import com.cloud.common.security.annotation.Inside;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,7 +109,6 @@ public class SysDictController {
      * @return
      */
     @GetMapping(value="/type/{typeCode}/{type}")
-    @Inside
     @PreAuthorize("@pms.hasPermission('admin_sysdict_view')")
     public Result getByType(@PathVariable("typeCode") String typeCode, @PathVariable("type") String type) {
         if (DictDTO.DICT_LIST.equals(type)) {

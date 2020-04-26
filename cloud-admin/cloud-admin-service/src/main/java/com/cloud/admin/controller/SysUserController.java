@@ -1,7 +1,6 @@
 package com.cloud.admin.controller;
 
 
-import cn.hutool.core.bean.BeanUtil;
 import com.cloud.admin.beans.dto.RoleDTO;
 import com.cloud.admin.beans.dto.UserDTO;
 import com.cloud.admin.beans.po.SysUser;
@@ -59,12 +58,10 @@ public class SysUserController {
      */
     @GetMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('admin_sysuser_view')")
-    public Result getById(@PathVariable("id") Long id) {
-        SysUser byId = sysUserService.getById(id);
-        UserDTO userDTO = new UserDTO();
-        BeanUtil.copyProperties(byId, userDTO);
-        List<RoleDTO> roleList = UserUtil.getRoleList(id);
-        userDTO.setRoleIdList(getRoleIdList(roleList));
+    public Result
+    getById(@PathVariable("id") Long id) {
+        UserDTO userDTO = UserUtil.getUserDTO(id);
+        userDTO.setMenuList(UserUtil.getMenuList());
         return Result.success(userDTO);
     }
 
@@ -95,7 +92,7 @@ public class SysUserController {
         // 角色数据有效性验证，过滤不在授权内的角色
         getRoleDTO(userDTO);
 
-        // -处理密码
+        // 处理密码
         // 获取到老密码
         String oldEncode = passwordEncoder.encode(userDTO.getPassword());
         SysUser byId = sysUserService.getById(userDTO.getId());

@@ -10,6 +10,9 @@ import com.cloud.common.cache.annotation.Cache;
 import com.cloud.common.cache.annotation.CacheClear;
 import com.cloud.common.cache.constants.CacheScope;
 import com.cloud.common.data.base.TreeService;
+import com.cloud.common.data.util.ObjUtil;
+import com.cloud.common.data.util.TreeUtil;
+import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,11 +51,16 @@ public class SysMenuServiceImpl extends TreeService<SysMenuMapper, SysMenu> impl
     @Override
     @Cache(scope = CacheScope.USER_MENU, key = "#userId")
     public List<SysMenu> findByUserId(Long userId) {
+        List<SysMenu> menus;
         if (UserUtil.hasAdmin(userId)) {
-            return sysMenuMapper.selectList(Wrappers.<SysMenu>query()
-                    .lambda().orderByAsc(SysMenu::getSort) );
+            menus = sysMenuMapper.selectList(Wrappers.<SysMenu>query()
+                    .lambda().orderByAsc(SysMenu::getSort));
+        } else {
+            menus = sysMenuMapper.findByUserId(userId);
         }
-        return sysMenuMapper.findByUserId(userId);
+        List<SysMenu> menuList = Lists.newArrayList();
+        TreeUtil.sortList(menuList, menus, ObjUtil.ROOT_ID, true);
+        return menuList;
     }
 
 }

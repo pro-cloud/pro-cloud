@@ -52,10 +52,7 @@ public class SysMenuController extends BaseController {
     @GetMapping("/listALL")
     @PreAuthorize("@pms.hasPermission('admin_sysmenu_view')")
     public Result getSysMenuAll() {
-        List<SysMenu> menus = UserUtil.getMenuList();
-        List<SysMenu> menuList = Lists.newArrayList();
-        TreeUtil.sortList(menuList, menus, ObjUtil.ROOT_ID, true);
-        return Result.success(menuList);
+        return Result.success(UserUtil.getMenuList());
     }
 
     /**

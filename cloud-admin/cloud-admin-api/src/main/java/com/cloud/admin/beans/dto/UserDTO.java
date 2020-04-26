@@ -1,9 +1,8 @@
 package com.cloud.admin.beans.dto;
 
 
+import com.cloud.admin.beans.po.SysMenu;
 import com.cloud.admin.beans.po.SysUser;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -51,6 +50,8 @@ public class UserDTO extends SysUser {
     private List<RoleDTO> roleList;
 
     private List<Long> roleIdList;
+
+    private List<SysMenu> menuList;
 
     /**
      * 拥有的租户集合

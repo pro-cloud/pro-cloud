@@ -49,7 +49,17 @@ public class SysUserController {
         return Result.success(sysUserService.getSysUserPage(page, userDTO));
     }
 
-
+    /**
+     * 通过id查询用户表
+     * @return Result
+     */
+    @GetMapping("/info")
+    @PreAuthorize("@pms.hasPermission('admin_sysuser_view')")
+    public Result getUserInfo() {
+        UserDTO userDTO = UserUtil.getUserDTO();
+        userDTO.setMenuList(UserUtil.getMenuList());
+        return Result.success(userDTO);
+    }
 
     /**
      * 通过id查询用户表
@@ -58,8 +68,7 @@ public class SysUserController {
      */
     @GetMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('admin_sysuser_view')")
-    public Result
-    getById(@PathVariable("id") Long id) {
+    public Result getById(@PathVariable("id") Long id) {
         UserDTO userDTO = UserUtil.getUserDTO(id);
         userDTO.setMenuList(UserUtil.getMenuList());
         return Result.success(userDTO);
@@ -137,16 +146,4 @@ public class SysUserController {
     }
 
 
-    /**
-     * 获取到角色id
-     * @param roleList
-     * @return
-     */
-    private  List<Long> getRoleIdList(List<RoleDTO> roleList) {
-        List<Long> roleIdList = Lists.newArrayList();
-        for (RoleDTO roleDTO : roleList) {
-            roleIdList.add(roleDTO.getId());
-        }
-        return roleIdList;
-    }
 }

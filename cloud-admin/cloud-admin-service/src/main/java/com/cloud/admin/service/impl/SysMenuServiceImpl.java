@@ -1,7 +1,6 @@
 package com.cloud.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.cloud.admin.beans.dto.MenuDTO;
 import com.cloud.admin.beans.po.SysMenu;
 import com.cloud.admin.mapper.SysMenuMapper;
 import com.cloud.admin.service.SysMenuService;
@@ -10,7 +9,6 @@ import com.cloud.common.cache.annotation.Cache;
 import com.cloud.common.cache.annotation.CacheClear;
 import com.cloud.common.cache.constants.CacheScope;
 import com.cloud.common.data.base.TreeService;
-import com.cloud.common.data.util.ObjUtil;
 import com.cloud.common.data.util.TreeUtil;
 import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
@@ -59,7 +57,7 @@ public class SysMenuServiceImpl extends TreeService<SysMenuMapper, SysMenu> impl
             menus = sysMenuMapper.findByUserId(userId);
         }
         List<SysMenu> menuList = Lists.newArrayList();
-        TreeUtil.sortList(menuList, menus, ObjUtil.ROOT_ID, true);
+        TreeUtil.sortList(menuList, menus, TreeUtil.ROOT_PID, true);
         return menuList;
     }
 

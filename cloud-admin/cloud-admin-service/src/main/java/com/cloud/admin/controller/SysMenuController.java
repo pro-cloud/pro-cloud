@@ -16,7 +16,6 @@ import com.cloud.common.data.util.TreeUtil;
 import com.cloud.common.data.base.Result;
 import com.cloud.common.data.enums.ResultEnum;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -70,7 +68,7 @@ public class SysMenuController extends BaseController {
                 it.remove();
             }
         }
-        return Result.success(TreeUtil.buildTree(menus, ObjUtil.ROOT_ID));
+        return Result.success(TreeUtil.buildTree(menus, TreeUtil.ROOT_PID));
     }
     /**
      * 通过id查询菜单表
@@ -137,22 +135,19 @@ public class SysMenuController extends BaseController {
     @PreAuthorize("@pms.hasPermission('admin_sysmenu_view')")
     @GetMapping(value = "treeData")
     public Result treeData(@RequestParam(required=false) String extId, @RequestParam(required=false) String isShowHide) {
-        List<Map<String, Object>> mapList = Lists.newArrayList();
         List<SysMenu> list = UserUtil.getMenuList();
+        // 存储处理后的数据
+        List<SysMenu> mapList = Lists.newArrayList();
         for (SysMenu sysMenu : list) {
             boolean hasExtId = extId != null && !extId.equals(sysMenu.getId()) && sysMenu.getParentIds().indexOf("," + extId + ",") == -1;
             if (StrUtil.isBlank(extId) || hasExtId ){
                 if(isShowHide != null && MenuDTO.HAS_HIDE.equals(isShowHide) && MenuDTO.HAS_HIDE.equals(sysMenu.getHasShow())){
                     continue;
                 }
-                Map<String, Object> map = Maps.newHashMap();
-                map.put("id", sysMenu.getId());
-                map.put("pId", sysMenu.getParentId());
-                map.put("name", sysMenu.getName());
-                mapList.add(map);
+                mapList.add(sysMenu);
             }
         }
-        return Result.success(mapList);
+        return Result.success(TreeUtil.buildTree(mapList, TreeUtil.ROOT_PID));
     }
 }
 

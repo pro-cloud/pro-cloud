@@ -36,7 +36,7 @@ public class SysDictTreeServiceImpl extends TreeService<SysDictTreeMapper, SysDi
                 .orderByAsc(SysDictTree::getSort));
         // 处理字典树类型的规则排序
         List<SysDictTree> tree = Lists.newArrayList();
-        TreeUtil.sortList(tree, list, ObjUtil.ROOT_PID, true);
+        TreeUtil.sortList(tree, list, TreeUtil.ROOT_PID, true);
         return tree;
     }
 

@@ -6,7 +6,6 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.cloud.admin.util.OfficeUtil;
 import com.cloud.admin.util.UserUtil;
-import com.cloud.common.data.util.ObjUtil;
 import com.cloud.common.data.util.TreeUtil;
 import com.cloud.common.data.base.Result;
 import com.cloud.admin.beans.po.SysOffice;
@@ -47,7 +46,7 @@ public class SysOfficeController {
     @PreAuthorize("@pms.hasPermission('admin_sysoffice_view')")
     public Result getSysOfficeAll() {
         List<SysOffice> officeList = Lists.newArrayList();
-        TreeUtil.sortList(officeList, OfficeUtil.getAllOffice(), ObjUtil.ROOT_PID, true);
+        TreeUtil.sortList(officeList, OfficeUtil.getAllOffice(), TreeUtil.ROOT_PID, true);
         return Result.success(officeList);
     }
 

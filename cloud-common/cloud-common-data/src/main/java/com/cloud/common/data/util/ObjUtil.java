@@ -19,15 +19,6 @@ public class ObjUtil {
     private final SystemService systemService = SpringUtil.getBean(SystemService.class);
 
     /**
-     * 树形 第一个节点的id 当去除第一个节点时
-     */
-    public final Long ROOT_ID = 1L;
-    /**
-     * 树形 第一个节点的pid
-     */
-    public final Long ROOT_PID = 0L;
-
-    /**
      * 插入之前执行方法，需要手动调用
      */
     public <T extends BaseEntity> void preInsert(T entity){

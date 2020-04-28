@@ -17,6 +17,11 @@ import java.util.List;
 public class TreeUtil {
 
 
+	/**
+	 * 树形 第一个节点的pid
+	 */
+	public static final Long ROOT_PID = 0L;
+
     /**
      * 树 根据父子关系排序  该sourcelist 已经按照 sort 排序
      * @param list 排序后输出的存储对象

@@ -58,10 +58,10 @@ public class TreeUtil {
 			}
 			for (T it : treeEntitys) {
 				if (it.getParentId().equals(treeEntity.getId())) {
-					if (treeEntity.getChildrens() == null) {
-						treeEntity.setChildrens(Lists.newArrayList());
+					if (treeEntity.getChildren() == null) {
+						treeEntity.setChildren(Lists.newArrayList());
 					}
-					treeEntity.getChildrens().add(it);
+					treeEntity.getChildren().add(it);
 				}
 			}
 		}
@@ -96,10 +96,10 @@ public class TreeUtil {
 		// 循环递归判断
 		treeEntitys.forEach(entity -> {
 			if (treeEntity.getId().equals(entity.getParentId())) {
-				if (treeEntity.getChildrens() == null) {
-					treeEntity.setChildrens(Lists.newArrayList());
+				if (treeEntity.getChildren() == null) {
+					treeEntity.setChildren(Lists.newArrayList());
 				}
-				treeEntity.getChildrens().add(findChildren(entity, treeEntitys));
+				treeEntity.getChildren().add(findChildren(entity, treeEntitys));
 			}
 		});
 		return treeEntity;

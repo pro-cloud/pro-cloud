@@ -151,7 +151,7 @@ public class SysMenuController extends BaseController {
                 mapList.add(sysMenu);
             }
         }
-        return Result.success(TreeUtil.buildTree(mapList, TreeUtil.ROOT_PID));
+        return Result.success(TreeUtil.buildTree(mapList, TreeUtil.ROOT_P_ID));
     }
 }
 

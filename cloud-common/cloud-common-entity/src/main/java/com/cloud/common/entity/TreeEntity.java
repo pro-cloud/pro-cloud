@@ -34,7 +34,7 @@ public class TreeEntity<T> extends BaseEntity<T> {
      * 自定义SQL（SQL标识，SQL内容）
      */
     @TableField(exist = false)
-    protected List<T> children = Lists.newArrayList();
+    protected List<T> children;
 
 
 }

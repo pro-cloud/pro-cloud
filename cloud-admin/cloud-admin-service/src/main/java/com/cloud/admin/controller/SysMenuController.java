@@ -134,12 +134,12 @@ public class SysMenuController extends BaseController {
      */
     @PreAuthorize("@pms.hasPermission('admin_sysmenu_view')")
     @GetMapping(value = "treeData")
-    public Result treeData(@RequestParam(required=false) String extId, @RequestParam(required=false) String isShowHide) {
+    public Result treeData(@RequestParam(required=false) String extId, @RequestParam(required=false) Integer isShowHide) {
         List<SysMenu> list = UserUtil.getMenuList();
         // 存储处理后的数据
         List<SysMenu> mapList = Lists.newArrayList();
         for (SysMenu sysMenu : list) {
-            boolean hasExtId = extId != null && !extId.equals(sysMenu.getId()) && sysMenu.getParentIds().indexOf("," + extId + ",") == -1;
+            boolean hasExtId = extId != null && !extId.equals(sysMenu.getId().toString()) && sysMenu.getParentIds().indexOf("," + extId + ",") == -1;
             if (StrUtil.isBlank(extId) || hasExtId ){
                 if(isShowHide != null && MenuDTO.HAS_HIDE.equals(isShowHide) && MenuDTO.HAS_HIDE.equals(sysMenu.getHasShow())){
                     continue;

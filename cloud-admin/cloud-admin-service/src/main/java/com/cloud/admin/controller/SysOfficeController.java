@@ -128,7 +128,7 @@ public class SysOfficeController {
         List<SysOffice> list = OfficeUtil.getAllOffice();
 
         for (SysOffice sysOffice : list) {
-            boolean hasExtId = extId != null && !extId.equals(sysOffice.getId()) && sysOffice.getParentIds().indexOf("," + extId + ",") == -1;
+            boolean hasExtId = extId != null && !extId.equals(sysOffice.getId().toString()) && sysOffice.getParentIds().indexOf("," + extId + ",") == -1;
             if (StrUtil.isBlank(extId) || hasExtId ){
                 Map<String, Object> map = Maps.newHashMap();
                 map.put("id", sysOffice.getId());

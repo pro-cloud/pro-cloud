@@ -22,6 +22,8 @@ public class TreeUtil {
 	 */
 	public static final Long ROOT_PID = 0L;
 
+	public static final Long ROOT_P_ID = -1L;
+
     /**
      * 树 根据父子关系排序  该sourcelist 已经按照 sort 排序
      * @param list 排序后输出的存储对象

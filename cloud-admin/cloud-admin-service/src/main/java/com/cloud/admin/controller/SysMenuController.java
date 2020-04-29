@@ -136,6 +136,10 @@ public class SysMenuController extends BaseController {
     @GetMapping(value = "treeData")
     public Result treeData(@RequestParam(required=false) String extId, @RequestParam(required=false) Integer isShowHide) {
         List<SysMenu> list = UserUtil.getMenuList();
+        SysMenu menuP = new SysMenu();
+        menuP.setHasShow(MenuDTO.HAS_SHOW);
+        menuP.setName("我的菜单").setParentId(TreeUtil.ROOT_P_ID).setParentIds("").setId(0L);
+        list.add(menuP);
         // 存储处理后的数据
         List<SysMenu> mapList = Lists.newArrayList();
         for (SysMenu sysMenu : list) {

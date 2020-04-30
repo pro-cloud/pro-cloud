@@ -60,14 +60,6 @@ public class SysMenuController extends BaseController {
     @PreAuthorize("@pms.hasPermission('admin_sysmenu_view')")
     public Result getSysMenuAllTree() {
         List<SysMenu> menus = UserUtil.getMenuList();
-        // 剔除隐藏的菜单
-        Iterator<SysMenu> it = menus.iterator();
-        while (it.hasNext()) {
-            SysMenu menu = it.next();
-            if (MenuDTO.HAS_HIDE.equals(menu.getHasShow())) {
-                it.remove();
-            }
-        }
         return Result.success(TreeUtil.buildTree(menus, TreeUtil.ROOT_PID));
     }
     /**

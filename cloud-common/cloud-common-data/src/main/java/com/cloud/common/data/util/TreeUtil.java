@@ -9,7 +9,8 @@ import lombok.experimental.UtilityClass;
 import java.util.List;
 
 /**
- * 生成树
+ * 生成树 不建议使用
+ * 	交给前端处理树形
  * @author Aijm
  * @since 2019/11/9
  */

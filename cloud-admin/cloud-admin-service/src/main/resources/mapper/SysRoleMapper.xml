@@ -36,7 +36,7 @@
     <select id="get" resultMap="roleResult">
         SELECT
         <include refid="roleColumns"/>,
-        rm.menu_id AS "menuList.id",
+        rm.menu_id AS "menuList.id"
         FROM sys_role a
         LEFT JOIN sys_role_menu rm ON rm.role_id = a.id
         WHERE a.id = #{roleId}

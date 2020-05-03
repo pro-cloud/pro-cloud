@@ -9,8 +9,6 @@ import com.cloud.common.cache.annotation.Cache;
 import com.cloud.common.cache.annotation.CacheClear;
 import com.cloud.common.cache.constants.CacheScope;
 import com.cloud.common.data.base.TreeService;
-import com.cloud.common.data.util.TreeUtil;
-import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,9 +54,7 @@ public class SysMenuServiceImpl extends TreeService<SysMenuMapper, SysMenu> impl
         } else {
             menus = sysMenuMapper.findByUserId(userId);
         }
-        List<SysMenu> menuList = Lists.newArrayList();
-        TreeUtil.sortList(menuList, menus, TreeUtil.ROOT_PID, true);
-        return menuList;
+        return menus;
     }
 
 }

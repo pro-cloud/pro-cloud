@@ -11,8 +11,6 @@ import com.cloud.admin.util.UserUtil;
 import com.cloud.common.cache.constants.CacheScope;
 import com.cloud.common.cache.util.CacheUtil;
 import com.cloud.common.data.base.BaseController;
-import com.cloud.common.data.util.ObjUtil;
-import com.cloud.common.data.util.TreeUtil;
 import com.cloud.common.data.base.Result;
 import com.cloud.common.data.enums.ResultEnum;
 import com.google.common.collect.Lists;
@@ -21,8 +19,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -53,14 +51,20 @@ public class SysMenuController extends BaseController {
     }
 
     /**
-     * 查询 标准树
+     * 根据菜单名称查询
      * @return
      */
-    @GetMapping("/listTree")
+    @GetMapping("/findList")
     @PreAuthorize("@pms.hasPermission('admin_sysmenu_view')")
-    public Result getSysMenuAllTree() {
+    public Result findList(SysMenu sysMenu) {
         List<SysMenu> menus = UserUtil.getMenuList();
-        return Result.success(TreeUtil.buildTree(menus, TreeUtil.ROOT_PID));
+        if (StrUtil.isBlank(sysMenu.getName())) {
+            return Result.success(menus);
+        }
+        List<SysMenu> filterMenus = menus.stream().filter(menu ->
+           menu.getName().contains(sysMenu.getName())
+        ).collect(Collectors.toList());
+        return Result.success(filterMenus);
     }
     /**
      * 通过id查询菜单表
@@ -128,22 +132,18 @@ public class SysMenuController extends BaseController {
     @GetMapping(value = "treeData")
     public Result treeData(@RequestParam(required=false) String extId, @RequestParam(required=false) Integer isShowHide) {
         List<SysMenu> list = UserUtil.getMenuList();
-        SysMenu menuP = new SysMenu();
-        menuP.setHasShow(MenuDTO.HAS_SHOW);
-        menuP.setName("我的菜单").setParentId(TreeUtil.ROOT_P_ID).setParentIds("").setId(0L);
-        list.add(menuP);
         // 存储处理后的数据
-        List<SysMenu> mapList = Lists.newArrayList();
+        List<SysMenu> retList = Lists.newArrayList();
         for (SysMenu sysMenu : list) {
             boolean hasExtId = extId != null && !extId.equals(sysMenu.getId().toString()) && sysMenu.getParentIds().indexOf("," + extId + ",") == -1;
             if (StrUtil.isBlank(extId) || hasExtId ){
                 if(isShowHide != null && MenuDTO.HAS_HIDE.equals(isShowHide) && MenuDTO.HAS_HIDE.equals(sysMenu.getHasShow())){
                     continue;
                 }
-                mapList.add(sysMenu);
+                retList.add(sysMenu);
             }
         }
-        return Result.success(TreeUtil.buildTree(mapList, TreeUtil.ROOT_P_ID));
+        return Result.success(retList);
     }
 }
 

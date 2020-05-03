@@ -55,7 +55,7 @@ public class UserUtil extends SecurityUtil {
         Long id = getUserId();
         return id != null && (id== 1);
     }
-    
+
     //////////////////  菜单相关  /////////////////////////
     /**
      * 获取某用户id 菜单信息
@@ -133,7 +133,7 @@ public class UserUtil extends SecurityUtil {
     /////////////////////////  角色相关 ////////////////////////////
 
     /**
-     * 获取当前用户的角色信息
+     * 获取userId用户的角色信息
      * @return
      */
     public static List<RoleDTO> getRoleList(Long userId){

@@ -25,6 +25,13 @@ public interface SysRoleService extends IProService<SysRole> {
     List<RoleDTO> findList(SysUser sysUser);
 
     /**
+     * 根据角色信息获取到菜单信息和角色信息
+     * @param id
+     * @return
+     */
+    RoleDTO get(Long id);
+
+    /**
      * 更新角色信息
      * @param roleDTO
      * @return

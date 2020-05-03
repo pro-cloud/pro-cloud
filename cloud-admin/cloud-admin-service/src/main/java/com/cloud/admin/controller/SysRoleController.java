@@ -9,6 +9,7 @@ import com.cloud.admin.beans.po.SysRole;
 import com.cloud.admin.service.SysRoleService;
 import com.cloud.common.data.enums.ResultEnum;
 import com.cloud.common.util.util.StrUtils;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,17 @@ public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
 
+
+    /**
+     * 查询 全部 角色
+     * @return
+     */
+    @GetMapping("/listALL")
+    @PreAuthorize("@pms.hasPermission('admin_sysrole_view')")
+    @ApiOperation(value = "查询用户拥有的角色", notes = "查询用户拥有的角色信息")
+    public Result getSysRoleAll() {
+        return Result.success(UserUtil.getRoleAll());
+    }
 
     /**
      * 分页查询

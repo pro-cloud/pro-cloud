@@ -19,6 +19,7 @@
       a.login_ip AS loginIp,
       a.login_date AS loginDate,
       a.login_flag AS loginFlag,
+      a.status AS status,
       a.create_by AS createBy,
       a.create_date AS createDate,
       a.update_by AS updateBy,
@@ -44,6 +45,7 @@
         a.login_ip AS loginIp,
         a.login_date AS loginDate,
         a.login_flag AS loginFlag,
+        a.status AS status,
         a.create_by AS createBy,
         a.create_date AS createDate,
         a.update_by AS updateBy,
@@ -83,16 +85,15 @@
                 AND a.id != 1
             </if>
 
-            <if test="query.office != null and query.office.id != null and query.office.id != ''">
-                AND (o.id = #{query.office.id} OR o.parent_ids LIKE
-                CONCAT('%,', #{query.office.id}, ',%'))
+            <if test="query.officeId != null and query.officeId != ''">
+                AND (o.id = #{query.officeId} OR o.parent_ids LIKE
+                CONCAT('%,', #{query.officeId}, ',%'))
             </if>
         </where>
         <!-- 数据范围过滤 -->
         ${query.sqlMap.dsf}
             <!-- 字段排序 -->
-        ORDER BY a.update_date
-
+        ORDER BY a.update_date desc
 
     </select>
 

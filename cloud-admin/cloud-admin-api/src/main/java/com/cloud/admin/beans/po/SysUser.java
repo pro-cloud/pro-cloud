@@ -71,4 +71,7 @@ public class SysUser extends TenantEntity<SysUser> {
     @ApiModelProperty(value = "QQ openid")
     private String qqOpenid;
 
+    @ApiModelProperty(value = "状态")
+    private Integer status;
+
 }

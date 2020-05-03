@@ -36,13 +36,13 @@ public class SysOfficeController {
     private SysOfficeService sysOfficeService;
 
     /**
-     * 查询 所有的部门
+     * 查询 所有启用的部门
      * @return
      */
     @GetMapping("/listALL")
     @PreAuthorize("@pms.hasPermission('admin_sysoffice_view')")
     public Result getSysOfficeAll() {
-        return Result.success(OfficeUtil.getAllOffice());
+        return Result.success(OfficeUtil.getAllUpOffice());
     }
 
     /**
@@ -94,6 +94,7 @@ public class SysOfficeController {
         if (chealDataScope(office.getParentId())) {
             return Result.error(ResultEnum.CRUD_NOT_OPERATE);
         }
+        sysOffice.setStatus(null);
         return Result.success(sysOfficeService.updateById(sysOffice));
     }
 
@@ -131,7 +132,7 @@ public class SysOfficeController {
 
         List<SysOffice> retList = Lists.newArrayList();
         // 根据用户信息查询到的office
-        List<SysOffice> list = OfficeUtil.getAllOffice();
+        List<SysOffice> list = OfficeUtil.getAllUpOffice();
 
         for (SysOffice sysOffice : list) {
             boolean hasExtId = extId != null && !extId.equals(sysOffice.getId().toString()) && sysOffice.getParentIds().indexOf("," + extId + ",") == -1;

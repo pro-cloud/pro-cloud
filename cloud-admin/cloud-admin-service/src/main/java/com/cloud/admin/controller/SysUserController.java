@@ -9,6 +9,7 @@ import com.cloud.common.data.base.Result;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.admin.service.SysUserService;
 import com.cloud.common.data.enums.ResultEnum;
+import com.cloud.common.util.util.StrUtils;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -69,9 +70,7 @@ public class SysUserController {
     @GetMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('admin_sysuser_view')")
     public Result getById(@PathVariable("id") Long id) {
-        UserDTO userDTO = UserUtil.getUserDTO(id);
-        userDTO.setMenuList(UserUtil.getMenuList());
-        return Result.success(userDTO);
+        return Result.success(UserUtil.getUserDTO(id));
     }
 
     /**
@@ -101,16 +100,11 @@ public class SysUserController {
         // 角色数据有效性验证，过滤不在授权内的角色
         getRoleDTO(userDTO);
 
-        // 处理密码
-        // 获取到老密码
-        String oldEncode = passwordEncoder.encode(userDTO.getPassword());
-        SysUser byId = sysUserService.getById(userDTO.getId());
-        if (!byId.getPassword().equals(oldEncode)) {
-            // 表名输入的原密码和数据库密码不一致
-            return Result.error(ResultEnum.LOGIN_PASSWORD);
+        // 处理密码 密码不为空 需要修改密码信息
+        if (StrUtils.isNotBlank(userDTO.getPassword())) {
+            String encode = passwordEncoder.encode(userDTO.getPassword());
+            userDTO.setPassword(encode);
         }
-        String encode = passwordEncoder.encode(userDTO.getNewPassword());
-        userDTO.setPassword(encode);
         return Result.success(sysUserService.updateUserDTO(userDTO));
     }
 
@@ -125,6 +119,27 @@ public class SysUserController {
         return Result.success(sysUserService.removeUserDTO(id));
     }
 
+
+    /**
+     * 修改密码信息
+     * @param userDTO 用户表
+     * @return Result
+     */
+    @PutMapping("updatePassword")
+    @PreAuthorize("@pms.hasPermission('admin_sysuser_updatePassword')")
+    public Result updatePassword(@RequestBody @Valid UserDTO userDTO) {
+        // 获取到老密码
+        String oldEncode = passwordEncoder.encode(userDTO.getPassword());
+        SysUser byId = UserUtil.getUser();
+        if (!byId.getPassword().equals(oldEncode)) {
+            // 表名输入的原密码和数据库密码不一致
+            return Result.error(ResultEnum.LOGIN_PASSWORD);
+        }
+        String encode = passwordEncoder.encode(userDTO.getNewPassword());
+        userDTO.setPassword(encode);
+        return Result.success(sysUserService.updateById(userDTO));
+    }
+
     /**
      * 过滤不再权限内的角色信息
      * @param userDTO 传递的角色id
@@ -132,17 +147,26 @@ public class SysUserController {
      */
     private void getRoleDTO(UserDTO userDTO) {
 
-        // 如果不为超级管理员 需要排除不在权限内的角色
-        if (!UserUtil.hasAdmin()) {
-            List<Long> roleIdList = userDTO.getRoleIdList();
-            List<RoleDTO> roleList = Lists.newArrayList();
+        List<Long> roleIdList = userDTO.getRoleIdList();
+        List<RoleDTO> roleList = Lists.newArrayList();
+        // 是超级管理员
+        if (UserUtil.hasAdmin()) {
+            for (Long id : roleIdList) {
+                RoleDTO roleDTO = new RoleDTO();
+                roleDTO.setId(id);
+                roleList.add(roleDTO);
+            }
+        }
+        // 不为超级管理员
+        else {
             for (RoleDTO r : UserUtil.getRoleList()) {
                 if (roleIdList.contains(r.getId())) {
                     roleList.add(r);
                 }
             }
-            userDTO.setRoleList(roleList);
         }
+        userDTO.setRoleList(roleList);
+
     }
 
 

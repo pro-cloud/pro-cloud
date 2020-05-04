@@ -10,6 +10,7 @@ import com.cloud.common.data.base.Result;
 import com.cloud.admin.beans.po.SysOffice;
 import com.cloud.admin.service.SysOfficeService;
 import com.cloud.common.data.enums.ResultEnum;
+import com.cloud.common.util.util.StrUtils;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -46,16 +47,18 @@ public class SysOfficeController {
     }
 
     /**
-     * 根据菜单名称查询
+     * 根据部门名称查询
      * @return
      */
     @GetMapping("/findList")
     @PreAuthorize("@pms.hasPermission('admin_sysoffice_view')")
     public Result findList(SysOffice sysOffice) {
         List<SysOffice> offices = sysOfficeService.list(Wrappers.<SysOffice>query().lambda()
-                .like(SysOffice::getName, sysOffice.getName()).orderByAsc(SysOffice::getSort));
+                .like(StrUtils.isNotBlank(sysOffice.getName()), SysOffice::getName, sysOffice.getName())
+                .orderByAsc(SysOffice::getSort));
         return Result.success(offices);
     }
+
     /**
      * 通过id查询机构表
      * @param id id

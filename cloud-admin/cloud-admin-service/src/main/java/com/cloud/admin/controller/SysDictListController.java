@@ -23,8 +23,8 @@ import javax.validation.Valid;
  * @date 2019-09-05 19:52:37
  */
 @RestController
-@RequestMapping("/dictlist" )
-@Api(value = "dictlist", tags = "sysdictlist管理")
+@RequestMapping("/dictList" )
+@Api(value = "dictList", tags = "sysdictlist管理")
 public class SysDictListController {
 
     @Autowired

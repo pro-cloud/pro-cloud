@@ -6,6 +6,7 @@ import com.cloud.common.data.base.Result;
 import com.cloud.admin.beans.po.SysDictTree;
 import com.cloud.admin.service.SysDictTreeService;
 import com.cloud.common.data.enums.ResultEnum;
+import com.cloud.common.util.util.StrUtils;
 import com.google.common.collect.Lists;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
@@ -22,13 +23,26 @@ import java.util.List;
  * @date 2019-09-05 20:00:25
  */
 @RestController
-@RequestMapping("/dicttree" )
-@Api(value = "dicttree", tags = "sysdicttree管理")
+@RequestMapping("/dictTree" )
+@Api(value = "dictTree", tags = "sysdicttree管理")
 public class SysDictTreeController {
 
     @Autowired
     private SysDictTreeService sysDictTreeService;
 
+    /**
+     * 查询树字典
+     * @return
+     */
+    @GetMapping("/findList")
+    @PreAuthorize("@pms.hasPermission('admin_sysdicttree_view')")
+    public Result findList(SysDictTree sysDictTree) {
+        List<SysDictTree> trees = sysDictTreeService.list(Wrappers.<SysDictTree>query().lambda()
+                .eq(SysDictTree::getTypeCode, sysDictTree.getTypeCode())
+                .like(StrUtils.isNotBlank(sysDictTree.getName()), SysDictTree::getName, sysDictTree.getName())
+                .orderByAsc(SysDictTree::getSort));
+        return Result.success(trees);
+    }
 
     /**
      * 通过id查询字典表树

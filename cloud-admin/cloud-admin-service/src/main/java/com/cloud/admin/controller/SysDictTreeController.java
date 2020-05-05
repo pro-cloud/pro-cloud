@@ -114,13 +114,15 @@ public class SysDictTreeController {
     @PreAuthorize("@pms.hasPermission('admin_sysdicttree_view')")
     public Result getTypeCodeList(@PathVariable("typeCode") String typeCode, @PathVariable("extId") Long extId) {
         List<SysDictTree> dicTreeByType = sysDictTreeService.getDicTreeByType(typeCode);
-        List<SysDictTree> list = Lists.newArrayList();
+        List<SysDictTree> retList = Lists.newArrayList();
         for (SysDictTree sysDictTree : dicTreeByType) {
-            if (extId.equals(sysDictTree.getParentId())) {
-                list.add(sysDictTree);
+            boolean hasExtId = extId != null && !extId.equals(sysDictTree.getId().toString()) && sysDictTree.getParentIds().indexOf("," + extId + ",") == -1;
+            if (hasExtId){
+                retList.add(sysDictTree);
             }
+
         }
-        return Result.success(list);
+        return Result.success(retList);
     }
 
 }

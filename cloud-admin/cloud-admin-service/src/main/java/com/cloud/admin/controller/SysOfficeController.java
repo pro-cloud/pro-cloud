@@ -127,7 +127,7 @@ public class SysOfficeController {
     /**
      *  弹出树
      * @param extId 表示当前节点的id  (排除了自身extId)
-     * @return
+     * @return 排除父级包含extId 和本身id为extId
      */
     @PreAuthorize("@pms.hasPermission('admin_sysoffice_view')")
     @GetMapping(value = "treeData")

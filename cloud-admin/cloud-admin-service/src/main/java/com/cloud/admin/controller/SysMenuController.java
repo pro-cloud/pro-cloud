@@ -126,7 +126,7 @@ public class SysMenuController extends BaseController {
      * isShowHide是否显示隐藏菜单  弹出树
      * @param extId 表示当前节点的id
      * @param isShowHide 0 表示不显示隐藏
-     * @return
+     * @return 排除父级包含extId 和本身id为extId
      */
     @PreAuthorize("@pms.hasPermission('admin_sysmenu_view')")
     @GetMapping(value = "treeData")

@@ -108,7 +108,7 @@ public class SysDictTreeController {
     /**
      * 通过typecode查询字典项list
      * @param typeCode typeCode
-     * @return Result
+     * @return Result 排除父级包含extId 和本身id为extId
      */
     @GetMapping("/type/{typeCode}/{extId}")
     @PreAuthorize("@pms.hasPermission('admin_sysdicttree_view')")

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.nio.file.AccessDeniedException;
 
 /**
  * 异常统一处理
@@ -36,16 +35,8 @@ public class GlobalExceptionHandler {
         return Result.error(ResultEnum.CRUD_VALID_NOT);
     }
 
-    @ExceptionHandler(AccessDeniedException.class)
-    @ResponseStatus(HttpStatus.OK)
-    public Result handleAccessDeniedException(AccessDeniedException e) {
-        log.error("拒绝授权异常信息 ex={}",e.getMessage(), e);
-        return Result.error(ResultEnum.CRUD_NOT_OPERATE);
-    }
-
-
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     public Result handleException(Exception e) {
         log.error("Exception全局异常信息 ex={}", e.getMessage(), e);
         return Result.error(e.getLocalizedMessage());

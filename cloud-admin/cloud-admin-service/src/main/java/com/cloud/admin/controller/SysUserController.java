@@ -52,10 +52,10 @@ public class SysUserController {
 
     /**
      * 通过id查询用户表
+     *  只需要登录后就能访问
      * @return Result
      */
     @GetMapping("/info")
-    @PreAuthorize("@pms.hasPermission('admin_sysuser_view')")
     public Result getUserInfo() {
         UserDTO userDTO = UserUtil.getUserDTO();
         userDTO.setMenuList(UserUtil.getMenuList());

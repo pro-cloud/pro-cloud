@@ -3,33 +3,6 @@
 
 <mapper namespace="com.cloud.admin.mapper.SysUserMapper">
 
-
-    <sql id="Base_Column_List">
-      a.id AS id,
-      a.office_id AS officeId,
-      a.login_name AS loginName,
-      a.password AS password,
-      a.no AS no,
-      a.name AS name,
-      a.email AS email,
-      a.phone AS phone,
-      a.mobile AS mobile,
-      a.user_type AS userType,
-      a.photo AS photo,
-      a.login_ip AS loginIp,
-      a.login_date AS loginDate,
-      a.login_flag AS loginFlag,
-      a.status AS status,
-      a.create_by AS createBy,
-      a.create_date AS createDate,
-      a.update_by AS updateBy,
-      a.update_date AS updateDate,
-      a.remarks AS remarks,
-      a.del_flag AS delFlag,
-      a.wx_openid AS wxOpenid,
-      a.qq_openid AS qqOpenid
-  </sql>
-
     <sql id="userColumns">
         a.id AS id,
         a.office_id AS officeId,
@@ -44,7 +17,6 @@
         a.photo AS photo,
         a.login_ip AS loginIp,
         a.login_date AS loginDate,
-        a.login_flag AS loginFlag,
         a.status AS status,
         a.create_by AS createBy,
         a.create_date AS createDate,

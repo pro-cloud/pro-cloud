@@ -9,6 +9,7 @@
         a.login_name AS loginName,
         a.password AS password,
         a.user_type AS userType,
+        a.status as status,
         a.tenant_id AS tenantId
     </sql>
 
@@ -21,7 +22,6 @@
         <include refid="userColumns"/>
         FROM sys_user a
         WHERE  a.del_flag = 0
-        AND login_flag = 1
         AND (
             a.login_name = #{loginName}
             OR a.mobile = #{loginName}
@@ -34,7 +34,6 @@
         <include refid="userColumns"/>
         FROM sys_user a
         WHERE  a.del_flag = 0
-        AND login_flag = 1
         AND a.mobile = #{mobile}
     </select>
 
@@ -43,7 +42,6 @@
         <include refid="userColumns"/>
         FROM sys_user a
         WHERE  a.del_flag = 0
-        AND login_flag = 1
         AND a.qq_openid = #{qqOpenid}
     </select>
 
@@ -53,7 +51,6 @@
         <include refid="userColumns"/>
         FROM sys_user a
         WHERE  a.del_flag = 0
-        AND login_flag = 1
         AND a.qq_openid = #{wxOpenid}
     </select>
 

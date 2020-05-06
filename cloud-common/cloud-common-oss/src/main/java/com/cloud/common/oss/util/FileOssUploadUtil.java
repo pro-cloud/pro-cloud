@@ -89,7 +89,7 @@ public class FileOssUploadUtil {
     public static Result<CallBack> uploadFile(File file, FilePath filePath) {
         try (FileInputStream inFile = new FileInputStream(file)) {
             String fileKey = getFileKey(filePath);
-            String urlPath = fileKey.concat("/").concat(file.getName());
+            String urlPath = fileKey.concat(file.getName());
             PutObjectRequest putObjectRequest = new PutObjectRequest(ossProps.getBucketName(), urlPath, inFile);
             return getCallBackResult(filePath, putObjectRequest);
         } catch (Exception e) {
@@ -109,7 +109,7 @@ public class FileOssUploadUtil {
     public static Result<CallBack> uploadFile(InputStream in, String fileName, FilePath filePath) {
         try {
             String fileKey = getFileKey(filePath);
-            String urlPath = fileKey.concat("/").concat(fileName);
+            String urlPath = fileKey.concat(fileName);
             PutObjectRequest putObjectRequest = new PutObjectRequest(ossProps.getBucketName(), urlPath, in);
             return getCallBackResult(filePath, putObjectRequest);
         } catch (Exception e) {
@@ -149,10 +149,10 @@ public class FileOssUploadUtil {
 
         String yyyyMMdd = DateUtils.getCurrentShortDateStr();
         StringBuilder dir = new StringBuilder(filePath.getBelongName());
-        dir.append("/").append(filePath.getPrePath())
-                .append("/").append(filePath.getBelongType())
+        dir.append("/").append(filePath.getBelongType())
+                .append("/").append(filePath.getPrePath())
                 .append("/").append(yyyyMMdd)
-                .append("/").append(DateUtils.getCurrentTimeStr());
+                .append("/").append(DateUtils.getCurrentTimeStr()).append("/");
         return dir.toString();
     }
 
@@ -179,13 +179,13 @@ public class FileOssUploadUtil {
     /**
      * 根据类型获取到 FilePath
      * @param filePaths FileProps 中的filePaths
-     * @param type  FilePath中的类型
+     * @param id  FilePath中的类型 id
      * @return
      */
-    public static FilePath getFilePath(List<FilePath> filePaths, String type) {
+    public static FilePath getFilePath(List<FilePath> filePaths, String id) {
         FilePath filePath = null;
         for (FilePath item : filePaths) {
-            if (item.getType().equals(type)) {
+            if (item.getId().equals(id)) {
                 filePath = item;
                 break;
             }

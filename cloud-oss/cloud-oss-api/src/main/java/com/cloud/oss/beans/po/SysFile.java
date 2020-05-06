@@ -8,7 +8,8 @@ import lombok.*;
 
 /**
  * 文件统一管理
- *
+ * 最终地址
+ *      belongName/belongType/prePath/yyyyMMdd/HHmmss/上传文件名
  * @author Aijm
  * @date 2019-09-11 17:24:43
  */

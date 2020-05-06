@@ -80,7 +80,7 @@ public class SysDictController {
     public Result save(@RequestBody @Valid SysDict sysDict) {
         List<SysDict> list = sysDictService.list(Wrappers.<SysDict>query().lambda().eq(SysDict::getTypeCode, sysDict.getTypeCode()));
         if (CollUtil.isNotEmpty(list)) {
-            Result.error(ResultEnum.CRUD_SAVE_FAIL.getCode(), "字典类型不能重复");
+            return Result.error(ResultEnum.CRUD_SAVE_FAIL.getCode(), "字典类型不能重复");
         }
         return Result.success(sysDictService.save(sysDict));
     }

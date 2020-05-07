@@ -16,7 +16,9 @@ import com.cloud.admin.service.SysRoleService;
 import com.cloud.admin.service.SysUserService;
 import com.cloud.common.data.util.SpringUtil;
 import com.cloud.common.security.util.SecurityUtil;
+import com.cloud.common.util.util.StrUtils;
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 
 import java.util.List;
@@ -27,6 +29,7 @@ import java.util.List;
  * @since 2019/8/25
  */
 @UtilityClass
+@Slf4j
 public class UserUtil extends SecurityUtil {
 
 
@@ -219,4 +222,59 @@ public class UserUtil extends SecurityUtil {
         return dataScopeInteger;
     }
 
+
+    /**
+     * 判断接口是否有权限 内部用户为最高权限
+     * @param permission
+     * @return
+     */
+    public static boolean hasPermission(String permission) {
+        // 判断是不是内部调用或者最高权限
+        if (UserUtil.hasAdmin()) {
+            return true;
+        }
+        for (SysMenu sysMenu : UserUtil.getMenuList()) {
+            if (permission.equals(sysMenu.getPermission())) {
+                return true;
+            }
+        }
+        log.info("该用户没有:{}权限", permission);
+        return false;
+    }
+
+    /**
+     * 判断接口是否有权限 内部用户为最高权限
+     * @param permiss 多个权限以逗号分隔开
+     * @return
+     */
+    public static boolean hasPermiss(String permiss) {
+        String[] pms = permiss.split(",");
+        for (String pm : pms) {
+            if(hasPermission(pm)) {
+                return true;
+            }
+        }
+        log.info("该用户没有:{}权限", permiss);
+        return false;
+    }
+
+    /**
+     * 判断当前用户是不是具有某个角色
+     * 内部用户为最高权限
+     * @param enname
+     * @return
+     */
+    public static boolean hasRole(String enname) {
+        // 判断是不是内部调用或者最高权限
+        if (UserUtil.hasAdmin()) {
+            return true;
+        }
+        for (RoleDTO roleDTO : UserUtil.getRoleList()) {
+            if (roleDTO.getEnname().equals(enname)) {
+                return true;
+            }
+        }
+        log.info("该用户没有:{}角色", enname);
+        return false;
+    }
 }

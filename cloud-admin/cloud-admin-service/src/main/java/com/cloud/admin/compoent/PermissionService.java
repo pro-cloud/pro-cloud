@@ -1,7 +1,5 @@
 package com.cloud.admin.compoent;
 
-import com.cloud.admin.beans.dto.RoleDTO;
-import com.cloud.admin.beans.po.SysMenu;
 import com.cloud.admin.util.UserUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -18,22 +16,13 @@ public class PermissionService {
 
 
 	/**
-	 * 判断接口是否有权限 内部用户为最高权限
+	 * 判断接口是否有权限
+	 * 		内部用户为最高权限
 	 * @param permission
 	 * @return
 	 */
 	public boolean hasPermission(String permission) {
-		// 判断是不是内部调用或者最高权限
-		if (UserUtil.hasAdmin()) {
-			return true;
-		}
-		for (SysMenu sysMenu : UserUtil.getMenuList()) {
-			if (permission.equals(sysMenu.getPermission())) {
-				return true;
-			}
-		}
-		log.info("该用户没有:{}权限", permission);
-		return false;
+		return UserUtil.hasPermission(permission);
 	}
 
 
@@ -44,16 +33,6 @@ public class PermissionService {
 	 * @return
 	 */
 	public boolean hasRole(String enname) {
-		// 判断是不是内部调用或者最高权限
-		if (UserUtil.hasAdmin()) {
-			return true;
-		}
-		for (RoleDTO roleDTO : UserUtil.getRoleList()) {
-			if (roleDTO.getEnname().equals(enname)) {
-				return true;
-			}
-		}
-		log.info("该用户没有:{}角色", enname);
-		return false;
+		return UserUtil.hasRole(enname);
 	}
 }

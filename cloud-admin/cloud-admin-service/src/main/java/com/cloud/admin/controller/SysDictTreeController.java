@@ -100,7 +100,7 @@ public class SysDictTreeController {
         List<SysDictTree> list = sysDictTreeService.list(Wrappers.<SysDictTree>query().lambda()
                 .like(SysDictTree::getParentIds, id + ","));
         if (CollectionUtil.isNotEmpty(list)) {
-            return Result.error(ResultEnum.CRUD_DELETE_NOT);
+            return Result.error(ResultEnum.CRUD_DELETE_NOT.getCode(), "存在下级数据不允许删除!");
         }
         return Result.success(sysDictTreeService.removeByDictTree(byId));
     }
@@ -112,7 +112,7 @@ public class SysDictTreeController {
      */
     @GetMapping("/type/{typeCode}/{extId}")
     @PreAuthorize("@pms.hasPermission('admin_sysdicttree_view')")
-    public Result getTypeCodeList(@PathVariable("typeCode") String typeCode, @PathVariable("extId") Long extId) {
+    public Result getTypeCodeList(@PathVariable("typeCode") String typeCode, @PathVariable("extId") String extId) {
         List<SysDictTree> dicTreeByType = sysDictTreeService.getDicTreeByType(typeCode);
         List<SysDictTree> retList = Lists.newArrayList();
         for (SysDictTree sysDictTree : dicTreeByType) {

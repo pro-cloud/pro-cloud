@@ -8,8 +8,7 @@ import com.cloud.common.data.base.Result;
 import com.cloud.admin.beans.po.SysRole;
 import com.cloud.admin.service.SysRoleService;
 import com.cloud.common.data.enums.ResultEnum;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
+import com.cloud.common.util.util.StrUtils;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
@@ -34,6 +33,7 @@ public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
 
+
     /**
      * 查询 全部 角色
      * @return
@@ -54,7 +54,9 @@ public class SysRoleController {
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin_sysuser_view')")
     public Result getSysRolePage(Page page, RoleDTO roleDTO) {
-        return Result.success(sysRoleService.page(page, Wrappers.query(roleDTO)));
+        return Result.success(sysRoleService.page(page, Wrappers.<SysRole>query().lambda()
+                .like(StrUtils.isNotBlank(roleDTO.getName()),SysRole:: getName , roleDTO.getName())
+                .orderByAsc(SysRole::getUpdateDate)));
     }
 
     /**
@@ -65,38 +67,38 @@ public class SysRoleController {
     @GetMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('admin_sysrole_view')")
     public Result getById(@PathVariable("id") Long id) {
-        return Result.success(sysRoleService.getById(id));
+        return Result.success(sysRoleService.get(id));
     }
 
     /**
      * 新增角色表
-     * @param sysRole 角色表
+     * @param roleDTO 角色表
      * @return Result
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin_sysrole_add')")
-    public Result save(@RequestBody @Valid SysRole sysRole) {
+    public Result save(@RequestBody @Valid RoleDTO roleDTO) {
         // 判断数据是否有操作权限
-        if (chealDataScopeAdd(sysRole)){
+        if (chealDataScopeAdd(roleDTO)){
             return Result.error(ResultEnum.CRUD_NOT_OPERATE);
         }
-        return Result.success(sysRoleService.save(sysRole));
+        return Result.success(sysRoleService.saveRoleDTO(roleDTO));
     }
 
     /**
      * 修改角色表
-     * @param sysRole 角色表
+     * @param roleDTO 角色表
      * @return Result
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin_sysrole_edit')")
-    public Result updateById(@RequestBody @Valid SysRole sysRole) {
+    public Result updateById(@RequestBody @Valid RoleDTO roleDTO) {
         // 判断数据是否有操作权限
-        SysRole byId = sysRoleService.getById(sysRole.getId());
+        SysRole byId = sysRoleService.getById(roleDTO.getId());
         if (chealDataScopeUpdate(byId)){
             return Result.error(ResultEnum.CRUD_NOT_OPERATE);
         }
-        return Result.success(sysRoleService.updateById(sysRole));
+        return Result.success(sysRoleService.updateByRole(roleDTO));
     }
 
     /**

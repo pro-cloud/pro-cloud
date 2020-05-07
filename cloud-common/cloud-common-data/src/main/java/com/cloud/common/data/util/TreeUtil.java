@@ -9,13 +9,21 @@ import lombok.experimental.UtilityClass;
 import java.util.List;
 
 /**
- * 生成树
+ * 生成树 不建议使用
+ * 	交给前端处理树形
  * @author Aijm
  * @since 2019/11/9
  */
 @UtilityClass
 public class TreeUtil {
 
+
+	/**
+	 * 树形 第一个节点的pid
+	 */
+	public static final Long ROOT_PID = 0L;
+
+	public static final Long ROOT_P_ID = -1L;
 
     /**
      * 树 根据父子关系排序  该sourcelist 已经按照 sort 排序
@@ -58,10 +66,10 @@ public class TreeUtil {
 			}
 			for (T it : treeEntitys) {
 				if (it.getParentId().equals(treeEntity.getId())) {
-					if (treeEntity.getChildrens() == null) {
-						treeEntity.setChildrens(Lists.newArrayList());
+					if (treeEntity.getChildren() == null) {
+						treeEntity.setChildren(Lists.newArrayList());
 					}
-					treeEntity.getChildrens().add(it);
+					treeEntity.getChildren().add(it);
 				}
 			}
 		}
@@ -96,10 +104,10 @@ public class TreeUtil {
 		// 循环递归判断
 		treeEntitys.forEach(entity -> {
 			if (treeEntity.getId().equals(entity.getParentId())) {
-				if (treeEntity.getChildrens() == null) {
-					treeEntity.setChildrens(Lists.newArrayList());
+				if (treeEntity.getChildren() == null) {
+					treeEntity.setChildren(Lists.newArrayList());
 				}
-				treeEntity.getChildrens().add(findChildren(entity, treeEntitys));
+				treeEntity.getChildren().add(findChildren(entity, treeEntitys));
 			}
 		});
 		return treeEntity;

@@ -6,14 +6,12 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.cloud.admin.util.OfficeUtil;
 import com.cloud.admin.util.UserUtil;
-import com.cloud.common.data.util.ObjUtil;
-import com.cloud.common.data.util.TreeUtil;
 import com.cloud.common.data.base.Result;
 import com.cloud.admin.beans.po.SysOffice;
 import com.cloud.admin.service.SysOfficeService;
 import com.cloud.common.data.enums.ResultEnum;
+import com.cloud.common.util.util.StrUtils;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -40,15 +37,26 @@ public class SysOfficeController {
     private SysOfficeService sysOfficeService;
 
     /**
-     * 查询 所有的部门
+     * 查询 所有启用的部门
      * @return
      */
     @GetMapping("/listALL")
     @PreAuthorize("@pms.hasPermission('admin_sysoffice_view')")
     public Result getSysOfficeAll() {
-        List<SysOffice> officeList = Lists.newArrayList();
-        TreeUtil.sortList(officeList, OfficeUtil.getAllOffice(), ObjUtil.ROOT_PID, true);
-        return Result.success(officeList);
+        return Result.success(OfficeUtil.getAllUpOffice());
+    }
+
+    /**
+     * 根据部门名称查询
+     * @return
+     */
+    @GetMapping("/findList")
+    @PreAuthorize("@pms.hasPermission('admin_sysoffice_view')")
+    public Result findList(SysOffice sysOffice) {
+        List<SysOffice> offices = sysOfficeService.list(Wrappers.<SysOffice>query().lambda()
+                .like(StrUtils.isNotBlank(sysOffice.getName()), SysOffice::getName, sysOffice.getName())
+                .orderByAsc(SysOffice::getSort));
+        return Result.success(offices);
     }
 
     /**
@@ -89,6 +97,7 @@ public class SysOfficeController {
         if (chealDataScope(office.getParentId())) {
             return Result.error(ResultEnum.CRUD_NOT_OPERATE);
         }
+        sysOffice.setStatus(null);
         return Result.success(sysOfficeService.updateById(sysOffice));
     }
 
@@ -117,28 +126,23 @@ public class SysOfficeController {
 
     /**
      *  弹出树
-     * @param extId 表示当前节点的id
-     * @return
+     * @param extId 表示当前节点的id  (排除了自身extId)
+     * @return 排除父级包含extId 和本身id为extId
      */
-    @PreAuthorize("@pms.hasPermission('admin_sysoffice_view')")
     @GetMapping(value = "treeData")
     public Result treeData(@RequestParam(required=false) String extId) {
 
-        List<Map<String, Object>> mapList = Lists.newArrayList();
+        List<SysOffice> retList = Lists.newArrayList();
         // 根据用户信息查询到的office
-        List<SysOffice> list = OfficeUtil.getAllOffice();
+        List<SysOffice> list = OfficeUtil.getAllUpOffice();
 
         for (SysOffice sysOffice : list) {
-            boolean hasExtId = extId != null && !extId.equals(sysOffice.getId()) && sysOffice.getParentIds().indexOf("," + extId + ",") == -1;
+            boolean hasExtId = extId != null && !extId.equals(sysOffice.getId().toString()) && sysOffice.getParentIds().indexOf("," + extId + ",") == -1;
             if (StrUtil.isBlank(extId) || hasExtId ){
-                Map<String, Object> map = Maps.newHashMap();
-                map.put("id", sysOffice.getId());
-                map.put("pId", sysOffice.getParentId());
-                map.put("name", sysOffice.getName());
-                mapList.add(map);
+                retList.add(sysOffice);
             }
         }
-        return Result.success(mapList);
+        return Result.success(retList);
     }
 
 

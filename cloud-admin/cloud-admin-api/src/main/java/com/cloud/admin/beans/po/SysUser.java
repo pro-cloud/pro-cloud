@@ -56,19 +56,20 @@ public class SysUser extends TenantEntity<SysUser> {
     @ApiModelProperty(value = "用户头像")
     private String photo;
 
+    @ApiModelProperty(value = "状态0 启用 1 禁用")
+    private String status;
+
     @ApiModelProperty(value = "最后登陆IP")
     private String loginIp;
 
     @ApiModelProperty(value = "最后登陆时间")
     private LocalDateTime loginDate;
 
-    @ApiModelProperty(value = "是否可登录")
-    private String loginFlag;
-
     @ApiModelProperty(value = "微信openid")
     private String wxOpenid;
 
     @ApiModelProperty(value = "QQ openid")
     private String qqOpenid;
+
 
 }

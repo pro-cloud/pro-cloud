@@ -24,6 +24,7 @@ import org.apache.commons.lang.StringUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.servlet.http.HttpServletResponse;
@@ -101,6 +102,24 @@ public class OssController {
 	}
 
 
+	/**
+	 * todo
+	 * @param file
+	 * @param type
+	 * @return
+	 */
+	@PostMapping(value = "/uploadFile")
+	public Result uploadFile(MultipartFile file, String type) {
+		FilePath filePath = FileOssUploadUtil.getFilePath(fileProps.getFilePaths(), type);
+		if (filePath == null) {
+			return Result.error("没有对应的文件类型");
+		}
+		FileOssUploadUtil.uploadMultipartFile(file, filePath);
+		return Result.success("");
+	}
+
+
+	///////////////////////  下载代码 ////////////////////////////////
 	/**
 	 *  根据单个或多个文件进行 zip下载
 	 *  	文件路径和id都有 优先处理url的 默认名称yyyyMMddHHmmss.zip;

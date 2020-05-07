@@ -10,6 +10,7 @@ import com.cloud.admin.datascope.DataScopeFilters;
 import com.cloud.admin.mapper.SysUserMapper;
 import com.cloud.admin.mapper.SysUserRoleMapper;
 import com.cloud.admin.service.SysUserService;
+import com.cloud.admin.util.UserUtil;
 import com.cloud.common.cache.annotation.Cache;
 import com.cloud.common.cache.annotation.CacheClear;
 import com.cloud.common.cache.annotation.CacheConf;
@@ -44,6 +45,7 @@ public class SysUserServiceImpl extends BaseService<SysUserMapper, SysUser> impl
     @Override
     public IPage<UserDTO> getSysUserPage(Page page, UserDTO userDTO) {
         DataScopeFilters.dataScopeEntity(userDTO,"o", "u", DataScope.FIELD_ID);
+        userDTO.setHasAdmin(UserUtil.hasAdmin());
         return sysUserMapper.getSysUserPage(page, userDTO);
     }
 

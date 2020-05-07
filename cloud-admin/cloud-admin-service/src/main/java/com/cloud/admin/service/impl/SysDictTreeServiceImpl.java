@@ -9,9 +9,6 @@ import com.cloud.common.cache.annotation.CacheClear;
 import com.cloud.common.cache.annotation.CacheConf;
 import com.cloud.common.cache.constants.CacheScope;
 import com.cloud.common.data.base.TreeService;
-import com.cloud.common.data.util.ObjUtil;
-import com.cloud.common.data.util.TreeUtil;
-import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,10 +31,7 @@ public class SysDictTreeServiceImpl extends TreeService<SysDictTreeMapper, SysDi
         List<SysDictTree> list = super.list(Wrappers.<SysDictTree>query()
                 .lambda().eq(SysDictTree::getTypeCode, typeCode)
                 .orderByAsc(SysDictTree::getSort));
-        // 处理字典树类型的规则排序
-        List<SysDictTree> tree = Lists.newArrayList();
-        TreeUtil.sortList(tree, list, ObjUtil.ROOT_PID, true);
-        return tree;
+        return list;
     }
 
     @Override

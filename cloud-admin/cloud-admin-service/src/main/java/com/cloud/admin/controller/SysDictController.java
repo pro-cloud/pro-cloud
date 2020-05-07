@@ -1,5 +1,6 @@
 package com.cloud.admin.controller;
 
+import cn.hutool.core.collection.CollUtil;
 import com.cloud.admin.beans.dto.DictDTO;
 import com.cloud.admin.service.SysDictListService;
 import com.cloud.admin.service.SysDictTreeService;
@@ -9,12 +10,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.admin.beans.po.SysDict;
 import com.cloud.admin.service.SysDictService;
 import com.cloud.common.data.enums.ResultEnum;
+import com.cloud.common.util.util.StrUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 字典表
@@ -45,7 +48,14 @@ public class SysDictController {
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin_sysdict_view')")
     public Result getSysDictPage(Page page, SysDict sysDict) {
-        return Result.success(sysDictService.page(page, Wrappers.query(sysDict)));
+        return Result.success(sysDictService.page(page, Wrappers.<SysDict>query()
+                        .lambda()
+                        .and(StrUtils.isNotBlank(sysDict.getName()),wrapper ->
+                            wrapper.like(SysDict::getName, sysDict.getName())
+                                    .or()
+                                    .like(SysDict::getTypeCode, sysDict.getName())
+                        )
+                ));
     }
 
 
@@ -68,6 +78,10 @@ public class SysDictController {
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin_sysdict_add')")
     public Result save(@RequestBody @Valid SysDict sysDict) {
+        List<SysDict> list = sysDictService.list(Wrappers.<SysDict>query().lambda().eq(SysDict::getTypeCode, sysDict.getTypeCode()));
+        if (CollUtil.isNotEmpty(list)) {
+            return Result.error(ResultEnum.CRUD_SAVE_FAIL.getCode(), "字典类型不能重复");
+        }
         return Result.success(sysDictService.save(sysDict));
     }
 
@@ -93,7 +107,7 @@ public class SysDictController {
     public Result removeById(@PathVariable Long id) {
         SysDict byId = sysDictService.getById(id);
         if (DictDTO.DICT_SYS.equals(byId.getSystem())) {
-            return Result.error(ResultEnum.CRUD_DELETE_NOT);
+            return Result.error(ResultEnum.CRUD_DELETE_NOT.getCode(), "系统级别字典不允许删除!");
         }
         // 需要删除关联的表数据
         return Result.success(sysDictService.removeByDict(byId));

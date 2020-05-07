@@ -1,6 +1,5 @@
-package com.cloud.admin.compoent;
+package com.cloud.common.security.component;
 
-import com.cloud.admin.util.UserUtil;
 import com.cloud.common.data.user.SystemService;
 import com.cloud.common.security.util.SecurityUtil;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ public class SystemServiceImpl implements SystemService {
      */
     @Override
     public Long getUserId() {
-        return UserUtil.getUserId();
+        return SecurityUtil.getUserId();
     }
 
     /**
@@ -31,7 +30,7 @@ public class SystemServiceImpl implements SystemService {
      */
     @Override
     public String getUserTenantIds() {
-        if (UserUtil.hasAuthenticated()) {
+        if (SecurityUtil.hasAuthenticated()) {
             return SecurityUtil.getTenantIds();
         }
         return null;

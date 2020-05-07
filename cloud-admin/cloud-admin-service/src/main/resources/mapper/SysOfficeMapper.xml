@@ -4,25 +4,4 @@
 <mapper namespace="com.cloud.admin.mapper.SysOfficeMapper">
 
 
-    <sql id="Base_Column_List">
-      a.id AS id,
-      a.parent_id AS parentId,
-      a.parent_ids AS parentIds,
-      a.name AS name,
-      a.full_name AS fullName,
-      a.sort AS sort,
-      a.code AS code,
-      a.type AS type,
-      a.address AS address,
-      a.zip_code AS zipCode,
-      a.phone AS phone,
-      a.email AS email,
-      a.primary_person AS primaryPerson,
-      a.create_by AS createBy,
-      a.create_date AS createDate,
-      a.update_by AS updateBy,
-      a.update_date AS updateDate,
-      a.remarks AS remarks,
-      a.del_flag AS delFlag
-  </sql>
 </mapper>

@@ -32,17 +32,6 @@ public class MybatisPlusConfig {
 
 
     /**
-     *  分页插件
-     * @return
-     */
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setLimit(10);
-        return paginationInterceptor;
-    }
-
-    /**
      * 创建租户维护处理器对象
      *
      * @return 处理后的租户维护处理器
@@ -62,6 +51,7 @@ public class MybatisPlusConfig {
     public ISqlParserFilter sqlParserFilter() {
         return new ProSqlParserFilter();
     }
+
     /**
      * 分页插件
      * @param tenantHandler 租户处理器
@@ -80,15 +70,6 @@ public class MybatisPlusConfig {
         paginationInterceptor.setSqlParserFilter(sqlParserFilter);
         return paginationInterceptor;
     }
-
-//    /**
-//     * 性能分析拦截器，不建议生产使用
-//     */
-//    @Bean
-//    @ConditionalOnExpression("${mybatis-plus.performanceInterceptor.enabled:false}")
-//    public PerformanceInterceptor performanceInterceptor(){
-//        return new PerformanceInterceptor();
-//    }
 
     @Bean
     public IdentifierGenerator idGenerator() {

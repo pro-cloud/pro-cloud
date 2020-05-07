@@ -38,6 +38,12 @@ public class SysRoleServiceImpl extends BaseService<SysRoleMapper, SysRole> impl
     private SysUserRoleMapper sysUserRoleMapper;
 
 
+
+    @Override
+    public RoleDTO get(Long id) {
+        return sysRoleMapper.get(id) ;
+    }
+
     @Override
     @CacheClear(scope = CacheScope.USER_ROLE, key = "'*'", pattern = true)
     @Transactional(rollbackFor = Exception.class)

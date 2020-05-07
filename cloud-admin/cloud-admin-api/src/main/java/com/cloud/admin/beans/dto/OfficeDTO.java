@@ -1,7 +1,6 @@
 package com.cloud.admin.beans.dto;
 
 
-import com.cloud.admin.beans.po.SysArea;
 import com.cloud.admin.beans.po.SysOffice;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -18,10 +17,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class OfficeDTO extends SysOffice {
 
-    /**
-     * 归属区域
-     */
-    private SysArea area;
 
     /**
      * 主负责人

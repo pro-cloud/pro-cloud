@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.admin.beans.po.SysDictList;
 import com.cloud.admin.service.SysDictListService;
+import com.cloud.common.util.util.StrUtils;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -23,8 +24,8 @@ import javax.validation.Valid;
  * @date 2019-09-05 19:52:37
  */
 @RestController
-@RequestMapping("/dictlist" )
-@Api(value = "dictlist", tags = "sysdictlist管理")
+@RequestMapping("/dictList" )
+@Api(value = "dictList", tags = "sysdictlist管理")
 public class SysDictListController {
 
     @Autowired
@@ -39,8 +40,10 @@ public class SysDictListController {
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin_sysdictlist_view')")
     public Result getSysDictListPage(Page page, SysDictList sysDictList) {
-        return Result.success(sysDictListService.page(page, Wrappers.query(sysDictList)
+        return Result.success(sysDictListService.page(page, Wrappers.<SysDictList>query()
                 .lambda()
+                .eq(SysDictList::getTypeCode, sysDictList.getTypeCode())
+                .like(StrUtils.isNotBlank(sysDictList.getName()),SysDictList:: getName, sysDictList.getName())
                 .orderByAsc(SysDictList::getSort)));
     }
 

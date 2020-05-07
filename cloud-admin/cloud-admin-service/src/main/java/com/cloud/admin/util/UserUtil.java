@@ -2,7 +2,6 @@ package com.cloud.admin.util;
 
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.cloud.admin.beans.dto.OfficeDTO;
 import com.cloud.admin.beans.dto.RoleDTO;
@@ -17,12 +16,9 @@ import com.cloud.admin.service.SysRoleService;
 import com.cloud.admin.service.SysUserService;
 import com.cloud.common.data.util.SpringUtil;
 import com.cloud.common.security.util.SecurityUtil;
-import com.cloud.common.util.var.StaticVar;
 import lombok.experimental.UtilityClass;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 
 /**
@@ -59,8 +55,16 @@ public class UserUtil extends SecurityUtil {
         Long id = getUserId();
         return id != null && (id== 1);
     }
-    
+
     //////////////////  菜单相关  /////////////////////////
+    /**
+     * 获取某用户id 菜单信息
+     * @param userId
+     * @return
+     */
+    public static List<SysMenu> getMenuList(Long userId){
+        return sysMenuService.findByUserId(userId);
+    }
 
     /**
      * 获取当前用户授权菜单
@@ -68,56 +72,80 @@ public class UserUtil extends SecurityUtil {
      */
     public static List<SysMenu> getMenuList(){
         Long userId = getUserId();
-        return sysMenuService.findByUserId(userId);
+        return getMenuList(userId);
     }
+
+
     ///////////////////////用户相关 //////////////////////////////////
+
+    /**
+     * 获取某个 用户不包括角色 和部门信息
+     * @param userId
+     * @return
+     */
+    public static SysUser getUser(Long userId){
+        return sysUserService.getById(userId);
+    }
+
+
     /**
      * 获取当前用户详细信息 不包括角色 和部门信息
      * @return
      */
     public static SysUser getUser(){
         Long userId = getUserId();
-        return sysUserService.getById(userId);
+        return getUser(userId);
+    }
+
+    /**
+     * 获取到某用户详细信息
+     * @param userId
+     * @return
+     */
+    public static UserDTO getUserDTO(Long userId){
+        UserDTO userDTO = new UserDTO();
+        // 获取用户信息
+        SysUser sysUser = getUser(userId);
+        BeanUtil.copyProperties(sysUser, userDTO);
+        // 获取用户部门信息
+        SysOffice userOffice = OfficeUtil.getOffice(sysUser.getOfficeId());
+        OfficeDTO officeDTO = new OfficeDTO();
+        BeanUtil.copyProperties(userOffice, officeDTO);
+        userDTO.setOffice(officeDTO);
+        // 获取角色信息
+        userDTO.setRoleList(getRoleList(userId));
+        return userDTO;
     }
 
 
     /**
      * 获取用户详细 信息 包含 部门信息和角色信息
+     *  想获取权限/菜单 需调用
      * @return
      */
     public static UserDTO getUserDTO(){
-        UserDTO userDTO = new UserDTO();
-        // 获取用户信息
-        SysUser sysUser = getUser();
-        BeanUtil.copyProperties(sysUser, userDTO);
-        // 获取用户部门信息
-        SysOffice userOffice = OfficeUtil.getUserOffice();
-        OfficeDTO officeDTO = new OfficeDTO();
-        BeanUtil.copyProperties(userOffice, officeDTO);
-        userDTO.setOffice(officeDTO);
-        // 获取角色信息
-        userDTO.setRoleList(getRoleList());
-        return userDTO;
+        Long userId = getUserId();
+        return getUserDTO(userId);
     }
 
+
+
     /////////////////////////  角色相关 ////////////////////////////
+
+    /**
+     * 获取userId用户的角色信息
+     * @return
+     */
+    public static List<RoleDTO> getRoleList(Long userId){
+        return  sysRoleService.findList(getUser(userId));
+    }
+
     /**
      * 获取当前用户的角色信息
      * @return
      */
     public static List<RoleDTO> getRoleList(){
-        return  sysRoleService.findList(getUser());
-    }
-
-
-    /**
-     * 获取当前用户的角色信息
-     * @return
-     */
-    public static List<RoleDTO> getRoleList(Long userId){
-        SysUser sysUser = new SysUser();
-        sysUser.setId(userId);
-        return  sysRoleService.findList(getUser());
+        return  getRoleList(getUserId());
     }
 
     /**

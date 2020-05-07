@@ -36,7 +36,7 @@ public class SignDTO implements Serializable {
     private String signature;
 
     /**
-     *
+     * 存储的目录
      */
     private String dir;
 

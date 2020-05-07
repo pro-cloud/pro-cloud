@@ -40,6 +40,16 @@ public class OfficeUtil {
     }
 
     /**
+     * 获取所有的office 启用状态的
+     * @return
+     */
+    public static List<SysOffice> getAllUpOffice() {
+        return sysOfficeService.list(Wrappers.<SysOffice>query().lambda()
+                .eq(SysOffice::getStatus, "0")
+                .orderByAsc(SysOffice::getSort));
+    }
+
+    /**
      * 获取所有的office
      * @return
      */

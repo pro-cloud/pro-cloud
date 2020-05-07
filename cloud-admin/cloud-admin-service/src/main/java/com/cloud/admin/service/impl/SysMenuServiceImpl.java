@@ -1,7 +1,6 @@
 package com.cloud.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.cloud.admin.beans.dto.MenuDTO;
 import com.cloud.admin.beans.po.SysMenu;
 import com.cloud.admin.mapper.SysMenuMapper;
 import com.cloud.admin.service.SysMenuService;
@@ -48,11 +47,14 @@ public class SysMenuServiceImpl extends TreeService<SysMenuMapper, SysMenu> impl
     @Override
     @Cache(scope = CacheScope.USER_MENU, key = "#userId")
     public List<SysMenu> findByUserId(Long userId) {
+        List<SysMenu> menus;
         if (UserUtil.hasAdmin(userId)) {
-            return sysMenuMapper.selectList(Wrappers.<SysMenu>query()
-                    .lambda().orderByAsc(SysMenu::getSort) );
+            menus = sysMenuMapper.selectList(Wrappers.<SysMenu>query()
+                    .lambda().orderByAsc(SysMenu::getSort));
+        } else {
+            menus = sysMenuMapper.findByUserId(userId);
         }
-        return sysMenuMapper.findByUserId(userId);
+        return menus;
     }
 
 }

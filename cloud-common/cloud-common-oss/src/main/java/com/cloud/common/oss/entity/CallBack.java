@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 /**
  *  回调传递参数
+ *  belongName/belongType/prePath/yyyyMMdd/HHmmss/上传文件名
  * @author Aijm
  * @since 2019/9/11
  */

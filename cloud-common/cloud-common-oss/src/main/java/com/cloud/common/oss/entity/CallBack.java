@@ -16,6 +16,10 @@ public class CallBack implements Serializable {
 
 
     /**
+     * 文件外网访问路径
+     */
+    private String fileUrl;
+    /**
      * oss文件的路径存储地址
      */
     private String filePath;

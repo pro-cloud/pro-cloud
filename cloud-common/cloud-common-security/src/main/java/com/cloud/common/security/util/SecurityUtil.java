@@ -12,6 +12,25 @@ import org.springframework.security.core.context.SecurityContextHolder;
  */
 public class SecurityUtil {
 
+
+    /**
+     * 判断该用户是不是超级管理员 并给admin赋值
+     * @param id 用户id
+     * @return
+     */
+    public static boolean hasAdmin(Long id){
+        return id != null && (id== 1);
+    }
+
+    /**
+     * 判断该用户是不是超级管理员 并给admin赋值
+     * @return
+     */
+    public static boolean hasAdmin(){
+        Long id = getUserId();
+        return id != null && (id== 1);
+    }
+
     /**
      * 获取SecurityUser
      * @return

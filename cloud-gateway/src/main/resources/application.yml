@@ -39,8 +39,8 @@ spring:
               args:
                 rate-limiter: "#{@sysRedisRateLimiter}"
                 key-resolver: "#{@sysKeyResolver}"
-        - id: cloud-oss
-          uri: lb://cloud-oss
+        - id: cloud-oss-service
+          uri: lb://cloud-oss-service
           order: 8002
           predicates:
             - Path=/oss/**

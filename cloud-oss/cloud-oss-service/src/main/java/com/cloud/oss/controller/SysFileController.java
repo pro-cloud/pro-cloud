@@ -36,7 +36,7 @@ public class SysFileController {
      * @return
      */
     @GetMapping("/page")
-    @PreAuthorize("@pms.hasPermission('oss_sysfile_view')")
+//    @PreAuthorize("@pms.hasPermission('oss_sysfile_view')")
     public Result getSysFilePage(Page page, SysFileDTO sysFile) {
 
         LambdaQueryWrapper<SysFile> query = Wrappers.<SysFile>query().lambda()
@@ -56,7 +56,7 @@ public class SysFileController {
      * @return Result
      */
     @GetMapping("/{id}")
-    @PreAuthorize("@pms.hasPermission('oss_sysfile_view')")
+//    @PreAuthorize("@pms.hasPermission('oss_sysfile_view')")
     public Result getById(@PathVariable("id") Long id) {
         return Result.success(sysFileService.getById(id));
     }
@@ -67,7 +67,7 @@ public class SysFileController {
      * @return Result
      */
     @PostMapping
-    @PreAuthorize("@pms.hasPermission('oss_sysfile_add')")
+//    @PreAuthorize("@pms.hasPermission('oss_sysfile_add')")
     public Result save(@RequestBody @Valid SysFile sysFile) {
         return Result.success(sysFileService.save(sysFile));
     }
@@ -78,7 +78,7 @@ public class SysFileController {
      * @return Result
      */
     @PutMapping
-    @PreAuthorize("@pms.hasPermission('oss_sysfile_edit')")
+//    @PreAuthorize("@pms.hasPermission('oss_sysfile_edit')")
     public Result updateById(@RequestBody @Valid SysFile sysFile) {
         return Result.success(sysFileService.updateById(sysFile));
     }
@@ -89,7 +89,7 @@ public class SysFileController {
      * @return Result
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("@pms.hasPermission('oss_sysfile_del')")
+//    @PreAuthorize("@pms.hasPermission('oss_sysfile_del')")
     public Result removeById(@PathVariable Long id) {
         return Result.success(sysFileService.removeById(id));
     }

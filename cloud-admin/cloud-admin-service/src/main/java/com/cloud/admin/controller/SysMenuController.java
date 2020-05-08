@@ -41,6 +41,17 @@ public class SysMenuController extends BaseController {
 
 
     /**
+     * 根据用户id查询
+     * @param userId
+     * @return
+     */
+    @GetMapping("/get/{userId}")
+    @PreAuthorize("@pms.hasPermission('admin_sysmenu_view')")
+    public Result getMenuAll(@PathVariable("userId") Long userId) {
+        return Result.success(UserUtil.getMenuList(userId));
+    }
+
+    /**
      * 查询 简单树
      * @return
      */

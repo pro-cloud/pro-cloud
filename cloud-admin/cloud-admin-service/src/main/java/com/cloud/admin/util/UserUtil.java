@@ -40,25 +40,6 @@ public class UserUtil extends SecurityUtil {
     private static SysUserService sysUserService = SpringUtil.getBean(SysUserService.class);
 
 
-
-    /**
-     * 判断该用户是不是超级管理员 并给admin赋值
-     * @param id 用户id
-     * @return
-     */
-    public static boolean hasAdmin(Long id){
-        return id != null && (id== 1);
-    }
-
-    /**
-     * 判断该用户是不是超级管理员 并给admin赋值
-     * @return
-     */
-    public static boolean hasAdmin(){
-        Long id = getUserId();
-        return id != null && (id== 1);
-    }
-
     //////////////////  菜单相关  /////////////////////////
     /**
      * 获取某用户id 菜单信息

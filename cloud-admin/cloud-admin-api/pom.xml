@@ -25,6 +25,11 @@
 
         <dependency>
             <groupId>com.cloud</groupId>
+            <artifactId>cloud-common-cache</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cloud</groupId>
             <artifactId>cloud-common-security</artifactId>
         </dependency>
 

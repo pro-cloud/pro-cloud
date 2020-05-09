@@ -9,7 +9,7 @@ import com.cloud.admin.beans.po.SysMenu;
 import com.cloud.admin.service.SysMenuService;
 import com.cloud.admin.util.UserUtil;
 import com.cloud.common.cache.constants.CacheScope;
-import com.cloud.common.cache.util.CacheUtil;
+import com.cloud.common.cache.util.RedisUtil;
 import com.cloud.common.data.base.BaseController;
 import com.cloud.common.data.base.Result;
 import com.cloud.common.data.enums.ResultEnum;
@@ -97,7 +97,7 @@ public class SysMenuController extends BaseController {
     @PreAuthorize("@pms.hasPermission('admin_sysmenu_add')")
     public Result save(@RequestBody @Valid SysMenu sysMenu) {
         // 手动清空菜单缓存
-        CacheUtil.remove(CacheScope.USER_MENU.getCacheName(), UserUtil.getUserId().toString());
+        RedisUtil.remove(CacheScope.USER_MENU.getCacheName(), UserUtil.getUserId().toString());
         return Result.success(sysMenuService.save(sysMenu));
     }
 
@@ -110,7 +110,7 @@ public class SysMenuController extends BaseController {
     @PreAuthorize("@pms.hasPermission('admin_sysmenu_edit')")
     public Result updateById(@RequestBody @Valid SysMenu sysMenu) {
         // 手动清空菜单缓存
-        CacheUtil.removeCacheName(CacheScope.USER_MENU.getCacheName());
+        RedisUtil.removeCacheName(CacheScope.USER_MENU.getCacheName());
         return Result.success(sysMenuService.updateById(sysMenu));
     }
 

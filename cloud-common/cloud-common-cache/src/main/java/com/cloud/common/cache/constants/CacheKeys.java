@@ -24,8 +24,8 @@ public class CacheKeys {
 
 
     /**
-     * 用户缓存过期时间（包含用户查询到的菜单角色等）
+     * 用户缓存过期时间 默认 s 10小时
      */
-    public static final Long USER_EXPIRETIME = 36000L;
+    public static final Long DEFAULT_EXPIRETIME = 36000L;
 
 }

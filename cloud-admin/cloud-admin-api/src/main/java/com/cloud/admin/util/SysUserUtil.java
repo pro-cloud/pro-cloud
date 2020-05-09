@@ -2,7 +2,8 @@ package com.cloud.admin.util;
 
 import com.cloud.admin.api.IUserService;
 import com.cloud.admin.beans.po.SysMenu;
-import com.cloud.common.data.base.Result;
+import com.cloud.common.cache.constants.CacheScope;
+import com.cloud.common.cache.util.RedisUtil;
 import com.cloud.common.data.util.SpringUtil;
 import com.cloud.common.security.util.SecurityUtil;
 import lombok.experimental.UtilityClass;
@@ -27,7 +28,13 @@ public class SysUserUtil extends SecurityUtil {
      * @return
      */
     public static List<SysMenu> getMenuList(Long userId) {
-        return userService.getMenuList(userId).getData();
+        Object obj = RedisUtil.get(CacheScope.USER_MENU.getCacheName(), userId.toString());
+        if (obj == null) {
+            List<SysMenu> menuList = userService.getMenuList(userId).getData();
+            RedisUtil.putTime(CacheScope.USER_MENU.getCacheName(), Long.toString(userId), menuList);
+            return menuList;
+        }
+        return (List<SysMenu>)obj;
     }
 
     /**

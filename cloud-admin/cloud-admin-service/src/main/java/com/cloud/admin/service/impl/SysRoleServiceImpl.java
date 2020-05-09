@@ -3,7 +3,7 @@ package com.cloud.admin.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import com.cloud.admin.mapper.SysRoleMenuMapper;
 import com.cloud.admin.mapper.SysUserRoleMapper;
-import com.cloud.common.cache.util.CacheUtil;
+import com.cloud.common.cache.util.RedisUtil;
 import com.cloud.common.data.base.BaseService;
 import com.cloud.admin.beans.dto.RoleDTO;
 import com.cloud.admin.beans.po.SysRole;
@@ -69,8 +69,8 @@ public class SysRoleServiceImpl extends BaseService<SysRoleMapper, SysRole> impl
         // 删除用户和角色的关联关系
         sysUserRoleMapper.deleteUserRole(id);
         // 手动清理缓存
-        CacheUtil.removeCacheName(CacheScope.USER_MENU.getCacheName());
-        CacheUtil.removeCacheName(CacheScope.USER_ROLE.getCacheName());
+        RedisUtil.removeCacheName(CacheScope.USER_MENU.getCacheName());
+        RedisUtil.removeCacheName(CacheScope.USER_ROLE.getCacheName());
         return super.removeById(id);
     }
 

@@ -47,7 +47,7 @@ public class SysMenuController extends BaseController {
      */
     @GetMapping("/get/{userId}")
     @PreAuthorize("@pms.hasPermission('admin_sysmenu_view')")
-    public Result getMenuAll(@PathVariable("userId") Long userId) {
+    public Result<List<SysMenu>> getMenuAll(@PathVariable("userId") Long userId) {
         return Result.success(UserUtil.getMenuList(userId));
     }
 

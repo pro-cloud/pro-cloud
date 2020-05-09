@@ -1,9 +1,8 @@
-package com.cloud.admin.compoent;
+package com.cloud.admin.componse;
 
-import com.cloud.admin.util.UserUtil;
+import com.cloud.admin.util.SysUserUtil;
 import com.cloud.common.security.component.IPermissionService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 
 /**
@@ -12,8 +11,7 @@ import org.springframework.stereotype.Component;
  * 接口权限判断工具
  */
 @Slf4j
-@Component("pms")
-public class PermissionService implements IPermissionService {
+public class PermissionServiceImpl implements IPermissionService {
 
 
 	/**
@@ -24,18 +22,21 @@ public class PermissionService implements IPermissionService {
 	 */
 	@Override
 	public boolean hasPermission(String permission) {
-		return UserUtil.hasPermission(permission);
+		log.info("PermissionServiceImpl校验权限");
+		return SysUserUtil.hasPermission(permission);
 	}
-
 
 	/**
 	 * 判断当前用户是不是具有某个角色
 	 * 内部用户为最高权限
+	 *
 	 * @param enname
 	 * @return
 	 */
 	@Override
 	public boolean hasRole(String enname) {
-		return UserUtil.hasRole(enname);
+		return false;
 	}
+
+
 }

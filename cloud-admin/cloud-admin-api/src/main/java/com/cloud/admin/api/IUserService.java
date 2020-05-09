@@ -1,11 +1,14 @@
 package com.cloud.admin.api;
 
+import com.cloud.admin.beans.po.SysMenu;
 import com.cloud.common.data.base.Result;
 import com.cloud.common.util.client.CloudServiceList;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * 获取当前用户信息
@@ -20,5 +23,5 @@ public interface IUserService {
      * @return
      */
     @RequestMapping(value="/menu/get/{userId}", method= RequestMethod.GET)
-    public Result getMenuList(@PathVariable("userId") Long userId);
+    public Result<List<SysMenu>> getMenuList(@PathVariable("userId") Long userId);
 }

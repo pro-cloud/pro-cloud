@@ -1,4 +1,4 @@
-package com.cloud.admin.api.util;
+package com.cloud.admin.util;
 
 import com.cloud.admin.beans.po.SysDictList;
 import com.google.common.collect.Maps;

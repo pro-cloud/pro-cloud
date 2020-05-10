@@ -5,7 +5,6 @@ import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.aliyun.oss.OSS;
-import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.GetObjectRequest;
 import com.aliyun.oss.model.OSSObject;
 import com.cloud.common.oss.props.OssProps;
@@ -29,7 +28,7 @@ public class FileOssDownUtil {
 
     private static OssProps ossProps = SpringUtil.getBean(OssProps.class);
 
-    private static OSS ossInnerClient = SpringUtil.getBean(OSSClient.class);
+    private static OSS ossInnerClient = SpringUtil.getBean("ossInnerClient");
 
 
     /**

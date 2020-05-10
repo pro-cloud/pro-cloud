@@ -36,6 +36,19 @@ public class ObjUtil {
     }
 
     /**
+     * 插入之前执行方法，需要手动调用
+     */
+    public <T extends BaseEntity> void preInsert(T entity, Long userId){
+        entity.setId(IdUtils.getNextId());
+        entity.setCreateBy(userId);
+        entity.setUpdateBy(userId);
+        LocalDateTime now = LocalDateTime.now();
+        entity.setCreateDate(now);
+        entity.setUpdateDate(now);
+        entity.setDelFlag(T.DEL_FLAG_NORMAL);
+    }
+
+    /**
      * 更新之前执行方法，需要手动调用
      */
     public <T extends BaseEntity> void preUpdate(T entity){

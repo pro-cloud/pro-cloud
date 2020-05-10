@@ -12,4 +12,9 @@ import com.cloud.oss.beans.po.SysFile;
 public interface SysFileService extends IProService<SysFile> {
 
 
+    /**
+     * 保存文件
+     * @param sysFile
+     */
+    public void saveFile(SysFile sysFile, Long userId);
 }

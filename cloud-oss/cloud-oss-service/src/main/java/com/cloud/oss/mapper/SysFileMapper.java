@@ -11,4 +11,11 @@ import com.cloud.oss.beans.po.SysFile;
  */
 public interface SysFileMapper extends ProMapper<SysFile> {
 
+
+    /**
+     * 保存文件
+     *
+     * @param sysFile
+     */
+    public void saveFile(SysFile sysFile);
 }

@@ -97,8 +97,9 @@ public class OssController {
 		if (FileUtils.IMAGE_TYPE.equals(sysFile.getType())) {
 			sysFile.setProps(callBack.getWidth()+"*"+callBack.getHeight());
 		}
+		sysFile.setTenantId(callBack.getTenantId());
 		callBack.setFileUrl(ossFileUrl);
-		sysFileService.save(sysFile);
+		sysFileService.saveFile(sysFile, callBack.getUserId());
 		return Result.success(callBack);
 	}
 

@@ -45,7 +45,7 @@ public class OfficeUtil {
      */
     public static List<SysOffice> getAllUpOffice() {
         return sysOfficeService.list(Wrappers.<SysOffice>query().lambda()
-                .eq(SysOffice::getStatus, "0")
+                .eq(SysOffice::getStatus, 0)
                 .orderByAsc(SysOffice::getSort));
     }
 

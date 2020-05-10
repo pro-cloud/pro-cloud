@@ -26,9 +26,8 @@ public class SysMenu extends TenantTreeEntity<SysMenu> {
 
     private static final long serialVersionUID = -481808875271508064L;
 
-    @ApiModelProperty(value = "链接")
-    @TableField(fill = FieldFill.UPDATE)
-    private String href;
+    @ApiModelProperty(value = "菜单类型")
+    private String type;
 
     @ApiModelProperty(value = "目标")
     private String target;

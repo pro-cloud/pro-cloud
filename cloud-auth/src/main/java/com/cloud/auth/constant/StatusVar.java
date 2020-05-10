@@ -13,10 +13,10 @@ public class StatusVar {
     /**
      * 开启
      */
-    public static final String STATUS_UP = "0";
+    public static final Integer STATUS_UP = 0;
 
     /**
      * 禁用
      */
-    public static final String STATUS_DOWN = "1";
+    public static final Integer STATUS_DOWN = 1;
 }

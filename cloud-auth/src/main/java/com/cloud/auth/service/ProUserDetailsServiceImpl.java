@@ -35,7 +35,7 @@ public class ProUserDetailsServiceImpl implements ProUserDetailsService {
             log.info("{}手机号找不到注册用户", mobile);
             throw new BaseException(ResultEnum.LOGIN_NAME);
         }
-        if (StatusVar.STATUS_DOWN.equals(user.getStatus())) {
+        if (StatusVar.STATUS_DOWN.intValue() == user.getStatus().intValue()) {
             log.info("{}用户名被禁用", mobile);
             throw new BaseException();
         }
@@ -51,7 +51,7 @@ public class ProUserDetailsServiceImpl implements ProUserDetailsService {
             log.info("{}用户名找不到注册用户", username);
             throw new BaseException(ResultEnum.LOGIN_NAME);
         }
-        if (StatusVar.STATUS_DOWN.equals(user.getStatus())) {
+        if (StatusVar.STATUS_DOWN.intValue() == user.getStatus().intValue()) {
             log.info("{}用户名被禁用", username);
             throw new BaseException(ResultEnum.LOGIN_LOCK);
         }

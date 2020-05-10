@@ -8,7 +8,7 @@
       a.parent_ids AS parentIds,
       a.name AS name,
       a.sort AS sort,
-      a.href AS href,
+      a.type AS type,
       a.target AS target,
       a.icon AS icon,
       a.is_show AS hasShow,

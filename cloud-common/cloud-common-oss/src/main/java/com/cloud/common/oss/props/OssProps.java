@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @Configuration
 @RefreshScope
+@Component
 @ConfigurationProperties(prefix = "aliyun.oss")
 public class OssProps {
 
@@ -41,6 +43,12 @@ public class OssProps {
      * 代理过期时间 默认分钟
      */
     private long policyExpire;
+
+
+    /**
+     * 生成访问链接时间
+     */
+    private long expire;
 
 
 

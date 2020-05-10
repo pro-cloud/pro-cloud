@@ -16,6 +16,14 @@ public class CallBack implements Serializable {
 
 
     /**
+     * 租户id
+     */
+    private Long tenantId;
+    /**
+     * 上传文件的用户id
+     */
+    private Long userId;
+    /**
      * 文件外网访问路径
      */
     private String fileUrl;

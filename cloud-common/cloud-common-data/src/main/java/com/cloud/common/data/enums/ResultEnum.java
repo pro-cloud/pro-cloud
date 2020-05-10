@@ -19,7 +19,7 @@ public enum ResultEnum {
     TOKEN_ERROR(302, "token异常"),
     // 登录异常
     LOGIN_ERROR(303, "登录异常"),
-    REMOTE_ERROR(304, "异地登录"),
+    LOGIN_LOCK(304, "用户被禁用"),
 
     LOGIN_NAME(305, "用户名错误"),
     LOGIN_NAME_NULL(306, "用户名为空"),

@@ -2,6 +2,7 @@ package com.cloud.auth.component;
 
 import com.cloud.common.data.base.Result;
 import com.cloud.common.data.enums.ResultEnum;
+import com.cloud.common.data.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,10 @@ public class Auth2ResponseExceptionTranslator implements WebResponseExceptionTra
             return new ResponseEntity(error, HttpStatus.OK);
         } else if (e instanceof BadCredentialsException) {
             Result<Serializable> error = Result.error(ResultEnum.ERROR);
+            return new ResponseEntity(error, HttpStatus.OK);
+        }
+        if(e.getCause() instanceof BaseException) {
+            Result<Serializable> error = Result.error(((BaseException) e.getCause()).getCode(), e.getCause().getMessage());
             return new ResponseEntity(error, HttpStatus.OK);
         }
         return new ResponseEntity(Result.error(""), HttpStatus.OK);

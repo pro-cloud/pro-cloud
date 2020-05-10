@@ -22,9 +22,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BaseException.class)
     @ResponseStatus(HttpStatus.OK)
-    public Result handleBasicException(BaseException baseException){
-        log.error("抛异常code:{}，msg:{}", baseException.getCode(), baseException.getMessage());
-        return Result.error(baseException.getCode(), "");
+    public Result handleBasicException(BaseException e){
+        log.error("抛异常code:{}，msg:{}", e.getCode(), e.getMessage());
+        return Result.error(e.getCode(), e.getMessage());
     }
 
 

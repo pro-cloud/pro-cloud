@@ -1,9 +1,8 @@
 package com.cloud.auth.controller;
 
 import cn.hutool.core.util.StrUtil;
-import com.cloud.auth.util.SecurityUtil;
 import com.cloud.common.cache.constants.CacheScope;
-import com.cloud.common.cache.util.CacheUtil;
+import com.cloud.common.cache.util.RedisUtil;
 import com.cloud.common.oauth.security.SecurityUser;
 import com.cloud.common.data.base.Result;
 import com.cloud.common.data.enums.ResultEnum;
@@ -77,11 +76,11 @@ public class ProSsoController {
 		OAuth2Authentication auth = tokenStore.readAuthentication(accessToken);
 		SecurityUser user = (SecurityUser)auth.getPrincipal();
 		// 清空菜单信息
-		CacheUtil.remove(CacheScope.USER_MENU.getCacheName(), user.getUserId().toString());
+		RedisUtil.remove(CacheScope.USER_MENU.getCacheName(), user.getUserId().toString());
 		// 清空角色信息
-		CacheUtil.remove(CacheScope.USER_ROLE.getCacheName(), user.getUserId().toString());
+		RedisUtil.remove(CacheScope.USER_ROLE.getCacheName(), user.getUserId().toString());
 		// 清空用户信息
-		CacheUtil.remove(CacheScope.USER_USER.getCacheName(), user.getUserId().toString());
+		RedisUtil.remove(CacheScope.USER_USER.getCacheName(), user.getUserId().toString());
 		// 清空access token
 		tokenStore.removeAccessToken(accessToken);
 		// 清空 refresh token

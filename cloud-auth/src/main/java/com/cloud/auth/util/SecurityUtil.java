@@ -1,9 +1,15 @@
 package com.cloud.auth.util;
 
+import cn.hutool.core.util.StrUtil;
+import com.cloud.common.data.util.ServletUtil;
 import com.cloud.common.oauth.security.SecurityUser;
+import com.cloud.common.util.util.StrUtils;
 import lombok.experimental.UtilityClass;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author Aijm
@@ -13,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @UtilityClass
 public class SecurityUtil {
 
+    public static final String BEARER_TOKEN_TYPE = "Bearer ";
 
     /**
      * 获取Authentication
@@ -41,5 +48,18 @@ public class SecurityUtil {
         Authentication authentication = getAuthentication();
         Object principal = authentication.getPrincipal();
         return principal instanceof  SecurityUser ? ((SecurityUser) principal) : null;
+    }
+
+    /**
+     * 获取用户token
+     * @return
+     */
+    public static String getToken() {
+        HttpServletRequest request = ServletUtil.getRequest();
+        String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+        if (StrUtil.isNotBlank(header) && header.startsWith(BEARER_TOKEN_TYPE)) {
+            return StrUtils.removePrefix(header, BEARER_TOKEN_TYPE);
+        }
+        return null;
     }
 }

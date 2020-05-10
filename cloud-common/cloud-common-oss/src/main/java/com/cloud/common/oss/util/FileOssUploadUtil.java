@@ -10,6 +10,7 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.*;
+import com.cloud.common.data.user.SystemService;
 import com.cloud.common.oss.entity.CallBack;
 import com.cloud.common.oss.entity.FilePath;
 import com.cloud.common.oss.entity.SignDTO;
@@ -19,6 +20,8 @@ import com.cloud.common.data.enums.ResultEnum;
 import com.cloud.common.util.util.DateUtils;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -31,14 +34,21 @@ import java.util.List;
  * @Description oss文件上传工具类
  * @Date 2019/9/24
  */
-@UtilityClass
+@Component
 @Slf4j
 public class FileOssUploadUtil {
 
+    private static SystemService systemService;
+    private static OssProps ossProps;
 
-    private static OssProps ossProps = SpringUtil.getBean(OssProps.class);
+    private static OSS ossInnerClient;
 
-    private static OSS ossInnerClient = SpringUtil.getBean(OSSClient.class);
+    @Autowired
+    FileOssUploadUtil(OssProps ossProps, OSS ossInnerClient, SystemService systemService) {
+        FileOssUploadUtil.ossProps = ossProps;
+        FileOssUploadUtil.ossInnerClient = ossInnerClient;
+        FileOssUploadUtil.systemService = systemService;
+    }
 
 
     /**
@@ -49,8 +59,8 @@ public class FileOssUploadUtil {
      */
     public static String getOssFileUrl(String ossFile) {
 
-        // 设置URL过期时间为policyExpire  分钟。
-        Date expiration = new Date(System.currentTimeMillis() + ossProps.getPolicyExpire() * 60000);
+        // 设置URL过期时间为expire  分钟。
+        Date expiration = new Date(System.currentTimeMillis() + ossProps.getExpire() * 60000);
         // 生成以GET方法访问的签名URL，访客可以直接通过浏览器访问相关内容。
         URL url = ossInnerClient.generatePresignedUrl(ossProps.getBucketName(), ossFile, expiration);
         return specialUrlEncode(url.toString());
@@ -169,6 +179,8 @@ public class FileOssUploadUtil {
         StringBuilder sbr = new StringBuilder(callBack);
         sbr.append("?belongName=").append(filePath.getBelongName())
                 .append("&prePath=").append(filePath.getPrePath())
+                .append("&userId=").append(systemService.getUserId())
+                .append("&tenantId=").append(systemService.getUserTenantIds())
                 .append("&belongType=").append(filePath.getBelongType());
         callback.setCallbackUrl(sbr.toString());
         callback.setCallbackBody("filePath=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}");

@@ -97,7 +97,9 @@ public class OssController {
 		if (FileUtils.IMAGE_TYPE.equals(sysFile.getType())) {
 			sysFile.setProps(callBack.getWidth()+"*"+callBack.getHeight());
 		}
-		sysFileService.save(sysFile);
+		sysFile.setTenantId(callBack.getTenantId());
+		callBack.setFileUrl(ossFileUrl);
+		sysFileService.saveFile(sysFile, callBack.getUserId());
 		return Result.success(callBack);
 	}
 
@@ -114,8 +116,8 @@ public class OssController {
 		if (filePath == null) {
 			return Result.error("没有对应的文件类型");
 		}
-		FileOssUploadUtil.uploadMultipartFile(file, filePath);
-		return Result.success("");
+		Result<CallBack> retVal = FileOssUploadUtil.uploadMultipartFile(file, filePath);
+		return retVal;
 	}
 
 

@@ -2,6 +2,7 @@ package com.cloud.oss.beans.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.cloud.common.entity.BaseEntity;
+import com.cloud.common.entity.TenantEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -19,7 +20,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(description = "文件统一管理")
-public class SysFile extends BaseEntity<SysFile> {
+public class SysFile extends TenantEntity<SysFile> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "文件名称")

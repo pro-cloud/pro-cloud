@@ -26,23 +26,25 @@ spring:
 
 aliyun:
   oss:
-    accessKeyId: 122
-    accessKeySecret: 334
-    bucketName: 445
-    callback: 67
-    endpoint: 789
-    endpointInternal: 7899
+    accessKeyId: xxxxx
+    accessKeySecret: xxxxx
+    bucketName: xxxxx
+    callback: http://s2y232.natappfree.cc/oss/oss/callback
+    endpoint: xxxxx
+    endpointInternal: xxxx
     maxSize: 67889
+    expire: 100000000
     policyIexpire: 5677
+  oss-file:
     filePaths:
-      - type: default
-        prePath: default
-        belongName: default
-        belongType: default
+      - id: avatar
+        prePath: profile/photo
+        belongName: cloud
+        belongType: admin
 #mybatis
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
-  typeAliasesPackage: com.cloud.auth.entity
+  typeAliasesPackage: com.cloud.oss.entity
   global-config:
     banner: false
     db-config:
@@ -73,6 +75,7 @@ security:
         - /configuration/security
         - /swagger-ui.html
         - /webjars/**
+        - /oss/callback
     resource:
       token-info-uri: http://cloud-auth/oauth/check_token
       loadBalanced: true

@@ -57,7 +57,7 @@ public class SysUser extends TenantEntity<SysUser> {
     private String photo;
 
     @ApiModelProperty(value = "状态0 启用 1 禁用")
-    private String status;
+    private Integer status;
 
     @ApiModelProperty(value = "最后登陆IP")
     private String loginIp;

@@ -22,7 +22,7 @@ public class DateUtils extends DateUtil {
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmmss");
     public static final DateTimeFormatter TIME_FORMDAY = DateTimeFormatter.ofPattern("HH:mm:ss");
     public static final DateTimeFormatter YEAR_MONTH_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM");
-    public static final DateTimeFormatter SHORT_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyMMdd");
+    public static final DateTimeFormatter SHORT_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter SHORT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyMMddHHmmss");
     public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -37,7 +37,7 @@ public class DateUtils extends DateUtil {
     }
 
     /**
-     * yyMMdd
+     * yyyyMMdd
      */
     public static String getCurrentShortDateStr() {
         return LocalDate.now().format(SHORT_DATE_FORMATTER);

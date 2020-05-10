@@ -24,5 +24,46 @@
       a.remarks AS remarks,
       a.del_flag AS delFlag
   </sql>
+    <insert id="saveFile">
+        INSERT INTO sys_file (
+            id,
+            belong_name,
+            belong_type,
+            belong_status,
+            pre_path,
+            file_name,
+            file_url,
+            file_path,
+            type,
+            file_size,
+            file_suffix,
+            props,
+            create_by,
+            create_date,
+            update_by,
+            update_date,
+            tenant_id
+            )
+            VALUES
+                (
+            #{id},
+            #{belongName},
+            #{belongType},
+            #{belongStatus},
+            #{prePath},
+            #{fileName},
+            #{fileUrl},
+            #{filePath},
+            #{type},
+            #{fileSize},
+            #{fileSuffix},
+            #{props},
+            #{createBy},
+            #{createDate},
+            #{updateBy},
+            #{updateDate},
+            #{tenantId}
+                );
+    </insert>
 
 </mapper>

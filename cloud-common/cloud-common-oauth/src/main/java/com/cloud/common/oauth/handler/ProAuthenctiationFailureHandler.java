@@ -3,6 +3,7 @@ package com.cloud.common.oauth.handler;
 
 
 import com.alibaba.fastjson.JSON;
+import com.cloud.common.data.exception.BaseException;
 import com.cloud.common.oauth.exception.ValidateCodeException;
 import com.cloud.common.data.base.Result;
 import com.cloud.common.data.enums.ResultEnum;
@@ -42,7 +43,13 @@ public class ProAuthenctiationFailureHandler extends SimpleUrlAuthenticationFail
 			response.getWriter().write(JSON.toJSONString(Result.error(ResultEnum.LOGIN_PASSWORD)));
 		} else {
 			log.info("异常信息:", exception.getMessage(), exception);
-			response.getWriter().write(JSON.toJSONString(Result.error("登录失败")));
+			Throwable cause = exception.getCause();
+			if (cause instanceof BaseException){
+				response.getWriter().write(JSON.toJSONString(Result.error(((BaseException) cause).getCode(),cause.getMessage())));
+			} else {
+				response.getWriter().write(JSON.toJSONString(Result.error("登录失败")));
+			}
+
 		}
 
 

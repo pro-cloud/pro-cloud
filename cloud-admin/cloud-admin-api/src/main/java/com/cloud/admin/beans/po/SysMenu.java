@@ -30,9 +30,11 @@ public class SysMenu extends TenantTreeEntity<SysMenu> {
     private String type;
 
     @ApiModelProperty(value = "目标")
+    @TableField(fill = FieldFill.UPDATE)
     private String target;
 
     @ApiModelProperty(value = "图标")
+    @TableField(fill = FieldFill.UPDATE)
     private String icon;
 
     @ApiModelProperty(value = "是否在菜单中显示")
@@ -40,6 +42,7 @@ public class SysMenu extends TenantTreeEntity<SysMenu> {
     private Integer hasShow;
 
     @ApiModelProperty(value = "权限标识")
+    @TableField(fill = FieldFill.UPDATE)
     private String permission;
 
 }

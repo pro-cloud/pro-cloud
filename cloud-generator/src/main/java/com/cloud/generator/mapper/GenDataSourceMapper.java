@@ -1,7 +1,6 @@
 package com.cloud.generator.mapper;
 
 import com.cloud.common.data.base.ProMapper;
-import com.cloud.generator.beans.po.GenDataSource;
 import com.cloud.generator.entity.GenDataSource;
 
 /**

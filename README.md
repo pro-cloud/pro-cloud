@@ -26,8 +26,7 @@ mybatisplus的使用,大大的节省了开发的工作量,让代码更易维护 
 [gitee项目地址链接](https://gitee.com/gitsc/pro-cloud)  
 [github项目地址链接](https://github.com/pro-cloud/pro-cloud)
 #### 相关工程
-后台管理前端工程layui（pro-layui）：[码云地址](https://gitee.com/gitsc/pro-layui)  
-后台管理前端工程vue-element-admin（pro-ui 待支持）：[码云地址](https://gitee.com/gitsc/pro-ui)  
+后台管理前端vue工程（pro-ui 待支持）：[码云地址](https://gitee.com/gitsc/pro-ui)  
 
 #### 文档
 详细请参考: [pro-cloud技术文档](http://doc.eduvipx.cn)

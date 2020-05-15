@@ -1,7 +1,7 @@
 package com.cloud.generator.config;
 
 
-import com.cloud.generator.util.DynamicDataSourceContextHolder;
+import com.cloud.generator.util.DynamicDataSourceHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
@@ -20,6 +20,6 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 	 */
 	@Override
 	protected Object determineCurrentLookupKey() {
-		return DynamicDataSourceContextHolder.getDataSourceType();
+		return DynamicDataSourceHolder.getDataSourceType();
 	}
 }

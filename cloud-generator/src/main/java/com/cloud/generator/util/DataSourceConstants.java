@@ -12,7 +12,7 @@ public class DataSourceConstants {
 	/**
 	 * 查询数据源的SQL
 	 */
-	public static final String QUERY_DS_SQL = "select * from gen_data_source_conf where del_flag = 0";
+	public static final String QUERY_DATA_SOURCE = "select * from gen_data_source where del_flag = 0";
 
 	/**
 	 * 动态路由KEY

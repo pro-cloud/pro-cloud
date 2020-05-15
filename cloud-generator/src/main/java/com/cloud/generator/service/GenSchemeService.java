@@ -11,4 +11,6 @@ import com.cloud.generator.entity.GenScheme;
  */
 public interface GenSchemeService extends IProService<GenScheme> {
 
+
+
 }

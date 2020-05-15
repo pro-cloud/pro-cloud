@@ -1,14 +1,20 @@
 package com.cloud.generator.controller;
 
+import cn.hutool.core.io.IoUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.common.data.base.Result;
+import com.cloud.common.data.util.ServletUtil;
 import com.cloud.generator.entity.GenScheme;
 import com.cloud.generator.service.GenSchemeService;
+import com.google.common.net.HttpHeaders;
+import lombok.SneakyThrows;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**
@@ -81,5 +87,27 @@ public class GenSchemeController {
     public Result removeById(@PathVariable Long id) {
         return Result.success(genSchemeService.removeById(id));
     }
+
+
+
+    /**
+     * 生成代码
+     * @param id 生成代码
+     * @return Result
+     */
+    @SneakyThrows
+    @PostMapping("/generator/{id}")
+    @PreAuthorize("@pms.hasPermission('generator_genscheme_add')")
+    public void  generator(@PathVariable("id") Long id) {
+        GenScheme byId = genSchemeService.getById(id);
+        HttpServletResponse response = ServletUtil.getResponse();
+        response.reset();
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment; filename=%s.zip", byId.getTableName()));
+        response.setContentType("application/octet-stream; charset=UTF-8");
+
+        IoUtil.write(response.getOutputStream(), Boolean.TRUE, null);
+
+    }
+
 
 }

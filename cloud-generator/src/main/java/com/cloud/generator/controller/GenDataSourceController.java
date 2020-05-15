@@ -25,6 +25,20 @@ public class GenDataSourceController {
     @Autowired
     private GenDataSourceService genDataSourceService;
 
+
+    /**
+     * 通过id查询生成代码数据源
+     * @param id id
+     * @return Result
+     */
+    @GetMapping("/init")
+    @PreAuthorize("@pms.hasPermission('generator_gendatasource_view')")
+    public Result dataSourceInit(@PathVariable("id") Long id) {
+
+        return Result.success(genDataSourceService.getById(id));
+    }
+
+
     /**
      * 分页查询
      * @param page 分页对象

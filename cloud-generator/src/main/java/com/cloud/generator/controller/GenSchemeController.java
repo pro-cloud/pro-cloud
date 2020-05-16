@@ -104,7 +104,7 @@ public class GenSchemeController {
      */
     @SneakyThrows
     @GetMapping("/generator/{id}")
-//    @PreAuthorize("@pms.hasPermission('generator_genscheme_add')")
+    @PreAuthorize("@pms.hasPermission('generator_genscheme_add')")
     public void  generator(@PathVariable("id") Long id) {
         GenScheme byId = genSchemeService.getById(id);
         DynamicDataSourceHolder.setDataSourceType(Long.toString(byId.getSourceId()));

@@ -1,7 +1,5 @@
 package com.cloud.generator.util;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.CharsetUtil;
@@ -11,13 +9,11 @@ import com.cloud.common.util.util.CollUtils;
 import com.cloud.generator.dto.TableColumnDTO;
 import com.cloud.generator.entity.GenScheme;
 import com.cloud.generator.entity.TableColumn;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import freemarker.template.Template;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.io.ClassPathResource;
@@ -159,7 +155,7 @@ public class GenUtils {
 		}
 
 		if (template.contains(INDEX_VUE_FTL)) {
-			return webPath  +"views"+ File.separator  +moduleName+ File.separator  + "inde.vue";
+			return webPath  +"views"+ File.separator  +moduleName+ File.separator  + "index.vue";
 		}
 
 		return null;

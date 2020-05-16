@@ -20,9 +20,9 @@
                                     <#if column.lowerAttrName != "remarks" >
                                         <#if column.lowerAttrName != "delFlag" >
                                             <#if 0 != column.columnName?index_of("is_")>
-              <el-table-column prop="${column.lowerAttrName}" align="center" label="${column.comments}"  />
+            <el-table-column prop="${column.lowerAttrName}" align="center" label="${column.comments}"  />
                                             <#else>
-              <el-table-column prop="has${column.lowerAttrName?substring(2)}" align="center" label="${column.comments}"  />
+            <el-table-column prop="has${column.lowerAttrName?substring(2)}" align="center" label="${column.comments}"  />
                                             </#if>
                                         </#if>
                                     </#if>
@@ -60,27 +60,27 @@
         <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
             <el-form ref="form" :model="form" :rules="rules" label-width="80px">
                 <el-row>
-
-                <#list columns as column>
-                    <#if column.lowerAttrName != "id" >
-                        <#if column.lowerAttrName != "createBy" >
-                            <#if column.lowerAttrName != "createDate" >
-                                <#if column.lowerAttrName != "updateBy" >
-                                    <#if column.lowerAttrName != "updateDate" >
-                                        <#if column.lowerAttrName != "remarks" >
-                                            <#if column.lowerAttrName != "delFlag" >
-                                                <#if 0 != column.columnName?index_of("is_")>
-                <el-col :span="12">
-                    <el-form-item label="${column.comments}" prop="${column.lowerAttrName}">
-                        <el-input v-model="form.${column.lowerAttrName}" placeholder="请输入${column.comments}" />
-                    </el-form-item>
-                </el-col>
-                                                <#else>
-                <el-col :span="12">
-                    <el-form-item label="${column.comments}" prop="has${column.lowerAttrName?substring(2)}">
-                        <el-input v-model="form.has${column.lowerAttrName?substring(2)}" placeholder="请输入${column.comments}" />
-                    </el-form-item>
-                </el-col>
+                    <#list columns as column>
+                        <#if column.lowerAttrName != "id" >
+                            <#if column.lowerAttrName != "createBy" >
+                                <#if column.lowerAttrName != "createDate" >
+                                    <#if column.lowerAttrName != "updateBy" >
+                                        <#if column.lowerAttrName != "updateDate" >
+                                            <#if column.lowerAttrName != "remarks" >
+                                                <#if column.lowerAttrName != "delFlag" >
+                                                    <#if 0 != column.columnName?index_of("is_")>
+                    <el-col :span="12">
+                        <el-form-item label="${column.comments}" prop="${column.lowerAttrName}">
+                            <el-input v-model="form.${column.lowerAttrName}" placeholder="请输入${column.comments}" />
+                        </el-form-item>
+                    </el-col>
+                                                    <#else>
+                    <el-col :span="12">
+                        <el-form-item label="${column.comments}" prop="has${column.lowerAttrName?substring(2)}">
+                            <el-input v-model="form.has${column.lowerAttrName?substring(2)}" placeholder="请输入${column.comments}" />
+                        </el-form-item>
+                    </el-col>
+                                                    </#if>
                                                 </#if>
                                             </#if>
                                         </#if>
@@ -88,8 +88,8 @@
                                 </#if>
                             </#if>
                         </#if>
-                    </#if>
-                </#list>
+                    </#list>
+                </el-row>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="submitForm">确 定</el-button>

@@ -7,9 +7,10 @@
 
     <select id="getTableColumnList" resultType="com.cloud.generator.entity.TableColumn">
         SELECT
-            a.COLUMN_NAME AS name,
+            a.COLUMN_NAME AS columnName,
             a.COLUMN_COMMENT AS comments,
-            a.COLUMN_TYPE AS jdbcType
+            a.COLUMN_TYPE AS jdbcType,
+            a.DATA_TYPE AS dataType
         FROM
             information_schema.`COLUMNS` a
             WHERE a.TABLE_SCHEMA = (select database())
@@ -18,6 +19,13 @@
             a.ORDINAL_POSITION
 
     </select>
+
+    <select id="queryTableInfo" resultType="string">
+		select
+		 table_comment  as comments
+		from information_schema.tables
+		where table_schema = (select database()) and table_name = #{tableName}
+	</select>
 
 
 </mapper>

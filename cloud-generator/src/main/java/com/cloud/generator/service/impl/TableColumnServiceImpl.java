@@ -30,4 +30,15 @@ public class TableColumnServiceImpl extends ServiceImpl<TableColumnMapper, Table
     public List<TableColumn> getTableColumnList(String tableName) {
         return tableColumnMapper.getTableColumnList(tableName);
     }
+
+    /**
+     * 查询表备注信息
+     *
+     * @param tableName
+     * @return
+     */
+    @Override
+    public String queryTableInfo(String tableName) {
+        return tableColumnMapper.queryTableInfo(tableName);
+    }
 }

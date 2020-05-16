@@ -15,16 +15,21 @@ public class TableColumn implements Serializable {
     /**
      * 字段名称
      */
-    private String name;
+    private String columnName;
 
     /**
      * 字段备注
      */
-    private String comment;
+    private String comments;
 
     /**
      * 字段类型
      */
     private String jdbcType;
+
+    /**
+     * 数据类型
+     */
+    private String dataType;
 
 }

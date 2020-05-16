@@ -25,6 +25,7 @@ public class GenScheme extends BaseEntity<GenScheme> {
 
     @ApiModelProperty(value = "作者名")
     private String author;
+
     @ApiModelProperty(value = "表名")
     private String tableName;
 
@@ -38,7 +39,7 @@ public class GenScheme extends BaseEntity<GenScheme> {
     private String moduleName;
 
     @ApiModelProperty(value = "生成功能名 也为实体名")
-    private String functionName;
+    private String className;
 
 
 }

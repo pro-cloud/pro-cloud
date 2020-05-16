@@ -11,7 +11,7 @@
       a.category AS category,
       a.package_name AS packageName,
       a.module_name AS moduleName,
-      a.function_name AS functionName,
+      a.class_name AS className,
       a.create_by AS createBy,
       a.create_date AS createDate,
       a.update_by AS updateBy,

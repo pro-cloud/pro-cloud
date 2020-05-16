@@ -20,4 +20,11 @@ public interface TableColumnMapper extends BaseMapper<TableColumn> {
      */
     List<TableColumn> getTableColumnList(String tableName);
 
+    /**
+     * 查询表备注信息
+     * @param tableName
+     * @return
+     */
+    String queryTableInfo(String tableName);
+
 }

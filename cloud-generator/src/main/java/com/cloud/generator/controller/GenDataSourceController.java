@@ -3,8 +3,10 @@ package com.cloud.generator.controller;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.common.data.base.Result;
+import com.cloud.generator.config.DynamicDataSourceConfig;
 import com.cloud.generator.entity.GenDataSource;
 import com.cloud.generator.service.GenDataSourceService;
+import lombok.SneakyThrows;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +27,20 @@ public class GenDataSourceController {
     @Autowired
     private GenDataSourceService genDataSourceService;
 
+    @Autowired
+    private DynamicDataSourceConfig dynamicDataSourceConfig;
+
 
     /**
      * 通过id查询生成代码数据源
-     * @param id id
      * @return Result
      */
+    @SneakyThrows
     @GetMapping("/init")
     @PreAuthorize("@pms.hasPermission('generator_gendatasource_view')")
-    public Result dataSourceInit(@PathVariable("id") Long id) {
-
-        return Result.success(genDataSourceService.getById(id));
+    public Result dataSourceInit() {
+        dynamicDataSourceConfig.reload();
+        return Result.success(null);
     }
 
 

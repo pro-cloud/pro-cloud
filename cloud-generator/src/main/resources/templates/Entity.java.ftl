@@ -6,9 +6,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-<#if  hasBigDecimal == true >
-import java.math.BigDecimal;
-</#if>
 <#list columns as column>
     <#if 0 == column.columnName?index_of("is_")>
 import com.baomidou.mybatisplus.annotation.TableField;

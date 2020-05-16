@@ -1,21 +1,29 @@
 package com.cloud.generator.controller;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.common.data.base.Result;
-import com.cloud.common.data.util.ServletUtil;
+import com.cloud.common.data.exception.BaseException;
+import com.cloud.common.data.util.FileDownUtil;
 import com.cloud.generator.entity.GenScheme;
+import com.cloud.generator.entity.TableColumn;
 import com.cloud.generator.service.GenSchemeService;
-import com.google.common.net.HttpHeaders;
+import com.cloud.generator.service.TableColumnService;
+import com.cloud.generator.util.DynamicDataSourceHolder;
+import com.cloud.generator.util.GenUtils;
 import lombok.SneakyThrows;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.ByteArrayOutputStream;
+import java.util.List;
+import java.util.zip.ZipOutputStream;
 
 /**
  * 生成代码
@@ -30,6 +38,8 @@ public class GenSchemeController {
 
     @Autowired
     private GenSchemeService genSchemeService;
+    @Autowired
+    private TableColumnService tableColumnService;
 
     /**
      * 分页查询
@@ -88,25 +98,40 @@ public class GenSchemeController {
         return Result.success(genSchemeService.removeById(id));
     }
 
-
-
     /**
-     * 生成代码
-     * @param id 生成代码
-     * @return Result
+     *  生成代码
+     * @param id
      */
     @SneakyThrows
-    @PostMapping("/generator/{id}")
-    @PreAuthorize("@pms.hasPermission('generator_genscheme_add')")
+    @GetMapping("/generator/{id}")
+//    @PreAuthorize("@pms.hasPermission('generator_genscheme_add')")
     public void  generator(@PathVariable("id") Long id) {
         GenScheme byId = genSchemeService.getById(id);
-        HttpServletResponse response = ServletUtil.getResponse();
-        response.reset();
-        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment; filename=%s.zip", byId.getTableName()));
-        response.setContentType("application/octet-stream; charset=UTF-8");
+        DynamicDataSourceHolder.setDataSourceType(Long.toString(byId.getSourceId()));
+        List<TableColumn> tableColumnList = tableColumnService.getTableColumnList(byId.getTableName());
 
-        IoUtil.write(response.getOutputStream(), Boolean.TRUE, null);
+        // 获取表信息
+        if (StrUtil.isBlank(byId.getRemarks())) {
+            String tableComment = tableColumnService.queryTableInfo(byId.getTableName());
+            byId.setRemarks(tableComment);
+        }
+        if (StrUtil.isBlank(byId.getClassName())) {
+            String tableName = byId.getTableName();
+            byId.setClassName(StrUtil.toCamelCase(tableName));
+        }
 
+        DynamicDataSourceHolder.clearDataSourceType();
+        if (CollUtil.isEmpty(tableColumnList)) {
+            throw new BaseException("请输入争取表名");
+        }
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        ZipOutputStream zip = new ZipOutputStream(out);
+
+        // 生成代码
+        GenUtils.generatorCode(byId, tableColumnList, zip);
+        IoUtil.close(zip);
+
+        FileDownUtil.write( byId.getTableName()+".zip", out.toByteArray());
     }
 
 

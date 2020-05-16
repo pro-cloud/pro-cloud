@@ -1,19 +1,23 @@
 package com.cloud.generator.util;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.StrUtil;
 
+import com.cloud.generator.dto.TableColumnDTO;
 import com.cloud.generator.entity.GenScheme;
 import com.cloud.generator.entity.TableColumn;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import freemarker.template.Template;
+import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
@@ -55,16 +59,28 @@ public class GenUtils {
 	/**
 	 * 生成代码
 	 */
-	public static void generatorCode(GenScheme genScheme, List<TableColumn> tableColumns, ZipOutputStream zip) throws Exception {
+	@SneakyThrows
+	public static void generatorCode(GenScheme genScheme, List<TableColumn> tableColumns, ZipOutputStream zip){
 
+		List<TableColumnDTO> tableDTOs = Lists.newArrayList();
+		// 拷贝 属性
+		BeanUtil.copyProperties(tableColumns, tableDTOs);
+		Configuration config = getConfig();
+		tableDTOs.stream().forEach(column -> {
+			column.setLowerAttrName(StrUtil.lowerFirst(StrUtil.toCamelCase(column.getColumnName())));
+			column.setAttrType(config.getString(column.getDataType()));
+		});
 		//封装模板数据
-		Map<String, Object> map = new HashMap<>(16);
+		Map<String, Object> map = Maps.newHashMap();
+		map.put("author", genScheme.getAuthor());
 		map.put("tableName", genScheme.getTableName());
-//		map.put("className", genScheme.getCaseClassName());
-//		map.put("classname", genScheme.getLowerClassName());
-//		map.put("pathName", genScheme.getLowerClassName().toLowerCase());
-//		map.put("columns", tableEntity.getColumns());
-//		map.put("hasBigDecimal", hasBigDecimal);
+		map.put("comments", genScheme.getRemarks());
+		map.put("moduleName", genScheme.getModuleName());
+		map.put("className", StrUtil.upperFirst(genScheme.getClassName()));
+		map.put("classname", StrUtil.lowerFirst(genScheme.getClassName()));
+		map.put("pathName", genScheme.getClassName().toLowerCase());
+		map.put("package", genScheme.getPackageName());
+		map.put("columns", tableDTOs);
 		map.put("datetime", DateUtil.now());
 
 		//获取模板列表
@@ -82,30 +98,12 @@ public class GenUtils {
 
             //添加到zip
             zip.putNextEntry(new ZipEntry(Objects
-                    .requireNonNull(getFileName(template, genScheme.getFunctionName()
+                    .requireNonNull(getFileName(template, genScheme.getClassName()
                             , genScheme.getPackageName(), genScheme.getModuleName()))));
             IoUtil.write(zip, CharsetUtil.UTF_8, false, content);
             zip.closeEntry();
 
 		}
-	}
-
-
-	/**
-	 * 列名转换成Java属性名
-	 */
-	private String columnToJava(String columnName) {
-		return WordUtils.capitalizeFully(columnName, new char[]{'_'}).replace("_", "");
-	}
-
-	/**
-	 * 表名转换成Java类名
-	 */
-	private String tableToJava(String tableName, String tablePrefix) {
-		if (StringUtils.isNotBlank(tablePrefix)) {
-			tableName = tableName.replaceFirst(tablePrefix, "");
-		}
-		return columnToJava(tableName);
 	}
 
 
@@ -144,4 +142,13 @@ public class GenUtils {
 
 		return null;
 	}
+
+	/**
+	 * 获取配置信息
+	 */
+	@SneakyThrows
+	private Configuration getConfig(){
+		return new PropertiesConfiguration("generator.properties");
+	}
+
 }

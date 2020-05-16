@@ -59,6 +59,8 @@
         <!-- 添加或修改对话框 -->
         <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
             <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+                <el-row>
+
                 <#list columns as column>
                     <#if column.lowerAttrName != "id" >
                         <#if column.lowerAttrName != "createBy" >
@@ -68,13 +70,17 @@
                                         <#if column.lowerAttrName != "remarks" >
                                             <#if column.lowerAttrName != "delFlag" >
                                                 <#if 0 != column.columnName?index_of("is_")>
-                <el-form-item label="${column.comments}" prop="${column.lowerAttrName}">
-                    <el-input v-model="form.${column.lowerAttrName}" placeholder="请输入${column.comments}" />
-                </el-form-item>
+                <el-col :span="12">
+                    <el-form-item label="${column.comments}" prop="${column.lowerAttrName}">
+                        <el-input v-model="form.${column.lowerAttrName}" placeholder="请输入${column.comments}" />
+                    </el-form-item>
+                </el-col>
                                                 <#else>
-                <el-form-item label="${column.comments}" prop="has${column.lowerAttrName?substring(2)}">
-                    <el-input v-model="form.has${column.lowerAttrName?substring(2)}" placeholder="请输入${column.comments}" />
-                </el-form-item>
+                <el-col :span="12">
+                    <el-form-item label="${column.comments}" prop="has${column.lowerAttrName?substring(2)}">
+                        <el-input v-model="form.has${column.lowerAttrName?substring(2)}" placeholder="请输入${column.comments}" />
+                    </el-form-item>
+                </el-col>
                                                 </#if>
                                             </#if>
                                         </#if>
@@ -124,7 +130,7 @@
                 // 表单校验
                 rules: {
                     // name: [
-                    //     { required: true, message: '角色名称不能为空', trigger: 'blur' }
+                    //     { required: true, message: '名称不能为空', trigger: 'blur' }
                     // ],
                 }
             }

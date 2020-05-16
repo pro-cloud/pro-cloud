@@ -1,11 +1,13 @@
 package com.cloud.generator.util;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.StrUtil;
 
+import com.cloud.common.util.util.CollUtils;
 import com.cloud.generator.dto.TableColumnDTO;
 import com.cloud.generator.entity.GenScheme;
 import com.cloud.generator.entity.TableColumn;
@@ -67,11 +69,12 @@ public class GenUtils {
 	 */
 	@SneakyThrows
 	public static void generatorCode(GenScheme genScheme, List<TableColumn> tableColumns, ZipOutputStream zip){
-
-		List<TableColumnDTO> tableDTOs = Lists.newArrayList();
 		// 拷贝 属性
-		BeanUtil.copyProperties(tableColumns, tableDTOs);
+		List<TableColumnDTO> tableDTOs = CollUtils.copyListProperties(tableColumns, TableColumnDTO.class);
+
+		// 读取配置文件
 		Configuration config = getConfig();
+
 		tableDTOs.stream().forEach(column -> {
 			column.setLowerAttrName(StrUtil.lowerFirst(StrUtil.toCamelCase(column.getColumnName())));
 			column.setAttrType(config.getString(column.getDataType()));

@@ -150,8 +150,8 @@ public class OssController {
 		}
 		byte[] bytes = FileOssDownUtil.writeZip(urls);
 		try {
-			FileDownUtil.write(response, fileName, bytes);
-		} catch (IOException e) {
+			FileDownUtil.write(fileName, bytes);
+		} catch (Exception e) {
 			log.info("出现异常！");
 			throw new BaseException("出现异常！");
 		}

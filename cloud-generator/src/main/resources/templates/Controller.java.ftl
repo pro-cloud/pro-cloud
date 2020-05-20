@@ -1,6 +1,6 @@
 package ${package}.${moduleName}.controller;
 
-import com.cloud.common.util.base.Result;
+import com.cloud.common.data.base.Result;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import ${package}.${moduleName}.beans.po.${className};
@@ -40,13 +40,13 @@ public class ${className}Controller {
 
     /**
      * 通过id查询${comments}
-     * @param ${pk.lowerAttrName} id
+     * @param id id
      * @return Result
      */
-    @GetMapping("/{${pk.lowerAttrName}}")
+    @GetMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_view')")
-    public Result getById(@PathVariable("${pk.lowerAttrName}") ${pk.attrType} ${pk.lowerAttrName}) {
-        return Result.success(${classname}Service.getById(${pk.lowerAttrName}));
+    public Result getById(@PathVariable("id") Long id) {
+        return Result.success(${classname}Service.getById(id));
     }
 
     /**
@@ -73,13 +73,13 @@ public class ${className}Controller {
 
     /**
      * 通过id删除${comments}
-     * @param ${pk.lowerAttrName} id
+     * @param id id
      * @return Result
      */
-    @DeleteMapping("/{${pk.lowerAttrName}}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_del')")
-    public Result removeById(@PathVariable ${pk.attrType} ${pk.lowerAttrName}) {
-        return Result.success(${classname}Service.removeById(${pk.lowerAttrName}));
+    public Result removeById(@PathVariable Long id) {
+        return Result.success(${classname}Service.removeById(id));
     }
 
 }

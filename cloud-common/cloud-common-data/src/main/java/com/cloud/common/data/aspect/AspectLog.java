@@ -10,6 +10,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
@@ -21,16 +22,17 @@ import java.util.Arrays;
 @Aspect
 @AllArgsConstructor
 @Slf4j
+@Component
 public class AspectLog {
 
     private final SystemService systemService;
 
-//    @Pointcut("execution (* com.cloud..service.impl.*Impl.*(..))")
+    @Pointcut("execution (* com.cloud.*.service.impl.*Impl.*(..))")
     private void pointcut() {
     }
 
     @SneakyThrows
-//    @Around("pointcut()")
+    @Around("pointcut()")
     public Object saveSysLog(ProceedingJoinPoint point) {
 
         SysLog sysLog = new SysLog();

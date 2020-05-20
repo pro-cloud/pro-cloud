@@ -1,10 +1,9 @@
 package com.cloud.common.data.aspect;
 
 
-import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.common.data.annotation.AdminLog;
 import com.cloud.common.data.entity.SysLog;
-import com.cloud.common.data.user.SystemService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +22,6 @@ import org.aspectj.lang.annotation.Aspect;
 @Slf4j
 public class AspectAdminLog {
 
-	private final SystemService systemService;
 
 	@SneakyThrows
 	@Around("@annotation(adminLog)")
@@ -34,18 +32,8 @@ public class AspectAdminLog {
 			// 注解上的描述
 			sysLog.setOperation(adminLog.value());
 		}
-		// 请求的参数
-		Object[] args = point.getArgs();
-		String params = JSONUtil.toJsonStr(args[0]);
-		sysLog.setContent(params);
-
-		sysLog.setUserId(systemService.getUserId());
-		Long startTime = System.currentTimeMillis();
 		Object obj = point.proceed();
-		Long endTime = System.currentTimeMillis();
-		sysLog.setTime(endTime - startTime);
-		sysLog.setResult(JSONUtil.toJsonStr(obj));
-		log.info("切面日志:{}", JSONUtil.toJsonStr(sysLog));
+		log.info("切面日志:{}", JSONObject.toJSONString(sysLog));
 		return obj;
 	}
 

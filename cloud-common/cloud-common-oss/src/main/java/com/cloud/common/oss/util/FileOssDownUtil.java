@@ -3,10 +3,10 @@ package com.cloud.common.oss.util;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.URLUtil;
-import cn.hutool.extra.spring.SpringUtil;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.model.GetObjectRequest;
 import com.aliyun.oss.model.OSSObject;
+import com.cloud.common.data.util.SpringUtil;
 import com.cloud.common.oss.props.OssProps;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ import java.util.zip.ZipOutputStream;
 @UtilityClass
 public class FileOssDownUtil {
 
-    private static OssProps ossProps = SpringUtil.getBean(OssProps.class);
+    private static OssProps ossProps = SpringUtil.getBean("ossProps");
 
     private static OSS ossInnerClient = SpringUtil.getBean("ossInnerClient");
 

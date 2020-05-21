@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 @Data
 @Configuration
 @RefreshScope
-@Component
 @ConfigurationProperties(prefix = "aliyun.oss")
 public class OssProps {
 

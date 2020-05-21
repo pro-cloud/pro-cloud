@@ -18,7 +18,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableProSecurtity
 @EnableProOss
 @EnableFeignClients(basePackages ="com.cloud.admin.api")
-@ComponentScan({"com.cloud.admin", "com.cloud.oss"})
+@ComponentScan({"com.cloud.admin"})
 public class CloudOssApplication {
 
     public static void main(String[] args) {

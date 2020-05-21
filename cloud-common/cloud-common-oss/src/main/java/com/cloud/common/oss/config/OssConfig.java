@@ -4,7 +4,7 @@ import com.aliyun.oss.ClientBuilderConfiguration;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.cloud.common.oss.props.OssProps;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,15 +15,12 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2019/8/19
  */
 @Configuration
+@AllArgsConstructor
 @EnableConfigurationProperties(OssProps.class)
 public class OssConfig {
 
     private final OssProps ossProps;
 
-    @Autowired
-    public OssConfig(OssProps ossProps) {
-        this.ossProps = ossProps;
-    }
 
     @Bean
     public OSS ossInnerClient() {

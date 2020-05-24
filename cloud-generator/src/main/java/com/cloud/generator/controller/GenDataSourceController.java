@@ -45,6 +45,16 @@ public class GenDataSourceController {
 
 
     /**
+     * 查询 所有数据源
+     * @return
+     */
+    @GetMapping("/listALL")
+    public Result getGenDataSourceAll() {
+        return Result.success(genDataSourceService.list());
+    }
+
+
+    /**
      * 分页查询
      * @param page 分页对象
      * @param genDataSource 生成代码数据源

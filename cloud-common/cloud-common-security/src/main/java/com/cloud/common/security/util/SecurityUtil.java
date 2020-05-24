@@ -1,15 +1,18 @@
 package com.cloud.common.security.util;
 
 import com.cloud.common.security.component.SecurityUser;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import sun.rmi.runtime.Log;
 
 /**
  * @Author Aijm
  * @Description 根据SecurityContext 获取信息
  * @Date 2020/3/26
  */
+@Slf4j
 public class SecurityUtil {
 
 
@@ -55,7 +58,12 @@ public class SecurityUtil {
      * @return
      */
     public static Long getUserId(){
-        return getSecurityUser().getUserId();
+        try {
+            return getSecurityUser().getUserId();
+        } catch (Exception e) {
+            log.info("没有登录", e);
+        }
+        return 0L;
     }
 
 

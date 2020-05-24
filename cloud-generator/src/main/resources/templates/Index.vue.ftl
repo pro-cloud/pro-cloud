@@ -159,6 +159,27 @@
             // 表单重置
             reset() {
                 this.form = {
+                    <#list columns as column>
+                    <#if column.lowerAttrName != "id" >
+                    <#if column.lowerAttrName != "createBy" >
+                    <#if column.lowerAttrName != "createDate" >
+                    <#if column.lowerAttrName != "updateBy" >
+                    <#if column.lowerAttrName != "updateDate" >
+                    <#if column.lowerAttrName != "remarks" >
+                    <#if column.lowerAttrName != "delFlag" >
+                    <#if 0 != column.columnName?index_of("is_")>
+                        ${column.lowerAttrName}: undefined,
+                    <#else>
+                        has${column.lowerAttrName?substring(2)} :undefined,
+                    </#if>
+                    </#if>
+                    </#if>
+                    </#if>
+                    </#if>
+                    </#if>
+                    </#if>
+                    </#if>
+                    </#list>
                 }
                 this.$nextTick(()=>{
                     this.$refs['form'].resetFields();

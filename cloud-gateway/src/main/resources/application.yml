@@ -18,6 +18,15 @@ spring:
         locator:
           lowerCaseServiceId: true
           enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            #这里有个allowCredentials: true这个东西是设置允许访问携带cookie的，这点一定要和前端对应！
+            allowCredentials: true
+            #可以填写多个域名用","隔开 例如：""  "*"代表允许所有
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: cloud-auth
           uri: lb://cloud-auth
@@ -44,6 +53,13 @@ spring:
           order: 8002
           predicates:
             - Path=/oss/**
+          filters:
+            - StripPrefix=1
+        - id: cloud-generator
+          uri: lb://cloud-generator
+          order: 8002
+          predicates:
+            - Path=/generator/**
           filters:
             - StripPrefix=1
 

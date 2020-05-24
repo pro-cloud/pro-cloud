@@ -38,7 +38,7 @@ public class SysMenu extends TenantTreeEntity<SysMenu> {
     private String icon;
 
     @ApiModelProperty(value = "是否在菜单中显示")
-    @TableField("is_show")
+    @TableField(value="is_show", fill = FieldFill.UPDATE)
     private Integer hasShow;
 
     @ApiModelProperty(value = "权限标识")

@@ -158,11 +158,11 @@
             },
             // 表单重置
             reset() {
-                this.$nextTick(()=>{
-                    this.$refs['form'].clearValidate();
-                 })
                 this.form = {
                 }
+                this.$nextTick(()=>{
+                    this.$refs['form'].resetFields();
+                })
             },
             /** 新增按钮操作 */
             handleAdd(row) {

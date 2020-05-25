@@ -46,4 +46,14 @@ public class LockKeys {
     /////////////////////////////////// 自定义key ////////////////////////////////
 
 
+    /**
+     * 注册或者修改用户信息锁
+     */
+    public static final String USER_ADD_UPDATE = "user:add_update";
+
+
+    public static final String TENTANT_ADD = "user:tentant";
+
+
+
 }

@@ -4,6 +4,7 @@ import com.cloud.common.data.base.BaseService;
 import com.cloud.admin.beans.po.SysTenant;
 import com.cloud.admin.mapper.SysTenantMapper;
 import com.cloud.admin.service.SysTenantService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,4 +16,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysTenantServiceImpl extends BaseService<SysTenantMapper, SysTenant> implements SysTenantService {
 
+    @Autowired
+    private SysTenantMapper sysTenantMapper;
+
+    /**
+     * 获取下一个租户id
+     *
+     * @return
+     */
+    @Override
+    public Integer getNextTenantId() {
+        Integer nextTenantId = sysTenantMapper.getNextTenantId();
+        if (nextTenantId == null) {
+            nextTenantId =  1;
+        }
+        return nextTenantId + 1;
+    }
 }

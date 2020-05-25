@@ -1,7 +1,7 @@
-package com.cloud.admin.mapper;
+package com.cloud.auth.mapper;
 
+import com.cloud.auth.entity.SysTenant;
 import com.cloud.common.data.base.ProMapper;
-import com.cloud.admin.beans.po.SysTenant;
 
 /**
  * 租户管理
@@ -11,10 +11,6 @@ import com.cloud.admin.beans.po.SysTenant;
  */
 public interface SysTenantMapper extends ProMapper<SysTenant> {
 
-    /**
-     * 获取下一个租户id
-     * @return
-     */
-    Integer getNextTenantId();
+
 
 }

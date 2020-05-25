@@ -1,7 +1,7 @@
-package com.cloud.admin.service;
+package com.cloud.auth.service;
 
+import com.cloud.auth.entity.SysTenant;
 import com.cloud.common.data.base.IProService;
-import com.cloud.admin.beans.po.SysTenant;
 
 /**
  * 租户管理
@@ -11,9 +11,5 @@ import com.cloud.admin.beans.po.SysTenant;
  */
 public interface SysTenantService extends IProService<SysTenant> {
 
-    /**
-     * 获取下一个租户id
-     * @return
-     */
-    Integer getNextTenantId();
+
 }

@@ -26,6 +26,7 @@ public enum ResultEnum {
     LOGIN_PASSWORD(307, "密码错误"),
     LOGIN_CODE(308, "验证码错误"),
     LOGOUT_CODE(309, "退出失败，token 为空"),
+    LOGIN_TENTANT(400, "租户不存在或者租户停用中"),
 
 
     // crud异常，4开头

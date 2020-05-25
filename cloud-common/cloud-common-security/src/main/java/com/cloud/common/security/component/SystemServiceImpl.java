@@ -2,6 +2,7 @@ package com.cloud.common.security.component;
 
 import com.cloud.common.data.user.SystemService;
 import com.cloud.common.security.util.SecurityUtil;
+import com.cloud.common.util.var.StaticVar;
 import org.springframework.stereotype.Service;
 /**
  * @Author Aijm
@@ -33,6 +34,6 @@ public class SystemServiceImpl implements SystemService {
         if (SecurityUtil.hasAuthenticated()) {
             return SecurityUtil.getTenantIds();
         }
-        return null;
+        return StaticVar.TENANT_ID_DEFAULT;
     }
 }

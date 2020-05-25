@@ -28,13 +28,13 @@ public class SysUserUtil extends SecurityUtil {
      * @return
      */
     public static List<SysMenu> getMenuList(Long userId) {
-        Object obj = RedisUtil.get(CacheScope.USER_MENU.getCacheName(), userId.toString());
-        if (obj == null) {
-            List<SysMenu> menuList = userService.getMenuList(userId).getData();
-            RedisUtil.putTime(CacheScope.USER_MENU.getCacheName(), Long.toString(userId), menuList);
-            return menuList;
+        List<SysMenu> menus = (List<SysMenu>)RedisUtil.get(CacheScope.USER_MENU.getCacheName(), userId.toString());
+        if (menus == null) {
+            menus = userService.getMenuList(userId).getData();
+            RedisUtil.put(CacheScope.USER_MENU.getCacheName(), Long.toString(userId), menus);
+            return menus;
         }
-        return (List<SysMenu>)obj;
+        return menus;
     }
 
     /**

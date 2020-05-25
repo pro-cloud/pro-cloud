@@ -141,7 +141,7 @@
         methods: {
             /** 查询列表 */
             getList() {
-                this.$store.dispatch('${moduleName}/${className}/findPage', this.queryParams)
+                this.$store.dispatch('${moduleName}/${classname}/findPage', this.queryParams)
                     .then((data) => {
                     this.dataList = data.records
                     this.total = data.total
@@ -193,7 +193,7 @@
             },
             /** 删除按钮操作 */
             handleDel(id) {
-                this.$store.dispatch('${moduleName}/${className}/delById', id).then(() => {
+                this.$store.dispatch('${moduleName}/${classname}/delById', id).then(() => {
                     this.getList()
                     this.msg('删除成功')
                 })
@@ -201,7 +201,7 @@
             /** 修改按钮操作 */
             handleUpdate(row) {
                 this.reset()
-                this.$store.dispatch('${moduleName}/${className}/getById', row.id)
+                this.$store.dispatch('${moduleName}/${classname}/getById', row.id)
                     .then((data) => {
                     this.form = data
                     this.open = true
@@ -215,13 +215,13 @@
                 this.$refs['form'].validate(valid => {
                     if (valid) {
                         if (this.form.id !== undefined) {
-                            this.$store.dispatch('${moduleName}/${className}/updateById', this.form).then(data => {
+                            this.$store.dispatch('${moduleName}/${classname}/updateById', this.form).then(data => {
                                 this.msg('修改成功')
                                 this.open = false
                                 this.getList()
                             })
                         } else {
-                            this.$store.dispatch('${moduleName}/${className}/saveData', this.form).then(res => {
+                            this.$store.dispatch('${moduleName}/${classname}/saveData', this.form).then(res => {
                                 this.msg('新增成功')
                                 this.open = false
                                 this.getList()

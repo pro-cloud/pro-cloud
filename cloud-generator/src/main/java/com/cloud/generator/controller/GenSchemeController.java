@@ -117,7 +117,7 @@ public class GenSchemeController {
         }
         if (StrUtil.isBlank(byId.getClassName())) {
             String tableName = byId.getTableName();
-            byId.setClassName(StrUtil.toCamelCase(tableName));
+            byId.setClassName(StrUtil.upperFirst(StrUtil.toCamelCase(tableName)));
         }
 
         DynamicDataSourceHolder.clearDataSourceType();

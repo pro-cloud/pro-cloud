@@ -104,7 +104,7 @@ public class GenSchemeController {
      */
     @SneakyThrows
     @GetMapping("/generator/{id}")
-    @PreAuthorize("@pms.hasPermission('generator_genscheme_add')")
+//    @PreAuthorize("@pms.hasPermission('generator_genscheme_add')")
     public void  generator(@PathVariable("id") Long id) {
         GenScheme byId = genSchemeService.getById(id);
         DynamicDataSourceHolder.setDataSourceType(Long.toString(byId.getSourceId()));
@@ -117,7 +117,7 @@ public class GenSchemeController {
         }
         if (StrUtil.isBlank(byId.getClassName())) {
             String tableName = byId.getTableName();
-            byId.setClassName(StrUtil.toCamelCase(tableName));
+            byId.setClassName(StrUtil.upperFirst(StrUtil.toCamelCase(tableName)));
         }
 
         DynamicDataSourceHolder.clearDataSourceType();

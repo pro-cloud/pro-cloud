@@ -40,10 +40,6 @@ public class FileOssUploadUtil {
     private static OSS ossInnerClient = SpringUtil.getBean("ossInnerClient");
 
 
-
-
-
-
     /**
      * 根据oss文件存储的路径获取到 外网访问地址
      *  默认过期时间很长

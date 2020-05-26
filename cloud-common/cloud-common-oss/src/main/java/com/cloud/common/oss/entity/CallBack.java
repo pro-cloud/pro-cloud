@@ -18,7 +18,7 @@ public class CallBack implements Serializable {
     /**
      * 租户id
      */
-    private Long tenantId;
+    private Integer tenantId;
     /**
      * 上传文件的用户id
      */

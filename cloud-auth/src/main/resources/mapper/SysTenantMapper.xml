@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloud.admin.mapper.SysTenantMapper">
+
+
+  <sql id="Base_Column_List">
+      a.id AS id,
+      a.company_name AS companyName,
+      a.login_name AS loginName,
+      a.password AS password,
+      a.user_name AS userName,
+      a.email AS email,
+      a.phone AS phone,
+      a.mobile AS mobile,
+      a.qq_num AS qqNum,
+      a.wx_num AS wxNum,
+      a.beg_date AS begDate,
+      a.end_date AS endDate,
+      a.status AS status,
+      a.create_by AS createBy,
+      a.create_date AS createDate,
+      a.update_by AS updateBy,
+      a.update_date AS updateDate,
+      a.remarks AS remarks,
+      a.del_flag AS delFlag,
+      a.tenant_id AS tenantId
+  </sql>
+
+
+</mapper>

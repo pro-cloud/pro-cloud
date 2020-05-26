@@ -35,11 +35,13 @@ public class AspectLog {
     @Around("pointcut()")
     public Object saveSysLog(ProceedingJoinPoint point) {
 
-        SysLog sysLog = new SysLog();
         // 请求的参数
         String params = Arrays.toString(point.getArgs());
-        sysLog.setContent(params);
-        sysLog.setUserId(systemService.getUserId());
+        SysLog sysLog = SysLog.builder()
+                .content(params)
+                .userId(systemService.getUserId())
+                .build();
+        // 处理时间
         Long startTime = System.currentTimeMillis();
         Object obj = point.proceed();
         Long endTime = System.currentTimeMillis();

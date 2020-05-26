@@ -2,6 +2,7 @@ package com.cloud.admin.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.admin.beans.dto.UserDTO;
 import com.cloud.admin.beans.po.SysUser;
@@ -16,6 +17,7 @@ import com.cloud.common.cache.annotation.CacheClear;
 import com.cloud.common.cache.annotation.CacheConf;
 import com.cloud.common.cache.constants.CacheScope;
 import com.cloud.common.data.base.BaseService;
+import com.cloud.common.util.util.StrUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,6 +65,25 @@ public class SysUserServiceImpl extends BaseService<SysUserMapper, SysUser> impl
         boolean save = save(userDTO);
         chealRole(userDTO);
         return save;
+    }
+
+    /**
+     * 校验是否可以修改或者注册
+     *
+     * @param userDTO
+     * @return
+     */
+    @Override
+    public boolean getCheckUserDTO(UserDTO userDTO) {
+        Integer count = sysUserMapper.selectCount(Wrappers.<SysUser>query()
+                .lambda()
+                .eq(SysUser::getLoginName, userDTO.getLoginName())
+                .or(StrUtils.isNotBlank(userDTO.getEmail()))
+                .eq(SysUser::getEmail, userDTO.getEmail())
+                .or(StrUtils.isNotBlank(userDTO.getMobile()))
+                .eq(SysUser::getMobile, userDTO.getMobile())
+        );
+        return count > 0? true : false;
     }
 
 

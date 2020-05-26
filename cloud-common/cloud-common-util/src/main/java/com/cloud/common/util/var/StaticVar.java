@@ -27,4 +27,10 @@ public class StaticVar {
      */
     public static final String TENANT_ID_DEFAULT = "0";
 
+
+    /**
+     * 没有登录用户id
+     */
+    public static final Long DEFAULT_USERID  = 0L;
+
 }

@@ -141,6 +141,22 @@ public class SysUserController {
     }
 
     /**
+     * 校验用户是否能注册获取修改
+     * @param userDTO
+     * @return
+     */
+    @PutMapping("/check")
+    @PreAuthorize("@pms.hasPermission('admin_sysuser_edit')")
+    public Result checkUser(@RequestBody @Valid UserDTO userDTO) {
+        // 查看是否注册过
+        if (sysUserService.getCheckUserDTO(userDTO)) {
+            return Result.error("登录名或者手机号或者密码已被注册!");
+        }
+        return Result.success("");
+    }
+
+
+    /**
      * 过滤不再权限内的角色信息
      * @param userDTO 传递的角色id
      * @return
@@ -168,6 +184,8 @@ public class SysUserController {
         userDTO.setRoleList(roleList);
 
     }
+
+
 
 
 }

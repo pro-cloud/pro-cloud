@@ -74,8 +74,13 @@ public enum CacheScope {
      /**
       * 存储字典tree信息 dict:tree:{type_code}
       */
-     DICT_TREE("dict:tree");
+     DICT_TREE("dict:tree"),
      // ---------------------------------     关于字典系统级别缓存key 结束     --------------------------------//
+
+     // ---------------------------------  租户缓存key ---------------------------
+     TENTANT_KEY("tentant");
+
+
      /**
       *  获取key
       */

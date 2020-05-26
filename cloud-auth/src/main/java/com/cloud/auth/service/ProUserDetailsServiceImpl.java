@@ -1,7 +1,6 @@
 package com.cloud.auth.service;
 
 
-import com.cloud.auth.constant.StatusVar;
 import com.cloud.auth.entity.SysUser;
 import com.cloud.common.data.enums.ResultEnum;
 import com.cloud.common.data.exception.BaseException;
@@ -35,10 +34,6 @@ public class ProUserDetailsServiceImpl implements ProUserDetailsService {
             log.info("{}手机号找不到注册用户", mobile);
             throw new BaseException(ResultEnum.LOGIN_NAME);
         }
-        if (StatusVar.STATUS_DOWN.intValue() == user.getStatus().intValue()) {
-            log.info("{}用户名被禁用", mobile);
-            throw new BaseException();
-        }
         return new SecurityUser(mobile, user.getPassword(), user.getId(),
                 user.getUserType(), user.getName(), String.valueOf(user.getTenantId()));
     }
@@ -50,10 +45,6 @@ public class ProUserDetailsServiceImpl implements ProUserDetailsService {
         if (user == null) {
             log.info("{}用户名找不到注册用户", username);
             throw new BaseException(ResultEnum.LOGIN_NAME);
-        }
-        if (StatusVar.STATUS_DOWN.intValue() == user.getStatus().intValue()) {
-            log.info("{}用户名被禁用", username);
-            throw new BaseException(ResultEnum.LOGIN_LOCK);
         }
         return new SecurityUser(username, user.getPassword(), user.getId(),
                 user.getUserType(), user.getName(), String.valueOf(user.getTenantId()));

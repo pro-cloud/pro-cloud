@@ -175,9 +175,9 @@ public class RedisDaoImpl extends AbstractBaseRedisDao<Object, Object> implement
 	}
 
 	@Override
-	public void hmSetIncrement(Object key, Object hashKey, Long value) {
+	public Long hmSetIncrement(Object key, Object hashKey, Long value) {
 		HashOperations<Object, Object, Object> hash = redisTemplate.opsForHash();
-		hash.increment(key, hashKey, value);
+		return hash.increment(key, hashKey, value);
 	}
 
 	@Override

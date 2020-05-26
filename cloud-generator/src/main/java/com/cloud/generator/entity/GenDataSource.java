@@ -24,13 +24,13 @@ public class GenDataSource extends BaseEntity<GenDataSource> {
     @ApiModelProperty(value = "名称")
     private String name;
 
-    @ApiModelProperty(value = "")
+    @ApiModelProperty(value = "连接jdbc:url")
     private String url;
 
-    @ApiModelProperty(value = "")
+    @ApiModelProperty(value = "登录用户名")
     private String username;
 
-    @ApiModelProperty(value = "")
+    @ApiModelProperty(value = "登录密码")
     private String password;
 
 

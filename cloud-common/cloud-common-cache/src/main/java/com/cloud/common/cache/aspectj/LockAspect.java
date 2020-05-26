@@ -3,7 +3,7 @@ package com.cloud.common.cache.aspectj;
 
 import com.cloud.common.cache.annotation.RedisLock;
 import com.cloud.common.cache.base.BaseCacheAspect;
-import com.cloud.common.cache.constants.LockKeys;
+import com.cloud.common.cache.constants.RedisKeys;
 import com.cloud.common.data.enums.ResultEnum;
 import com.cloud.common.data.exception.BaseException;
 import lombok.SneakyThrows;
@@ -43,7 +43,7 @@ public class LockAspect extends BaseCacheAspect {
         String key = getKey(point, redisLock);
         long timeOut = redisLock.timeOut();
         long time = TimeUnit.MILLISECONDS.convert(timeOut, redisLock.timeUnit());
-        StringBuilder sbr = new StringBuilder(LockKeys.LOCK_REDIS);
+        StringBuilder sbr = new StringBuilder(RedisKeys.LOCK_REDIS);
         sbr.append(":").append(redisLock.preKey());
         log.info("锁的前缀为:{}, key为:{}", sbr.toString(), key);
         RedisLockRegistry lock = new RedisLockRegistry(redisConnectionFactory, sbr.toString(), time);

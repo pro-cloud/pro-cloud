@@ -31,15 +31,9 @@ public class ProTenantHandler implements TenantHandler {
 	 */
 	@Override
 	public Expression getTenantId(boolean where) {
-		String tenantIds = TenantUtil.getCurrentTenant();
-		log.debug("当前租户的值为:{}", tenantIds);
-		if (where && StrUtils.containsIgnoreCase(tenantIds, StrUtils.COMMA)) {
-			return multipleTenantIdCondition(tenantIds);
-		} else {
-			String[] ids = StrUtils.split(tenantIds, StrUtils.COMMA);
-			tenantIds = ids[0];
-		}
-		return new LongValue(tenantIds);
+		String tenantId = TenantUtil.getCurrentTenant();
+		log.debug("当前租户的值为:{}", tenantId);
+		return new LongValue(tenantId);
 	}
 
 	/**
@@ -63,24 +57,5 @@ public class ProTenantHandler implements TenantHandler {
 	}
 
 
-	/**
-	 * 多租户时的处理
-	 * @param tenantIds
-	 * @return
-	 */
-	private Expression multipleTenantIdCondition(String tenantIds) {
-		final InExpression inExpression = new InExpression();
-		inExpression.setLeftExpression(new Column(getTenantIdColumn()));
-		final ExpressionList itemsList = new ExpressionList();
-		// 租户集合
-		String[] ids = StrUtils.split(tenantIds, StrUtils.COMMA);
-		List<Expression> inValues = new ArrayList<>(ids.length);
-		for (String tenantId: ids) {
-			inValues.add(new LongValue(tenantId));
-		}
-		itemsList.setExpressions(inValues);
-		inExpression.setRightItemsList(itemsList);
-		return inExpression;
-	}
 
 }

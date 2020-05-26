@@ -27,6 +27,14 @@ public class RedisUtil {
      * @param key
      * @return
      */
+    public static Long hmSetIncrement(String key, String hashKey, Long value) {
+        return redisDao.hmSetIncrement(key, hashKey, value);
+    }
+    /**
+     * 获取APPLICATION_CACHE缓存
+     * @param key
+     * @return
+     */
     public static Object get(String key) {
         return get(APPLICATION_CACHE, key);
     }

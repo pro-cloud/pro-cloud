@@ -8,7 +8,7 @@ import lombok.experimental.UtilityClass;
  * @Date 2019/12/3
  */
 @UtilityClass
-public class LockKeys {
+public class RedisKeys {
 
     ////////////////////////////      默认初始化常量 //////////////////////////
     /**
@@ -52,7 +52,15 @@ public class LockKeys {
     public static final String USER_ADD_UPDATE = "user:add_update";
 
 
+    /**
+     * 租户锁 和自增主键
+     */
     public static final String TENTANT_ADD = "user:tentant";
+
+    /**
+     * 租户hash
+     */
+    public static final String TENTANT_ADD_HASH = "tentant";
 
 
 

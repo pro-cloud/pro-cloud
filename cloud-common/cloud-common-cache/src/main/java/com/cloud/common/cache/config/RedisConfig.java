@@ -1,7 +1,7 @@
 package com.cloud.common.cache.config;
 
 
-import com.cloud.common.cache.constants.LockKeys;
+import com.cloud.common.cache.constants.RedisKeys;
 import com.cloud.common.util.util.DateUtils;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -74,7 +74,7 @@ public class RedisConfig {
 
 	@Bean
 	public RedisLockRegistry redisLockRegistry(RedisConnectionFactory redisConnectionFactory) {
-		return new RedisLockRegistry(redisConnectionFactory, LockKeys.LOCK_REDIS_DEFAULT, LockKeys.DEFAULT_TIMEOUT);
+		return new RedisLockRegistry(redisConnectionFactory, RedisKeys.LOCK_REDIS_DEFAULT, RedisKeys.DEFAULT_TIMEOUT);
 	}
 
 }

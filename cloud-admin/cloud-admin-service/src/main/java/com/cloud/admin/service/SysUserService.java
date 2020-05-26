@@ -31,6 +31,13 @@ public interface SysUserService extends IProService<SysUser> {
      */
     boolean saveUserDTO(UserDTO userDTO);
 
+    /**
+     * 校验是否可以修改或者注册
+     * @param userDTO
+     * @return
+     */
+    boolean getCheckUserDTO(UserDTO userDTO);
+
 
     /**
      * 获取用户详细信息

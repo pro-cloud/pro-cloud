@@ -44,6 +44,15 @@ public class TenantSatausFilter extends OncePerRequestFilter {
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
+
+    /**
+     * 判断租户是否停用或者错误的租户id
+     * @param request
+     * @param response
+     * @param chain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 

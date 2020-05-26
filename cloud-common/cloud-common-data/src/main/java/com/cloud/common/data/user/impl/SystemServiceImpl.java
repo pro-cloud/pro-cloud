@@ -2,7 +2,7 @@ package com.cloud.common.data.user.impl;
 
 import com.cloud.common.data.user.SystemService;
 import com.cloud.common.data.util.ServletUtil;
-import com.cloud.common.data.util.TenantUtil;
+import com.cloud.common.util.var.StaticVar;
 
 /**
  * 默认用户信息
@@ -19,7 +19,7 @@ public class SystemServiceImpl implements SystemService {
      */
     @Override
     public Long getUserId() {
-        return 1L;
+        return StaticVar.DEFAULT_USERID;
     }
 
     /**

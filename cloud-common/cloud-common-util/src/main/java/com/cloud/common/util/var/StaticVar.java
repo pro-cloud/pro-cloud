@@ -23,6 +23,11 @@ public class StaticVar {
     public static final String TENANT_ID = "user_tenant";
 
     /**
+     * 默认的创建用户登录密码不设置时
+     */
+    public static final String DEFAULT_USER_PASSWORD = "123456";
+
+    /**
      * 默认的租户值
      */
     public static final String TENANT_ID_DEFAULT = "0";

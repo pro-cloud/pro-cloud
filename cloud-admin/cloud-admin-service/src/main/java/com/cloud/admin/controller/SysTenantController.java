@@ -1,8 +1,6 @@
 package com.cloud.admin.controller;
 
-import com.cloud.common.cache.annotation.RedisLock;
 import com.cloud.common.cache.constants.CacheScope;
-import com.cloud.common.cache.constants.LockKeys;
 import com.cloud.common.cache.util.RedisUtil;
 import com.cloud.common.data.base.Result;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -60,7 +58,6 @@ public class SysTenantController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin_systenant_add')")
-    @RedisLock( key = LockKeys.TENTANT_ADD)
     public Result save(@RequestBody @Valid SysTenant sysTenant) {
         sysTenant.setTenantId(sysTenantService.getNextTenantId());
         return Result.success(sysTenantService.save(sysTenant));
@@ -74,7 +71,9 @@ public class SysTenantController {
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin_systenant_edit')")
     public Result updateById(@RequestBody @Valid SysTenant sysTenant) {
-        RedisUtil.remove(CacheScope.TENTANT_KEY.getCacheName(), String.valueOf(sysTenant.getTenantId()));
+        SysTenant byId = sysTenantService.getById(sysTenant.getId());
+        RedisUtil.remove(CacheScope.TENTANT_KEY.getCacheName(), String.valueOf(byId.getTenantId()));
+        sysTenant.setTenantId(null);
         return Result.success(sysTenantService.updateById(sysTenant));
     }
 

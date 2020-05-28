@@ -142,7 +142,7 @@ public interface RedisDao {
 	 * @param value
 	 * @return boolean
 	 */
-	public void hmSetIncrement(Object key, Object hashKey, Long value);
+	public Long hmSetIncrement(Object key, Object hashKey, Long value);
 
 	/**
 	 * 哈希 添加(操作hash)

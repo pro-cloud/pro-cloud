@@ -1,11 +1,11 @@
 package com.cloud.common.security.util;
 
 import com.cloud.common.security.component.SecurityUser;
+import com.cloud.common.util.var.StaticVar;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import sun.rmi.runtime.Log;
 
 /**
  * @Author Aijm
@@ -63,7 +63,7 @@ public class SecurityUtil {
         } catch (Exception e) {
             log.info("没有登录", e);
         }
-        return 0L;
+        return StaticVar.DEFAULT_USERID;
     }
 
 

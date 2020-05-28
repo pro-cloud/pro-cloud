@@ -1,5 +1,8 @@
 package com.cloud.admin.service.impl;
 
+import com.cloud.common.cache.annotation.RedisLock;
+import com.cloud.common.cache.constants.RedisKeys;
+import com.cloud.common.cache.redis.RedisDao;
 import com.cloud.common.data.base.BaseService;
 import com.cloud.admin.beans.po.SysTenant;
 import com.cloud.admin.mapper.SysTenantMapper;
@@ -19,17 +22,26 @@ public class SysTenantServiceImpl extends BaseService<SysTenantMapper, SysTenant
     @Autowired
     private SysTenantMapper sysTenantMapper;
 
+    @Autowired
+    private RedisDao redisDao;
+
     /**
      * 获取下一个租户id
      *
      * @return
      */
     @Override
+    @RedisLock(key = RedisKeys.TENTANT_ADD)
     public Integer getNextTenantId() {
-        Integer nextTenantId = sysTenantMapper.getNextTenantId();
-        if (nextTenantId == null) {
-            nextTenantId =  1;
+        Long nextTenantId = redisDao.hmSetIncrement(RedisKeys.TENTANT_ADD, RedisKeys.TENTANT_ADD_HASH, 1L);
+        // 可能是清空了的数据 得到的错误 计数器
+        if (nextTenantId == 1) {
+            Integer maxTenantId = sysTenantMapper.getNextTenantId();
+            if (maxTenantId != null) {
+                nextTenantId = redisDao.hmSetIncrement(RedisKeys.TENTANT_ADD, RedisKeys.TENTANT_ADD_HASH, maxTenantId.longValue());
+            }
+
         }
-        return nextTenantId + 1;
+        return nextTenantId.intValue();
     }
 }

@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.admin.service.SysUserService;
 import com.cloud.common.data.enums.ResultEnum;
 import com.cloud.common.util.util.StrUtils;
+import com.cloud.common.util.var.StaticVar;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -84,6 +85,9 @@ public class SysUserController {
         // 角色数据有效性验证，过滤不在授权内的角色
         getRoleDTO(userDTO);
         // 处理密码
+        if (StrUtils.isBlank(userDTO.getPassword())) {
+            userDTO.setPassword(StaticVar.DEFAULT_USER_PASSWORD);
+        }
         String encode = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encode);
         return Result.success(sysUserService.saveUserDTO(userDTO));
@@ -141,6 +145,22 @@ public class SysUserController {
     }
 
     /**
+     * 校验用户是否能注册获取修改
+     * @param userDTO
+     * @return
+     */
+    @PutMapping("/check")
+    @PreAuthorize("@pms.hasPermission('admin_sysuser_edit')")
+    public Result checkUser(@RequestBody @Valid UserDTO userDTO) {
+        // 查看是否注册过
+        if (sysUserService.getCheckUserDTO(userDTO)) {
+            return Result.error("登录名或者手机号或者密码已被注册!");
+        }
+        return Result.success("");
+    }
+
+
+    /**
      * 过滤不再权限内的角色信息
      * @param userDTO 传递的角色id
      * @return
@@ -168,6 +188,8 @@ public class SysUserController {
         userDTO.setRoleList(roleList);
 
     }
+
+
 
 
 }

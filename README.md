@@ -76,7 +76,13 @@ Pro-Cloud
 | v0.5 | 微服务架构的搭建，基础数据，用户，角色，部门，微服务文件上传支持，在线监控等 |
 | v0.6 | 定时任务处理xxl-job，分布式事物的解决，代码在线生成器 |
 | v0.8 | vue-element-admin的集成和文档的完善 |
-| v1.0 | 三方登录的集成, elk日志收集文档完善 |
+| v1.0 | 三方登录的集成, elk日志收集文档完善 当前版本|
+ 下一步规划  
+ 1. 处理sql文件,整理完整干净的sql文件
+ 2. 处理pro-ui 优化和一些bug
+ 3. 文档的整理
+ 
+ **如何参与代码贡献:** 请查阅doc 目录下的说明
 #### 安装教程
 
 1. 安装mysql redis idea工具
@@ -93,7 +99,8 @@ generator/code?tableName=sys_user&moduleName=admin&comments=用户表
 5. 继承授权中心模块需要实现ProUserDetailsService接口（不实现只会走默认方法），如果定制发邮件需要重构SmsCodeSender接口
 6. 继承data模块需要实现SystemService。获取当前用户id（不实现只会走默认方法）
 
-
+#### [演示环境](http://119.23.8.73:1314/index.html)
+服务器资源有限,监控模块没有部署 敬请谅解: [演示地址](http://119.23.8.73:1314/index.html)
 #### 参与贡献
 
 1. [Mybatis-Plus](https://mp.baomidou.com/)
@@ -108,9 +115,9 @@ generator/code?tableName=sys_user&moduleName=admin&comments=用户表
 #### Pro-Cloud建设
 
 1. 官方地址 [www.eduvipx.cn](http://www.eduvipx.cn) 文档地址http://www.eduvipx.cn:8000/ 官方网站正在建设中…… 可以先查看文档
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0312/183349_ef4d3278_1236464.png "2.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1206/145155_61d3dd66_1236464.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1125/205517_9805bb5a_1236464.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1125/205612_4e340fbe_1236464.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1125/205658_f7fea0ef_1236464.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1125/210037_150c54ce_1236464.png "屏幕截图.png")
+![输入图片说明](./docs/image/1.png "2.png")
+![输入图片说明](./docs/image/2.png "屏幕截图.png")
+![输入图片说明](./docs/image/3.png "屏幕截图.png")
+![输入图片说明](./docs/image/4.png "屏幕截图.png")
+![输入图片说明](./docs/image/5.png "屏幕截图.png")
+![输入图片说明](./docs/image/6.png "屏幕截图.png")

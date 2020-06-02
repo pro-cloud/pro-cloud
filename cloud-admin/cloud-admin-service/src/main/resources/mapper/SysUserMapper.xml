@@ -8,7 +8,6 @@
         a.office_id AS officeId,
         a.login_name AS loginName,
         a.password AS password,
-        a.no AS no,
         a.name AS name,
         a.email AS email,
         a.phone AS phone,

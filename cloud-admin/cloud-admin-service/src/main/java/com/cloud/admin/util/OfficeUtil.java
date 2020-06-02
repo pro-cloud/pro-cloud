@@ -5,6 +5,7 @@ import com.cloud.admin.beans.po.SysOffice;
 import com.cloud.admin.beans.po.SysUser;
 import com.cloud.admin.service.SysOfficeService;
 import com.cloud.common.data.util.SpringUtil;
+import com.cloud.common.util.var.StatusVar;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class OfficeUtil {
      */
     public static List<SysOffice> getAllUpOffice() {
         return sysOfficeService.list(Wrappers.<SysOffice>query().lambda()
-                .eq(SysOffice::getStatus, 0)
+                .eq(SysOffice::getStatus, StatusVar.STATUS_UP)
                 .orderByAsc(SysOffice::getSort));
     }
 

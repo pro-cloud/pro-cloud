@@ -1,16 +1,13 @@
 package com.cloud.auth.handler;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.cloud.auth.constant.StatusVar;
 import com.cloud.auth.entity.SysTenant;
 import com.cloud.auth.service.SysTenantService;
 import com.cloud.common.cache.constants.CacheScope;
 import com.cloud.common.cache.util.RedisUtil;
-import com.cloud.common.data.enums.ResultEnum;
-import com.cloud.common.data.exception.BaseException;
 import com.cloud.common.data.util.ServletUtil;
-import com.cloud.common.data.util.TenantUtil;
 import com.cloud.common.oauth.exception.TentantException;
+import com.cloud.common.util.var.StatusVar;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;

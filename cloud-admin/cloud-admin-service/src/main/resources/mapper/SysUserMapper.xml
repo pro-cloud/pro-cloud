@@ -53,7 +53,7 @@
             </if>
             <!-- 如果不是超级管理员，则不显示超级管理员用户 -->
             <if test="!query.hasAdmin">
-                AND a.id != 1
+                AND a.user_type != '0'
             </if>
 
             <if test="query.officeId != null and query.officeId != ''">

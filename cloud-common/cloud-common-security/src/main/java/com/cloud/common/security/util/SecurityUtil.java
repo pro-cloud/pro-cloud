@@ -18,20 +18,11 @@ public class SecurityUtil {
 
     /**
      * 判断该用户是不是超级管理员 并给admin赋值
-     * @param id 用户id
-     * @return
-     */
-    public static boolean hasAdmin(Long id){
-        return id != null && (id== 1);
-    }
-
-    /**
-     * 判断该用户是不是超级管理员 并给admin赋值
      * @return
      */
     public static boolean hasAdmin(){
-        Long id = getUserId();
-        return id != null && (id== 1);
+        String userType = getUserType();
+        return StaticVar.DEFAULT_USERTYPE_ADMIN.equals(userType);
     }
 
     /**
@@ -64,6 +55,19 @@ public class SecurityUtil {
             log.info("没有登录", e);
         }
         return StaticVar.DEFAULT_USERID;
+    }
+
+    /**
+     * 获取登录用户的类型
+     * @return
+     */
+    public static String getUserType(){
+        try {
+            return getSecurityUser().getUserType();
+        } catch (Exception e) {
+            log.info("没有登录", e);
+        }
+        return StaticVar.DEFAULT_USERTYPE;
     }
 
 

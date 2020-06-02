@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -75,15 +76,9 @@ public class SysUserServiceImpl extends BaseService<SysUserMapper, SysUser> impl
      */
     @Override
     public boolean getCheckUserDTO(UserDTO userDTO) {
-        Integer count = sysUserMapper.selectCount(Wrappers.<SysUser>query()
-                .lambda()
-                .eq(SysUser::getLoginName, userDTO.getLoginName())
-                .or(StrUtils.isNotBlank(userDTO.getEmail()))
-                .eq(SysUser::getEmail, userDTO.getEmail())
-                .or(StrUtils.isNotBlank(userDTO.getMobile()))
-                .eq(SysUser::getMobile, userDTO.getMobile())
-        );
-        return count > 0? true : false;
+        List<Long> ids = sysUserMapper.getCheckUser(userDTO);
+        return userDTO.getId() == null? CollUtil.isEmpty(ids)
+                : CollUtil.isEmpty(ids)|| (ids.size() == 1 && ids.get(0).longValue() == userDTO.getId()) ;
     }
 
 

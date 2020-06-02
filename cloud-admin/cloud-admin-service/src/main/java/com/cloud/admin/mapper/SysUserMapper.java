@@ -7,6 +7,8 @@ import com.cloud.admin.beans.po.SysUser;
 import com.cloud.common.data.base.ProMapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 
 /**
  * 用户表
@@ -23,6 +25,13 @@ public interface SysUserMapper extends ProMapper<SysUser> {
      * @return
      */
     IPage<UserDTO> getSysUserPage(Page page, @Param("query") UserDTO userDTO);
+
+    /**
+     * 查询数量
+     * @param userDTO
+     * @return
+     */
+    List<Long> getCheckUser(UserDTO userDTO);
 
 
 }

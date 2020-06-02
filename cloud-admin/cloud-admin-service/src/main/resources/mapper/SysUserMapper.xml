@@ -69,4 +69,23 @@
 
     </select>
 
+    <select id="getCheckUser" resultType="java.lang.Long">
+        select id from sys_user  a
+        <where>
+            <if test="loginName != null and loginName != ''">
+                or a.loginName = #{loginName}
+            </if>
+
+            <if test="mobile != null and mobile != ''">
+                or a.mobile = #{mobile}
+            </if>
+
+            <if test="email != null and email != ''">
+                or a.email = #{email}
+            </if>
+
+        </where>
+    </select>
+
+
 </mapper>

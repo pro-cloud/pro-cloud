@@ -82,6 +82,11 @@ public class SysUserController {
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin_sysuser_add')")
     public Result save(@RequestBody @Valid UserDTO userDTO) {
+        // 校验是否能够注册邮箱或者手机号或者登录名
+        if(sysUserService.getCheckUserDTO(userDTO)) {
+            return Result.error(ResultEnum.PARAM_REGISTER);
+        }
+
         // 角色数据有效性验证，过滤不在授权内的角色
         getRoleDTO(userDTO);
         // 处理密码
@@ -101,6 +106,11 @@ public class SysUserController {
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin_sysuser_edit')")
     public Result updateById(@RequestBody @Valid UserDTO userDTO) {
+        // 校验是否能够注册邮箱或者手机号或者登录名
+        if(sysUserService.getCheckUserDTO(userDTO)) {
+            return Result.error(ResultEnum.PARAM_REGISTER);
+        }
+
         // 角色数据有效性验证，过滤不在授权内的角色
         getRoleDTO(userDTO);
 

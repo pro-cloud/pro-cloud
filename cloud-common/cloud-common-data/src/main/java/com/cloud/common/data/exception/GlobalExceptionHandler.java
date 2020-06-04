@@ -22,6 +22,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 public class GlobalExceptionHandler {
 
+    /**
+     * 自定义 异常处理
+     * @param e
+     * @return
+     */
     @ExceptionHandler(BaseException.class)
     @ResponseStatus(HttpStatus.OK)
     public Result handleBasicException(BaseException e){
@@ -47,7 +52,7 @@ public class GlobalExceptionHandler {
         if (bindResult != null && bindResult.hasErrors()) {
             msg = bindResult.getAllErrors().get(0).getDefaultMessage();
         }else {
-            msg = "系统繁忙，请稍后重试...";
+            msg = "出现不确定异常*!";
         }
         log.error("参数校验异常，msg:{}",  e.getMessage(), e);
         return Result.error(ResultEnum.CRUD_VALID_NOT.getCode(), msg);

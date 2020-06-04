@@ -7,6 +7,7 @@ import com.cloud.common.oauth.exception.ValidateCodeException;
 import com.cloud.common.oauth.properties.SecurityConstants;
 import com.cloud.common.oauth.properties.SecurityProps;
 import com.google.common.collect.Maps;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -29,6 +30,7 @@ import java.util.Set;
  * @since 2019/5/19
  */
 @Component("validateCodeFilter")
+@Slf4j
 public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean {
 
 
@@ -95,13 +97,13 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 
         ValidateCodeType type = getValidateCodeType(request);
         if (type != null) {
-            logger.info("校验请求(" + request.getRequestURI() + ")中的验证码,验证码类型" + type);
+            log.info("校验请求({})中的验证码,验证码类型:{}", request.getRequestURI(), type);
             try {
                 validateCodeProcessorHolder.findValidateCodeProcessor(type)
                         .validate(new ServletWebRequest(request, response));
-                logger.info("验证码校验通过");
+                log.info("验证码校验通过");
             } catch (ValidateCodeException exception) {
-                logger.info("验证码校验不通过");
+                log.info("验证码校验不通过");
                 authenticationFailureHandler.onAuthenticationFailure(request, response, exception);
                 return;
             }

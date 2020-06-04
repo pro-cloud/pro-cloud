@@ -1,4 +1,4 @@
-package com.cloud.auth.constant;
+package com.cloud.common.util.var;
 
 import lombok.experimental.UtilityClass;
 

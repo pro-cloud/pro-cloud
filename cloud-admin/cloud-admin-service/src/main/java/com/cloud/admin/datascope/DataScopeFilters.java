@@ -54,7 +54,7 @@ public class DataScopeFilters {
         // 超级管理员，跳过权限过滤
         Long userId = UserUtil.getUserId();
         SysOffice userOffice = OfficeUtil.getUserOffice();
-        if (!UserUtil.hasAdmin(userId)){
+        if (!UserUtil.hasAdmin()){
             boolean isDataScopeAll = false;
 
             if (DataScope.DATA_SCOPE_ALL == dataScopeInteger){
@@ -109,7 +109,7 @@ public class DataScopeFilters {
         // 超级管理员，跳过权限过滤
         Long userId = UserUtil.getUserId();
         SysOffice userOffice = OfficeUtil.getUserOffice();
-        if (!UserUtil.hasAdmin(userId)){
+        if (!UserUtil.hasAdmin()){
             boolean isDataScopeAll = false;
 
             if (DataScope.DATA_SCOPE_ALL == dataScopeInteger){

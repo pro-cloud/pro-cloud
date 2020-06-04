@@ -8,7 +8,6 @@
         a.office_id AS officeId,
         a.login_name AS loginName,
         a.password AS password,
-        a.no AS no,
         a.name AS name,
         a.email AS email,
         a.phone AS phone,
@@ -54,7 +53,7 @@
             </if>
             <!-- 如果不是超级管理员，则不显示超级管理员用户 -->
             <if test="!query.hasAdmin">
-                AND a.id != 1
+                AND a.user_type != '0'
             </if>
 
             <if test="query.officeId != null and query.officeId != ''">

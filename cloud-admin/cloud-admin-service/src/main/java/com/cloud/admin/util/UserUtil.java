@@ -16,7 +16,7 @@ import com.cloud.admin.service.SysRoleService;
 import com.cloud.admin.service.SysUserService;
 import com.cloud.common.data.util.SpringUtil;
 import com.cloud.common.security.util.SecurityUtil;
-import com.cloud.common.util.util.StrUtils;
+import com.cloud.common.util.var.StaticVar;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -61,6 +61,16 @@ public class UserUtil extends SecurityUtil {
 
 
     ///////////////////////用户相关 //////////////////////////////////
+
+    /**
+     * 判断该用户是不是超级管理员 并给admin赋值
+     * @param id 用户id
+     * @return
+     */
+    public static boolean hasAdmin(Long id){
+        SysUser user = getUser(id);
+        return StaticVar.DEFAULT_USERTYPE_ADMIN.equals(user.getUserType());
+    }
 
     /**
      * 获取某个 用户不包括角色 和部门信息

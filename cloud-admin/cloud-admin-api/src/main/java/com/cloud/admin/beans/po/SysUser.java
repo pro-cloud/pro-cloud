@@ -34,9 +34,6 @@ public class SysUser extends TenantEntity<SysUser> {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @ApiModelProperty(value = "工号")
-    private String no;
-
     @ApiModelProperty(value = "姓名")
     private String name;
 
@@ -50,7 +47,7 @@ public class SysUser extends TenantEntity<SysUser> {
     @ApiModelProperty(value = "手机")
     private String mobile;
 
-    @ApiModelProperty(value = "用户类型")
+    @ApiModelProperty(value = "用户类型 0 租户管理员 ")
     private String userType;
 
     @ApiModelProperty(value = "用户头像")

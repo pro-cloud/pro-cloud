@@ -38,4 +38,14 @@ public class StaticVar {
      */
     public static final Long DEFAULT_USERID  = 0L;
 
+    /**
+     * 没有登录默认登录用户类型
+     */
+    public static final String DEFAULT_USERTYPE  = "";
+
+    /**
+     * 租户超级管理员用户类型
+     */
+    public static final String DEFAULT_USERTYPE_ADMIN  = "0";
+
 }

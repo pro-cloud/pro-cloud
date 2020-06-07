@@ -34,7 +34,7 @@ mybatisplus的使用,大大的节省了开发的工作量,让代码更易维护 
 详细请参考: [pro-cloud技术文档](http://doc.eduvipx.cn)
 
 #### dubbo的集成
-dubbo的2.x版本由于高速发展,稳定性不够,但是是个趋势,项目pro-cloudx 是基于spring-cloud-alibaba的2.2.1最新版本建设,pro-cloud的的dubbo实现,暂不开源, 如果想要学习的话可以联系作者;
+dubbo的2.x版本由于高速发展,稳定性不够,但是是个趋势,项目pro-micro 是基于spring-cloud-alibaba的2.2.1最新版本建设,pro-cloud的的dubbo实现,暂不开源, 如果想要学习的话可以联系作者;
 
 #### 软件架构
 前台采用 vue.js 为核心框架;

@@ -40,7 +40,8 @@ public class SecurityUtil {
      * @return
      */
     public static boolean hasAuthenticated() {
-        return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        return SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && !SecurityContextHolder.getContext().getAuthentication().getName().
+                equals("anonymousUser");
     }
 
 
@@ -52,7 +53,7 @@ public class SecurityUtil {
         try {
             return getSecurityUser().getUserId();
         } catch (Exception e) {
-            log.info("没有登录", e);
+            log.info("没有登录! 默认用户id");
         }
         return StaticVar.DEFAULT_USERID;
     }

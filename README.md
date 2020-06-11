@@ -33,6 +33,9 @@ mybatisplus的使用,大大的节省了开发的工作量,让代码更易维护 
 #### 文档
 详细请参考: [pro-cloud技术文档](http://doc.eduvipx.cn)
 
+#### dubbo的集成
+dubbo的2.x版本由于高速发展,稳定性不够,但是是个趋势,项目pro-micro 是基于spring-cloud-alibaba的2.2.1最新版本建设,pro-cloud的的dubbo实现,暂不开源, 如果想要学习的话可以联系作者;
+
 #### 软件架构
 前台采用 vue.js 为核心框架;
 后台基于 Spring Cloud alibaba、Spring Security Oauth 2.0 开发企业级认证与授权，提供常见服务监控、链路追踪、日志分析、缓存管理、任务调度等实现，
@@ -79,10 +82,12 @@ Pro-Cloud
 | v0.6 | 定时任务处理xxl-job，分布式事物的解决，代码在线生成器 |
 | v0.8 | vue-element-admin的集成和文档的完善 |
 | v1.0 | 三方登录的集成, elk日志收集文档完善 当前版本|
+
  下一步规划  
  1. 处理sql文件,整理完整干净的sql文件
  2. 处理pro-ui 优化和一些bug
  3. 文档的整理
+ 4. 升级springcloudalibaba 到2.2.1
  
  **如何参与代码贡献:** 请查阅doc 目录下的说明
 #### 安装教程

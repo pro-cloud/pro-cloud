@@ -38,7 +38,7 @@ dubbo的2.x版本由于高速发展,稳定性不够,但是是个趋势,项目pro
 
 #### 软件架构
 前台采用 vue.js 为核心框架;
-后台基于 Spring Cloud alibaba、Spring Security Oauth 2.0 开发企业级认证与授权，提供常见服务监控、链路追踪、日志分析、缓存管理、任务调度等实现，
+后台基于 Spring Cloud alibaba2.2.1、Spring Security Oauth 2.0 开发企业级认证与授权，提供常见服务监控、链路追踪、日志分析、缓存管理、任务调度等实现，
 nacos + Spring Cloud Oauth2 + Spring Cloud gateway +  Feign + mybatisplus等，各种组件注解开发，让代码简洁，通俗易通，以提高效率
 ```
 Pro-Cloud
@@ -87,7 +87,6 @@ Pro-Cloud
  1. 处理sql文件,整理完整干净的sql文件
  2. 处理pro-ui 优化和一些bug
  3. 文档的整理
- 4. 升级springcloudalibaba 到2.2.1
  
  **如何参与代码贡献:** 请查阅doc 目录下的说明
 #### 安装教程

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-05-28 19:52:29
+Date: 2020-06-11 16:52:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,7 +37,7 @@ CREATE TABLE `gen_data_source` (
 -- ----------------------------
 -- Records of gen_data_source
 -- ----------------------------
-INSERT INTO `gen_data_source` VALUES ('2', 'database2', 'jdbc:mysql://119.23.8.73:3306/pro_cloud?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC', 'aijm', '23454', '1', '2019-06-13 23:24:03', '1', '2019-06-19 23:24:09', '', '0');
+INSERT INTO `gen_data_source` VALUES ('2', 'database2', 'jdbc:mysql://119.23.8.73:3306/pro_cloud?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC', 'xxx', 'xxx', '1', '2019-06-13 23:24:03', '1', '2019-06-19 23:24:09', '', '0');
 
 -- ----------------------------
 -- Table structure for gen_scheme
@@ -694,12 +694,11 @@ CREATE TABLE `sys_user` (
   `office_id` bigint(20) unsigned NOT NULL COMMENT '归属部门',
   `login_name` varchar(100) NOT NULL COMMENT '登录名',
   `password` varchar(100) NOT NULL COMMENT '密码',
-  `no` varchar(100) DEFAULT NULL COMMENT '工号',
   `name` varchar(100) NOT NULL COMMENT '姓名',
   `email` varchar(200) DEFAULT NULL COMMENT '邮箱',
   `phone` varchar(20) DEFAULT NULL COMMENT '电话',
   `mobile` varchar(11) DEFAULT NULL COMMENT '手机',
-  `user_type` char(1) DEFAULT NULL COMMENT '用户类型0：管理员 1:教师 2:学生 ',
+  `user_type` char(1) DEFAULT NULL COMMENT '用户类型0：租户管理员 1:普通',
   `photo` varchar(300) DEFAULT NULL COMMENT '用户头像',
   `status` tinyint(4) unsigned DEFAULT '0' COMMENT '状态0 启用 1 禁用',
   `login_date` datetime DEFAULT NULL COMMENT '最后登陆时间',
@@ -723,13 +722,13 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '2', 'myadmin', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '0011', '全球CEO', '2929783435@qq.com', '18210584253', '18210584253', '2', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '0', null, null, '1', '2013-05-27 08:00:00', '1', '2020-05-25 17:38:41', ' ', '0', '', '', '0');
-INSERT INTO `sys_user` VALUES ('12', '2', 'Aijm_99', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '0012', '江西南昌领导0000', '2929783435@qq.com', '18210584253', '18210584253', '2', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '1', null, null, '1', '2013-05-27 08:00:00', '1', '2020-05-27 00:10:06', ' ', '0', '', '', '0');
-INSERT INTO `sys_user` VALUES ('13', '2', '2929783435@qq.com', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '0013', '江西抚州', '2929783435@qq.com', '18210584253', '18210584253', '2', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', ' ', '0', '', '', '0');
-INSERT INTO `sys_user` VALUES ('124', '1', 'aijiamin1', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '0001', '系统管理员', '2929783435@qq.com', '18210684253', '18210584253', '2', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '0', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', '最高管理员', '0', '', '', '0');
-INSERT INTO `sys_user` VALUES ('1182672899547467776', '2', 'admin', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '0001', '系统管理员', '2929783435@qq.com', '18210684254', '18210584253', '2', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '0', null, null, '1', '2019-10-11 23:02:47', '1', '2020-05-25 17:38:23', '最高管理员222', '0', '', '', '0');
-INSERT INTO `sys_user` VALUES ('1196764259711848448', '2', 'syd_admin', '$2a$10$tqvPozBCqQ0Yh6impeHEceGLqtrTIWQO1IYjwNXks0IN5UgZgFUsK', '0002', '管理员', '2929783435@qq.com', '18210584253', '18210584253', '1', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '0', null, null, '1', '2019-11-19 20:16:49', '1', '2020-05-10 21:52:04', '', '0', '', '', '0');
-INSERT INTO `sys_user` VALUES ('1265305717968080896', '2', 'Aijm_99', '$2a$10$IWzk5HPpoOxc4n63e9OB/OgkXrcQGkj50.Z1Tndv0KwrCbJNCEl7m', null, 'Aijm', null, null, null, '1', null, '0', null, null, '1', '2020-05-26 23:36:06', '1', '2020-05-27 00:09:06', '', '0', '', '', '0');
+INSERT INTO `sys_user` VALUES ('1', '2', 'myadmin', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '全球CEO', '2929783435@qq.com', '18210584253', '18210584253', '0', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '0', null, null, '1', '2013-05-27 08:00:00', '1', '2020-05-25 17:38:41', ' ', '0', '', '', '0');
+INSERT INTO `sys_user` VALUES ('12', '2', 'Aijm_99', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '江西南昌领导0000', '2929783435@qq.com', '18210584253', '18210584253', '2', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '1', null, null, '1', '2013-05-27 08:00:00', '1', '2020-05-27 00:10:06', ' ', '0', '', '', '0');
+INSERT INTO `sys_user` VALUES ('13', '2', '2929783435@qq.com', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '江西抚州', '2929783435@qq.com', '18210584253', '18210584253', '2', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', ' ', '0', '', '', '0');
+INSERT INTO `sys_user` VALUES ('124', '1', 'aijiamin1', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '系统管理员', '2929783435@qq.com', '18210684253', '18210584253', '2', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '0', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', '最高管理员', '0', '', '', '0');
+INSERT INTO `sys_user` VALUES ('1182672899547467776', '2', 'admin', '$2a$10$k9tBdw0GHbLtToX2Apheq.bR/D2WYWb5Rq0oPJt1Hn2axpsA.CI9O', '系统管理员', '2929783435@qq.com', '18210684254', '18210584253', '2', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '0', null, null, '1', '2019-10-11 23:02:47', '1', '2020-05-25 17:38:23', '最高管理员222', '0', '', '', '0');
+INSERT INTO `sys_user` VALUES ('1196764259711848448', '2', 'syd_admin', '$2a$10$tqvPozBCqQ0Yh6impeHEceGLqtrTIWQO1IYjwNXks0IN5UgZgFUsK', '管理员', '2929783435@qq.com', '18210584253', '18210584253', '1', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '0', null, null, '1', '2019-11-19 20:16:49', '1', '2020-05-10 21:52:04', '', '0', '', '', '0');
+INSERT INTO `sys_user` VALUES ('1265305717968080896', '2', 'Aijm_99', '$2a$10$IWzk5HPpoOxc4n63e9OB/OgkXrcQGkj50.Z1Tndv0KwrCbJNCEl7m', 'Aijm', null, null, null, '1', null, '0', null, null, '1', '2020-05-26 23:36:06', '1', '2020-05-27 00:09:06', '', '0', '', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role

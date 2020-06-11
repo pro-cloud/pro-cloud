@@ -13,7 +13,7 @@
         <java.version>1.8</java.version>
         <pro-cloud.version>1.0-SNAPSHOT</pro-cloud.version>
 
-        <spring-cloud.version>Hoxton.SR2</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
         <security.oauth.version>2.3.6.RELEASE</security.oauth.version>
 <!--        <spring-platform.version>Cairo-SR8</spring-platform.version>-->
         <hutool.version>5.1.0</hutool.version>
@@ -22,7 +22,7 @@
         <knife4j.version>2.0.2</knife4j.version>
         <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
-        <mybatis-plus-boot-starter.version>3.3.1.tmp</mybatis-plus-boot-starter.version>
+        <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
         <jasypt.version>2.1.1</jasypt.version>
         <curator.version>4.2.0</curator.version>
         <xxl-job.version>2.1.2</xxl-job.version>
@@ -31,7 +31,7 @@
         <aliyun-sdk-oss.version>3.5.0</aliyun-sdk-oss.version>
         <fastjson.version>1.2.70</fastjson.version>
         <easypoi-spring-boot.version>4.1.3</easypoi-spring-boot.version>
-        <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
 
         <guava.version>20.0</guava.version>
         <justAuth.version>1.3.1</justAuth.version>
@@ -150,6 +150,7 @@
                 <artifactId>jsr305</artifactId>
                 <version>3.0.2</version>
             </dependency>
+
 
             <dependency>
                 <groupId>io.prometheus</groupId>

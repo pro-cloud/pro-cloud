@@ -14,7 +14,7 @@ spring:
         # shared-dataids: cloud-auth-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
         namespace: d4885c2a-412b-4df6-8342-68c6c4a3dd4c
         group: pro-cloud
-        ext-config:
+        extension-configs:
           - data-id: common.yaml
             group: pro-cloud
 #    sentinel:

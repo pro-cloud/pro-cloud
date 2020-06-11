@@ -1,8 +1,7 @@
 package com.cloud.common.oauth.properties;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -22,13 +21,12 @@ import java.util.List;
  */
 @Slf4j
 @Configuration
+@Data
 @ConditionalOnExpression("!'${security.oauth2.client.ignore-urls}'.isEmpty()")
 @ConfigurationProperties(prefix = "security.oauth2.client")
 @RefreshScope
 public class PermitProps {
 
-	@Getter
-	@Setter
 	private List<String> ignoreUrls = new ArrayList<>();
 
 

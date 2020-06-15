@@ -9,15 +9,6 @@ mybatisplus的使用,大大的节省了开发的工作量,让代码更易维护 
 服务器资源有限,监控模块没有部署 敬请谅解: [演示地址](http://119.23.8.73:1314/index.html)
 #### Pro-Cloud架构图
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0323/221440_892a46d3_1236464.png "spring cloud 微服务.png")
-#### master分支 已完成的更新功能说明
-1. 容器切换为, 不在使用tomcat
-2. springboot升级为2.2  springcloud alibaba 2.2.0  Hoxton.SR2 等
-3. seata 分布式事物使用demo
-4. 已经添加回多租户的处理
-#### develop 分支 进行中
-1. 移除admin监控 换成prometheus+grafana+alertManager
-2. 多租户进一步优化
-3. oauth 功能优化
 #### 特别声明
 1. 不再使用原有的生成代码,将重写一份
 在此带来的不便敬请谅解

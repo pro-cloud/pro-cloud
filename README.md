@@ -9,12 +9,6 @@ mybatisplus的使用,大大的节省了开发的工作量,让代码更易维护 
 服务器资源有限,监控模块没有部署 敬请谅解: [演示地址](http://119.23.8.73:1314/index.html)
 #### Pro-Cloud架构图
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0323/221440_892a46d3_1236464.png "spring cloud 微服务.png")
-#### 特别声明
-1. 不再使用原有的生成代码,将重写一份
-在此带来的不便敬请谅解
-#### 下一步的规划
-1. 前端抛弃layui,将使用vue版本
-2. 将对原有的结构,代码精简优化
 #### 项目地址
 [gitee项目地址链接](https://gitee.com/gitsc/pro-cloud)  
 [github项目地址链接](https://github.com/pro-cloud/pro-cloud)

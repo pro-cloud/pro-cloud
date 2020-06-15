@@ -31,7 +31,7 @@ mybatisplus的使用,大大的节省了开发的工作量,让代码更易维护 
 后台管理前端vue工程（pro-ui 待支持）：[码云地址](https://gitee.com/gitsc/pro-ui)  
 
 #### 文档
-详细请参考: [pro-cloud技术文档](http://doc.eduvipx.cn)
+详细请参考: [pro-cloud技术文档](https://www.kancloud.cn/aijm/pro-cloud/1340604)
 
 #### dubbo的集成
 dubbo的2.x版本由于高速发展,稳定性不够,但是是个趋势,项目pro-micro 是基于spring-cloud-alibaba的2.2.1最新版本建设,pro-cloud的的dubbo实现,暂不开源, 如果想要学习的话可以联系作者;

@@ -71,7 +71,6 @@ Pro-Cloud
  1. 处理sql文件,整理完整干净的sql文件
  2. 处理pro-ui 优化和一些bug
  3. 文档的整理
- 4. redis序列化处理用json替代问题解决
  
 ### 版本区别
 | pro-cloud 项目| pro-micro项目|

@@ -67,17 +67,18 @@ Pro-Cloud
 | v0.6 | 定时任务处理xxl-job，分布式事物的解决，代码在线生成器 |
 | v0.8 | vue-element-admin的集成和文档的完善 |
 | v1.0 | 三方登录的集成, elk日志收集文档完善 当前版本|
-
-### 版本区别
-| pro-cloud 项目| pro-micro项目|
-|:----: |:--------:|
-| openfeign | dubbo |
-| logback | log4j2|
  下一步规划  
  1. 处理sql文件,整理完整干净的sql文件
  2. 处理pro-ui 优化和一些bug
  3. 文档的整理
  4. redis序列化处理用json替代问题解决
+ 
+### 版本区别
+| pro-cloud 项目| pro-micro项目|
+|:----: |:--------:|
+| openfeign | dubbo |
+| logback | log4j2|
+
  
  **如何参与代码贡献:** 请查阅doc 目录下的说明
 #### 安装教程

@@ -72,12 +72,16 @@ Pro-Cloud
  2. 处理pro-ui 优化和一些bug
  3. 文档的整理
  
-### 版本区别
+### 主要中间件区别
 | pro-cloud 项目| pro-micro项目|
 |:----: |:--------:|
 | openfeign | dubbo |
 | logback | log4j2|
 
+### 代码区别:
+pro-micro 对 pro-cloud的代码进行了优化,让代码可读性更高更易维护
+1. 对auth模块的优化
+2. 对admin中security的优化
  
  **如何参与代码贡献:** 请查阅doc 目录下的说明
 #### 安装教程

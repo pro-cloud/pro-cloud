@@ -82,6 +82,7 @@ Pro-Cloud
 pro-micro 对 pro-cloud的代码进行了优化,让代码可读性更高更易维护
 1. 对auth模块的优化
 2. 对admin中security的优化
+3. pro-micro 实现灰度发布
  
  **如何参与代码贡献:** 请查阅doc 目录下的说明
 #### 安装教程

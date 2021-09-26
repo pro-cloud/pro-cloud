@@ -4,7 +4,7 @@
    Pro-Cloud 是一个Security作为安全框架,采用前后端分离的模式. 基于OAuth2 的RBAC权限管理微服务系统. Pro-Cloud后端采用springcloud alibaba架构,集成Sentinel从流量控制、熔断降级、系统负载等多个维度保护服务的稳定性。
 注册中心、配置中心选型Nacos，为工程瘦身的同时加强各模块之间的联动。使用OAuth2，实现了多终端认证系统，可控制子系统的token权限互相隔离。
 使用SkyWalking链路最终技术,方便了解应用拓扑和慢服务监测等情况,prometheus+grafana+alertManager作为监控中心,它为actuator端点提供了良好的交互界面，并提供了额外的特性.
-mybatisplus的使用,大大的节省了开发的工作量,让代码更易维护 前端基于layui开发,降低学习成本,快速上手,
+mybatisplus的使用,大大的节省了开发的工作量,让代码更易维护 前端基于layui开发,降低学习成本,快速上手
 #### [演示环境](http://119.23.8.73:1314/index.html)
 服务器资源有限,监控模块没有部署 敬请谅解: [演示地址](http://119.23.8.73:1314/index.html)
 #### Pro-Cloud架构图

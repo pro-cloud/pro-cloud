@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @Author Aijm
- * @Description  字典暴露接口
+ * @Description  字典暴露接口 可以考虑去掉 建议使用dubber
  * @Date 2019/9/10
  */
 @FeignClient(contextId = "dictService", value = CloudServiceList.CLOUD_ADMIN )
